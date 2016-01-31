@@ -1,0 +1,15 @@
+<html>
+	<head>
+	<link rel="stylesheet" type="text/css" href="generic.css">
+	<link rel="stylesheet" type="text/css" href="menu.css">
+	</head>
+	<body>
+		<div class="dropdown">
+			<div class="dropdown-button"><div class="dropdown-button-div">button</div></div>
+			<div class="dropdown-content">
+				<div class="dropdown-item"><div class="dropdown-item-div">item 1</div></div>
+				<div class="dropdown-item"><div class="dropdown-item-div">item 2</div></div>
+			</div>
+		</div>
+	</body>
+</html>

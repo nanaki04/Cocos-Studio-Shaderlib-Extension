@@ -1,0 +1,899 @@
+{
+  "ID": "7def0ece-ff34-4ec8-b294-67f0a51a07d5",
+  "Version": "2.2.1.0",
+  "Name": "BattleTop",
+  "Content": {
+    "Content": {
+      "Animation": {
+        "Duration": 0,
+        "Speed": 1.0,
+        "Timelines": [],
+        "ctype": "TimelineActionData"
+      },
+      "AnimationList": [],
+      "ObjectData": {
+        "PrePosition": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "PreSize": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Children": [
+          {
+            "BackColorAlpha": 0,
+            "ComboBoxIndex": 1,
+            "SingleColor": {
+              "R": 0,
+              "G": 0,
+              "B": 0
+            },
+            "FirstColor": {
+              "R": 0,
+              "G": 0,
+              "B": 0
+            },
+            "EndColor": {
+              "R": 0,
+              "G": 0,
+              "B": 0
+            },
+            "ColorVector": {
+              "ScaleX": 1.0
+            },
+            "TouchEnable": true,
+            "Tag": 13,
+            "PrePosition": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "PreSize": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "Children": [
+              {
+                "BackColorAlpha": 100,
+                "FileData": {
+                  "Type": "Normal",
+                  "Path": "BattleScene/BS11.png"
+                },
+                "ComboBoxIndex": 1,
+                "SingleColor": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0
+                },
+                "FirstColor": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0
+                },
+                "EndColor": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0
+                },
+                "ColorVector": {
+                  "ScaleX": 1.0
+                },
+                "Scale9Width": 640,
+                "Scale9Height": 140,
+                "TouchEnable": true,
+                "Tag": 26,
+                "PrePosition": {
+                  "X": 0.0,
+                  "Y": 0.8523
+                },
+                "PreSize": {
+                  "X": 0.0,
+                  "Y": 0.0
+                },
+                "Children": [
+                  {
+                    "FontSize": 14,
+                    "ButtonText": "",
+                    "TextColor": {},
+                    "DisabledFileData": {
+                      "Type": "Normal",
+                      "Path": "BattleScene/BS06.png"
+                    },
+                    "PressedFileData": {
+                      "Type": "Normal",
+                      "Path": "BattleScene/BS05.png"
+                    },
+                    "NormalFileData": {
+                      "Type": "Default",
+                      "Path": "Default/Button_Normal.png"
+                    },
+                    "Scale9Width": 46,
+                    "Scale9Height": 36,
+                    "DisplayState": false,
+                    "TouchEnable": true,
+                    "Tag": 41,
+                    "PrePosition": {
+                      "X": 0.0,
+                      "Y": 0.0
+                    },
+                    "PreSize": {
+                      "X": 0.0,
+                      "Y": 0.0
+                    },
+                    "ActionTag": 59,
+                    "Position": {
+                      "X": 604.9261,
+                      "Y": 90.2166
+                    },
+                    "Scale": {
+                      "ScaleX": 1.0,
+                      "ScaleY": 1.0
+                    },
+                    "AnchorPoint": {
+                      "ScaleX": 0.5,
+                      "ScaleY": 0.5
+                    },
+                    "CColor": {},
+                    "IsAutoSize": true,
+                    "Size": {
+                      "X": 46.0,
+                      "Y": 36.0
+                    },
+                    "FrameEvent": "",
+                    "Name": "Button_Pause",
+                    "ctype": "ButtonObjectData"
+                  },
+                  {
+                    "FontSize": 14,
+                    "ButtonText": "",
+                    "TextColor": {},
+                    "DisabledFileData": {
+                      "Type": "Default",
+                      "Path": "Default/Button_Disable.png"
+                    },
+                    "PressedFileData": {
+                      "Type": "Normal",
+                      "Path": "BattleScene/BS04.png"
+                    },
+                    "NormalFileData": {
+                      "Type": "Normal",
+                      "Path": "BattleScene/BS03.png"
+                    },
+                    "Scale9Width": 61,
+                    "Scale9Height": 59,
+                    "TouchEnable": true,
+                    "Tag": 41,
+                    "PrePosition": {
+                      "X": 0.934,
+                      "Y": 0.2237
+                    },
+                    "PreSize": {
+                      "X": 0.0,
+                      "Y": 0.0
+                    },
+                    "ActionTag": 230915546,
+                    "Position": {
+                      "X": 597.7885,
+                      "Y": 31.3159
+                    },
+                    "Scale": {
+                      "ScaleX": 1.0,
+                      "ScaleY": 1.0
+                    },
+                    "AnchorPoint": {
+                      "ScaleX": 0.5,
+                      "ScaleY": 0.5
+                    },
+                    "CColor": {},
+                    "Size": {
+                      "X": 61.0,
+                      "Y": 59.0
+                    },
+                    "FrameEvent": "",
+                    "Name": "Button_Blast",
+                    "ctype": "ButtonObjectData"
+                  },
+                  {
+                    "FileData": {
+                      "Type": "Normal",
+                      "Path": "BattleScene/BS13.png"
+                    },
+                    "Scale9Width": 188,
+                    "Scale9Height": 54,
+                    "Tag": 25,
+                    "PrePosition": {
+                      "X": 0.0,
+                      "Y": 0.0
+                    },
+                    "PreSize": {
+                      "X": 0.0,
+                      "Y": 0.0
+                    },
+                    "Children": [
+                      {
+                        "CharWidth": 14,
+                        "CharHeight": 18,
+                        "LabelText": "12345\n",
+                        "StartChar": "/",
+                        "LabelAtlasFileImage_CNB": {
+                          "Type": "Default",
+                          "Path": "Default/TextAtlas.png"
+                        },
+                        "Tag": 22,
+                        "PrePosition": {
+                          "X": 0.0,
+                          "Y": 0.0
+                        },
+                        "PreSize": {
+                          "X": 0.0,
+                          "Y": 0.0
+                        },
+                        "ActionTag": 42,
+                        "Position": {
+                          "X": 45.7853,
+                          "Y": 28.6095
+                        },
+                        "Scale": {
+                          "ScaleX": 1.0,
+                          "ScaleY": 1.0
+                        },
+                        "ZOrder": 3,
+                        "AnchorPoint": {
+                          "ScaleY": 0.5
+                        },
+                        "CColor": {},
+                        "IsAutoSize": true,
+                        "Size": {
+                          "X": 85.0,
+                          "Y": 18.0
+                        },
+                        "FrameEvent": "",
+                        "Name": "AtlastLabel_Coincount",
+                        "ctype": "TextAtlasObjectData"
+                      },
+                      {
+                        "FileData": {
+                          "Type": "Normal",
+                          "Path": "Common/Cn16.png"
+                        },
+                        "Scale9Width": 57,
+                        "Scale9Height": 53,
+                        "Tag": 38,
+                        "PrePosition": {
+                          "X": 0.0711,
+                          "Y": 0.5499
+                        },
+                        "PreSize": {
+                          "X": 0.0,
+                          "Y": 0.0
+                        },
+                        "ActionTag": 783931732,
+                        "Position": {
+                          "X": 13.3712,
+                          "Y": 29.6971
+                        },
+                        "Scale": {
+                          "ScaleX": 1.0,
+                          "ScaleY": 1.0
+                        },
+                        "ZOrder": 2,
+                        "AnchorPoint": {
+                          "ScaleX": 0.4384,
+                          "ScaleY": 0.4641
+                        },
+                        "CColor": {},
+                        "Size": {
+                          "X": 57.0,
+                          "Y": 53.0
+                        },
+                        "FrameEvent": "",
+                        "Name": "ImageView_Coin",
+                        "ctype": "ImageViewObjectData"
+                      }
+                    ],
+                    "ActionTag": 45,
+                    "Position": {
+                      "X": 310.4388,
+                      "Y": 93.0439
+                    },
+                    "Scale": {
+                      "ScaleX": 1.0,
+                      "ScaleY": 1.0
+                    },
+                    "ZOrder": 1,
+                    "AnchorPoint": {
+                      "ScaleX": 0.5,
+                      "ScaleY": 0.5
+                    },
+                    "CColor": {},
+                    "Size": {
+                      "X": 188.0,
+                      "Y": 54.0
+                    },
+                    "FrameEvent": "",
+                    "Name": "ImageView_Coinbg",
+                    "ctype": "ImageViewObjectData"
+                  },
+                  {
+                    "FileData": {
+                      "Type": "Normal",
+                      "Path": "BattleScene/BS13.png"
+                    },
+                    "Scale9Width": 188,
+                    "Scale9Height": 54,
+                    "Tag": 37,
+                    "PrePosition": {
+                      "X": 0.1826,
+                      "Y": 0.6429
+                    },
+                    "PreSize": {
+                      "X": 0.0,
+                      "Y": 0.0
+                    },
+                    "Children": [
+                      {
+                        "FontSize": 20,
+                        "LabelText": "Cocos ",
+                        "Tag": 40,
+                        "PrePosition": {
+                          "X": 0.5507,
+                          "Y": 0.5289
+                        },
+                        "PreSize": {
+                          "X": 0.0,
+                          "Y": 0.0
+                        },
+                        "ActionTag": 187292493,
+                        "Position": {
+                          "X": 103.5279,
+                          "Y": 28.5632
+                        },
+                        "Scale": {
+                          "ScaleX": 1.0,
+                          "ScaleY": 1.0
+                        },
+                        "AnchorPoint": {
+                          "ScaleX": 0.5,
+                          "ScaleY": 0.5
+                        },
+                        "CColor": {},
+                        "Size": {
+                          "X": 60.0,
+                          "Y": 20.0
+                        },
+                        "FrameEvent": "",
+                        "Name": "Text_Starname",
+                        "ctype": "TextObjectData"
+                      },
+                      {
+                        "FileData": {
+                          "Type": "Normal",
+                          "Path": "Common/Cn20.png"
+                        },
+                        "Scale9Width": 68,
+                        "Scale9Height": 57,
+                        "Tag": 39,
+                        "PrePosition": {
+                          "X": 0.1072,
+                          "Y": 0.5451
+                        },
+                        "PreSize": {
+                          "X": 0.0,
+                          "Y": 0.0
+                        },
+                        "Children": [
+                          {
+                            "FontSize": 20,
+                            "LabelText": "234\n ",
+                            "Tag": 166,
+                            "PrePosition": {
+                              "X": 0.4986,
+                              "Y": 0.2936
+                            },
+                            "PreSize": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "ActionTag": 304086378,
+                            "Position": {
+                              "X": 33.9034,
+                              "Y": 16.7338
+                            },
+                            "Scale": {
+                              "ScaleX": 1.0,
+                              "ScaleY": 1.0
+                            },
+                            "AnchorPoint": {
+                              "ScaleX": 0.5,
+                              "ScaleY": 0.5
+                            },
+                            "CColor": {},
+                            "Size": {
+                              "X": 30.0,
+                              "Y": 40.0
+                            },
+                            "FrameEvent": "",
+                            "Name": "Text_Star",
+                            "ctype": "TextObjectData"
+                          }
+                        ],
+                        "ActionTag": 640445187,
+                        "Position": {
+                          "X": 20.1501,
+                          "Y": 29.4355
+                        },
+                        "Scale": {
+                          "ScaleX": 1.1271,
+                          "ScaleY": 1.2212
+                        },
+                        "ZOrder": 2,
+                        "AnchorPoint": {
+                          "ScaleX": 0.4384,
+                          "ScaleY": 0.4641
+                        },
+                        "CColor": {},
+                        "Size": {
+                          "X": 68.0,
+                          "Y": 57.0
+                        },
+                        "FrameEvent": "",
+                        "Name": "ImageView_Star",
+                        "ctype": "ImageViewObjectData"
+                      }
+                    ],
+                    "ActionTag": 1015983839,
+                    "Position": {
+                      "X": 116.8748,
+                      "Y": 90.0039
+                    },
+                    "Scale": {
+                      "ScaleX": 1.0,
+                      "ScaleY": 1.0
+                    },
+                    "ZOrder": 1,
+                    "AnchorPoint": {
+                      "ScaleX": 0.5,
+                      "ScaleY": 0.5
+                    },
+                    "CColor": {},
+                    "Size": {
+                      "X": 188.0,
+                      "Y": 54.0
+                    },
+                    "FrameEvent": "",
+                    "Name": "ImageView_Starbg",
+                    "ctype": "ImageViewObjectData"
+                  },
+                  {
+                    "FileData": {
+                      "Type": "Normal",
+                      "Path": "BattleScene/BS13.png"
+                    },
+                    "Scale9Enable": true,
+                    "Scale9Width": 188,
+                    "Scale9Height": 54,
+                    "Tag": 28,
+                    "PrePosition": {
+                      "X": 0.7655,
+                      "Y": 0.6537
+                    },
+                    "PreSize": {
+                      "X": 0.0,
+                      "Y": 0.0
+                    },
+                    "Children": [
+                      {
+                        "CharWidth": 14,
+                        "CharHeight": 18,
+                        "LabelText": "2345",
+                        "StartChar": "/",
+                        "LabelAtlasFileImage_CNB": {
+                          "Type": "Default",
+                          "Path": "Default/TextAtlas.png"
+                        },
+                        "Tag": 29,
+                        "PrePosition": {
+                          "X": 0.0,
+                          "Y": 0.0
+                        },
+                        "PreSize": {
+                          "X": 0.0,
+                          "Y": 0.0
+                        },
+                        "ActionTag": 49,
+                        "Position": {
+                          "X": 63.4731,
+                          "Y": 26.8749
+                        },
+                        "Scale": {
+                          "ScaleX": 1.0,
+                          "ScaleY": 1.0
+                        },
+                        "ZOrder": 3,
+                        "AnchorPoint": {
+                          "ScaleY": 0.5
+                        },
+                        "CColor": {},
+                        "IsAutoSize": true,
+                        "Size": {
+                          "X": 56.0,
+                          "Y": 18.0
+                        },
+                        "FrameEvent": "",
+                        "Name": "ImageView_Micoincount",
+                        "ctype": "TextAtlasObjectData"
+                      },
+                      {
+                        "FileData": {
+                          "Type": "Normal",
+                          "Path": "Common/Cn19.png"
+                        },
+                        "Scale9Width": 62,
+                        "Scale9Height": 62,
+                        "Tag": 24,
+                        "PrePosition": {
+                          "X": 0.1118,
+                          "Y": 0.5169
+                        },
+                        "PreSize": {
+                          "X": 0.0,
+                          "Y": 0.0
+                        },
+                        "ActionTag": 44,
+                        "Position": {
+                          "X": 21.0134,
+                          "Y": 27.9123
+                        },
+                        "Scale": {
+                          "ScaleX": 1.0,
+                          "ScaleY": 1.0
+                        },
+                        "ZOrder": 2,
+                        "AnchorPoint": {
+                          "ScaleX": 0.4384,
+                          "ScaleY": 0.4641
+                        },
+                        "CColor": {},
+                        "Size": {
+                          "X": 62.0,
+                          "Y": 62.0
+                        },
+                        "FrameEvent": "",
+                        "Name": "ImageView_Coin",
+                        "ctype": "ImageViewObjectData"
+                      }
+                    ],
+                    "ActionTag": 48,
+                    "Position": {
+                      "X": 489.9266,
+                      "Y": 91.524
+                    },
+                    "Scale": {
+                      "ScaleX": 1.0,
+                      "ScaleY": 1.0
+                    },
+                    "ZOrder": 1,
+                    "AnchorPoint": {
+                      "ScaleX": 0.5,
+                      "ScaleY": 0.5
+                    },
+                    "CColor": {},
+                    "Size": {
+                      "X": 188.0,
+                      "Y": 54.0
+                    },
+                    "FrameEvent": "",
+                    "Name": "ImageView_Micoinbg",
+                    "ctype": "ImageViewObjectData"
+                  },
+                  {
+                    "FileData": {
+                      "Type": "Normal",
+                      "Path": "BattleScene/BS08.png"
+                    },
+                    "Scale9Width": 180,
+                    "Scale9Height": 62,
+                    "Tag": 42,
+                    "PrePosition": {
+                      "X": 0.1215,
+                      "Y": 0.2712
+                    },
+                    "PreSize": {
+                      "X": 0.0,
+                      "Y": 0.0
+                    },
+                    "Children": [
+                      {
+                        "FileData": {
+                          "Type": "Normal",
+                          "Path": "BattleScene/BS01.png"
+                        },
+                        "Scale9Width": 52,
+                        "Scale9Height": 43,
+                        "Tag": 47,
+                        "PrePosition": {
+                          "X": -0.2869,
+                          "Y": 0.282
+                        },
+                        "PreSize": {
+                          "X": 0.0,
+                          "Y": 0.0
+                        },
+                        "ActionTag": 133432043,
+                        "Position": {
+                          "X": -51.6354,
+                          "Y": 17.4869
+                        },
+                        "Scale": {
+                          "ScaleX": 1.6,
+                          "ScaleY": 1.6
+                        },
+                        "AnchorPoint": {
+                          "ScaleY": 0.2683
+                        },
+                        "CColor": {},
+                        "Size": {
+                          "X": 52.0,
+                          "Y": 43.0
+                        },
+                        "FrameEvent": "",
+                        "Name": "ImageView_Yellow",
+                        "ctype": "ImageViewObjectData"
+                      },
+                      {
+                        "CharWidth": 14,
+                        "CharHeight": 18,
+                        "LabelText": "0/5",
+                        "StartChar": ".",
+                        "LabelAtlasFileImage_CNB": {
+                          "Type": "Default",
+                          "Path": "Default/TextAtlas.png"
+                        },
+                        "Tag": 9349,
+                        "PrePosition": {
+                          "X": 0.4864,
+                          "Y": 0.5495
+                        },
+                        "PreSize": {
+                          "X": 0.0,
+                          "Y": 0.0
+                        },
+                        "ActionTag": 2120877381,
+                        "Position": {
+                          "X": 87.55,
+                          "Y": 34.066
+                        },
+                        "Scale": {
+                          "ScaleX": 1.8,
+                          "ScaleY": 1.8
+                        },
+                        "AnchorPoint": {
+                          "ScaleX": 0.5,
+                          "ScaleY": 0.5
+                        },
+                        "CColor": {},
+                        "Size": {
+                          "X": 42.0,
+                          "Y": 18.0
+                        },
+                        "FrameEvent": "",
+                        "Name": "TextAtlas_Yellowcount",
+                        "ctype": "TextAtlasObjectData"
+                      }
+                    ],
+                    "ActionTag": 229602682,
+                    "Position": {
+                      "X": 77.7892,
+                      "Y": 37.9661
+                    },
+                    "Scale": {
+                      "ScaleX": 0.5,
+                      "ScaleY": 0.7
+                    },
+                    "AnchorPoint": {
+                      "ScaleX": 0.4463,
+                      "ScaleY": 0.5271
+                    },
+                    "CColor": {},
+                    "Size": {
+                      "X": 180.0,
+                      "Y": 62.0
+                    },
+                    "FrameEvent": "",
+                    "Name": "ImageView_Yellowbg",
+                    "ctype": "ImageViewObjectData"
+                  },
+                  {
+                    "FileData": {
+                      "Type": "Normal",
+                      "Path": "BattleScene/BS08.png"
+                    },
+                    "Scale9Width": 180,
+                    "Scale9Height": 62,
+                    "Tag": 43,
+                    "PrePosition": {
+                      "X": 0.3262,
+                      "Y": 0.2744
+                    },
+                    "PreSize": {
+                      "X": 0.0,
+                      "Y": 0.0
+                    },
+                    "Children": [
+                      {
+                        "FileData": {
+                          "Type": "Normal",
+                          "Path": "BattleScene/BS02.png"
+                        },
+                        "Scale9Width": 47,
+                        "Scale9Height": 39,
+                        "Tag": 48,
+                        "PrePosition": {
+                          "X": -0.1063,
+                          "Y": 0.4141
+                        },
+                        "PreSize": {
+                          "X": 0.0,
+                          "Y": 0.0
+                        },
+                        "ActionTag": 210429249,
+                        "Position": {
+                          "X": -19.1309,
+                          "Y": 25.6736
+                        },
+                        "Scale": {
+                          "ScaleX": 1.6,
+                          "ScaleY": 1.6
+                        },
+                        "AnchorPoint": {
+                          "ScaleX": 0.3656,
+                          "ScaleY": 0.3335
+                        },
+                        "CColor": {},
+                        "Size": {
+                          "X": 47.0,
+                          "Y": 39.0
+                        },
+                        "FrameEvent": "",
+                        "Name": "ImageView_Red",
+                        "ctype": "ImageViewObjectData"
+                      },
+                      {
+                        "CharWidth": 14,
+                        "CharHeight": 18,
+                        "LabelText": "0/4",
+                        "StartChar": ".",
+                        "LabelAtlasFileImage_CNB": {
+                          "Type": "Default",
+                          "Path": "Default/TextAtlas.png"
+                        },
+                        "Tag": 9350,
+                        "PrePosition": {
+                          "X": 0.4566,
+                          "Y": 0.5492
+                        },
+                        "PreSize": {
+                          "X": 0.0,
+                          "Y": 0.0
+                        },
+                        "ActionTag": 2120877382,
+                        "Position": {
+                          "X": 82.18,
+                          "Y": 34.05
+                        },
+                        "Scale": {
+                          "ScaleX": 1.8,
+                          "ScaleY": 1.8
+                        },
+                        "AnchorPoint": {
+                          "ScaleX": 0.5,
+                          "ScaleY": 0.5
+                        },
+                        "CColor": {},
+                        "Size": {
+                          "X": 42.0,
+                          "Y": 18.0
+                        },
+                        "FrameEvent": "",
+                        "Name": "TextAtlas_Redcount",
+                        "ctype": "TextAtlasObjectData"
+                      }
+                    ],
+                    "ActionTag": 474122064,
+                    "Position": {
+                      "X": 208.7654,
+                      "Y": 38.4214
+                    },
+                    "Scale": {
+                      "ScaleX": 0.5,
+                      "ScaleY": 0.7
+                    },
+                    "AnchorPoint": {
+                      "ScaleX": 0.5776,
+                      "ScaleY": 0.5387
+                    },
+                    "CColor": {},
+                    "Size": {
+                      "X": 180.0,
+                      "Y": 62.0
+                    },
+                    "FrameEvent": "",
+                    "Name": "ImageView_Redbg",
+                    "ctype": "ImageViewObjectData"
+                  }
+                ],
+                "ActionTag": 54,
+                "Position": {
+                  "X": 0.0,
+                  "Y": 818.2153
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "ZOrder": 1,
+                "AnchorPoint": {},
+                "CColor": {},
+                "Size": {
+                  "X": 640.0,
+                  "Y": 140.0
+                },
+                "FrameEvent": "",
+                "Name": "Panel_Infobox",
+                "ctype": "PanelObjectData"
+              }
+            ],
+            "ActionTag": 31,
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "ZOrder": 2,
+            "AnchorPoint": {},
+            "CColor": {},
+            "Size": {
+              "X": 640.0,
+              "Y": 960.0
+            },
+            "FrameEvent": "",
+            "Name": "battle",
+            "ctype": "PanelObjectData"
+          }
+        ],
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Scale": {
+          "ScaleX": 1.0,
+          "ScaleY": 1.0
+        },
+        "AnchorPoint": {},
+        "CColor": {},
+        "Size": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "FrameEvent": "",
+        "Name": "Node_1",
+        "ctype": "SingleNodeObjectData"
+      },
+      "ctype": "GameProjectData"
+    },
+    "CameraPosition": {
+      "ValueX": 0.0,
+      "ValueY": 5.0,
+      "ValueZ": -1.0
+    },
+    "CameraRotation": {
+      "ValueX": 0.0,
+      "ValueY": 0.0,
+      "ValueZ": 0.0
+    }
+  },
+  "Type": "Node"
+}

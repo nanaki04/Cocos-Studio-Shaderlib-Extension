@@ -1,0 +1,125 @@
+{
+  "ID": "7def0ece-ff34-4ec8-b294-67f0a51a07d5",
+  "Version": "2.2.1.0",
+  "Name": "BattleScene",
+  "Content": {
+    "Content": {
+      "Animation": {
+        "Duration": 0,
+        "Speed": 1.0,
+        "Timelines": [],
+        "ctype": "TimelineActionData"
+      },
+      "AnimationList": [],
+      "ObjectData": {
+        "PrePosition": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "PreSize": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Children": [
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "Battle.json"
+            },
+            "InnerActionSpeed": 1.0,
+            "Tag": 5942,
+            "PrePosition": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "PreSize": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "ActionTag": 252388249,
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "AnchorPoint": {},
+            "CColor": {},
+            "Size": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "FrameEvent": "",
+            "Name": "ProjectNode_Battle",
+            "ctype": "ProjectNodeObjectData"
+          },
+          {
+            "FileData": {
+              "Type": "Normal",
+              "Path": "BattleBottom.json"
+            },
+            "InnerActionSpeed": 1.0,
+            "Tag": 4172,
+            "PrePosition": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "PreSize": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "ActionTag": 491862340,
+            "Position": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "AnchorPoint": {},
+            "CColor": {},
+            "Size": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "FrameEvent": "",
+            "Name": "ProjectNode_Bottom",
+            "ctype": "ProjectNodeObjectData"
+          }
+        ],
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Scale": {
+          "ScaleX": 1.0,
+          "ScaleY": 1.0
+        },
+        "AnchorPoint": {},
+        "CColor": {},
+        "Size": {
+          "X": 640.0,
+          "Y": 960.0
+        },
+        "FrameEvent": "",
+        "Name": "Node_1",
+        "ctype": "SingleNodeObjectData"
+      },
+      "ctype": "GameProjectData"
+    },
+    "CameraPosition": {
+      "ValueX": 0.0,
+      "ValueY": 5.0,
+      "ValueZ": -1.0
+    },
+    "CameraRotation": {
+      "ValueX": 0.0,
+      "ValueY": 0.0,
+      "ValueZ": 0.0
+    }
+  },
+  "Type": "Scene"
+}

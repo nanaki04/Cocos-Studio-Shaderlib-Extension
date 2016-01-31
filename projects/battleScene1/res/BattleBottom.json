@@ -1,0 +1,1408 @@
+{
+  "ID": "7def0ece-ff34-4ec8-b294-67f0a51a07d5",
+  "Version": "2.2.1.0",
+  "Name": "BattleBottom",
+  "Content": {
+    "Content": {
+      "Animation": {
+        "Duration": 0,
+        "Speed": 1.0,
+        "Timelines": [],
+        "ctype": "TimelineActionData"
+      },
+      "AnimationList": [],
+      "ObjectData": {
+        "PrePosition": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "PreSize": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Children": [
+          {
+            "BackColorAlpha": 0,
+            "ComboBoxIndex": 1,
+            "SingleColor": {
+              "R": 0,
+              "G": 0,
+              "B": 0
+            },
+            "FirstColor": {
+              "R": 0,
+              "G": 0,
+              "B": 0
+            },
+            "EndColor": {
+              "R": 0,
+              "G": 0,
+              "B": 0
+            },
+            "ColorVector": {
+              "ScaleX": 1.0
+            },
+            "Tag": 2,
+            "PrePosition": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "PreSize": {
+              "X": 0.0,
+              "Y": 0.0
+            },
+            "Children": [
+              {
+                "BackColorAlpha": 0,
+                "ComboBoxIndex": 1,
+                "SingleColor": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0
+                },
+                "FirstColor": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0
+                },
+                "EndColor": {
+                  "R": 0,
+                  "G": 0,
+                  "B": 0
+                },
+                "ColorVector": {
+                  "ScaleX": 1.0
+                },
+                "TouchEnable": true,
+                "Tag": 13,
+                "PrePosition": {
+                  "X": 0.0,
+                  "Y": 0.0
+                },
+                "PreSize": {
+                  "X": 0.0,
+                  "Y": 0.0
+                },
+                "Children": [
+                  {
+                    "FileData": {
+                      "Type": "Normal",
+                      "Path": "BattleScene/BS10.png"
+                    },
+                    "Tag": 225,
+                    "PrePosition": {
+                      "X": 0.0,
+                      "Y": 0.0
+                    },
+                    "PreSize": {
+                      "X": 0.0,
+                      "Y": 0.0
+                    },
+                    "Children": [
+                      {
+                        "BackColorAlpha": 0,
+                        "ComboBoxIndex": 1,
+                        "SingleColor": {
+                          "R": 0,
+                          "G": 0,
+                          "B": 0
+                        },
+                        "FirstColor": {
+                          "R": 0,
+                          "G": 0,
+                          "B": 0
+                        },
+                        "EndColor": {
+                          "R": 0,
+                          "G": 0,
+                          "B": 0
+                        },
+                        "ColorVector": {
+                          "ScaleX": 1.0
+                        },
+                        "TouchEnable": true,
+                        "Tag": 16,
+                        "PrePosition": {
+                          "X": 0.0025,
+                          "Y": 0.0386
+                        },
+                        "PreSize": {
+                          "X": 0.1984,
+                          "Y": 0.8611
+                        },
+                        "Children": [
+                          {
+                            "FileData": {
+                              "Type": "Normal",
+                              "Path": "captain_jack.json"
+                            },
+                            "InnerActionSpeed": 1.0,
+                            "Tag": 3376,
+                            "PrePosition": {
+                              "X": 0.4395,
+                              "Y": 0.183
+                            },
+                            "PreSize": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "ActionTag": 984889070,
+                            "Position": {
+                              "X": 56.2598,
+                              "Y": 28.3709
+                            },
+                            "Scale": {
+                              "ScaleX": 1.0,
+                              "ScaleY": 1.0
+                            },
+                            "AnchorPoint": {},
+                            "CColor": {},
+                            "Size": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "FrameEvent": "",
+                            "Name": "ProjectNode_Hero_1",
+                            "ctype": "ProjectNodeObjectData"
+                          },
+                          {
+                            "FileData": {
+                              "Type": "Normal",
+                              "Path": "BattleScene/BS12.png"
+                            },
+                            "Tag": 46,
+                            "PrePosition": {
+                              "X": 0.4427,
+                              "Y": 0.0519
+                            },
+                            "PreSize": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "Children": [
+                              {
+                                "CharWidth": 14,
+                                "CharHeight": 18,
+                                "LabelText": "5",
+                                "StartChar": ".",
+                                "LabelAtlasFileImage_CNB": {
+                                  "Type": "Default",
+                                  "Path": "Default/TextAtlas.png"
+                                },
+                                "Tag": 3528,
+                                "PrePosition": {
+                                  "X": 0.1178,
+                                  "Y": 0.5424
+                                },
+                                "PreSize": {
+                                  "X": 0.0,
+                                  "Y": 0.0
+                                },
+                                "ActionTag": 2120880737,
+                                "Position": {
+                                  "X": 41.23,
+                                  "Y": 46.6425
+                                },
+                                "Scale": {
+                                  "ScaleX": 1.5,
+                                  "ScaleY": 1.5
+                                },
+                                "AnchorPoint": {
+                                  "ScaleX": 0.5,
+                                  "ScaleY": 0.5
+                                },
+                                "CColor": {},
+                                "Size": {
+                                  "X": 14.0,
+                                  "Y": 18.0
+                                },
+                                "FrameEvent": "",
+                                "Name": "AtlasLabel_HeroL_1",
+                                "ctype": "TextAtlasObjectData"
+                              },
+                              {
+                                "ImageFileData": {
+                                  "Type": "Normal",
+                                  "Path": "BattleScene/BS09.png"
+                                },
+                                "Tag": 76,
+                                "PrePosition": {
+                                  "X": 0.5696,
+                                  "Y": 0.4997
+                                },
+                                "PreSize": {
+                                  "X": 0.0,
+                                  "Y": 0.0
+                                },
+                                "Children": [
+                                  {
+                                    "CharWidth": 14,
+                                    "CharHeight": 18,
+                                    "LabelText": "800",
+                                    "StartChar": ".",
+                                    "LabelAtlasFileImage_CNB": {
+                                      "Type": "Default",
+                                      "Path": "Default/TextAtlas.png"
+                                    },
+                                    "Tag": 3529,
+                                    "PrePosition": {
+                                      "X": 0.5187,
+                                      "Y": 0.478
+                                    },
+                                    "PreSize": {
+                                      "X": 0.0,
+                                      "Y": 0.0
+                                    },
+                                    "ActionTag": 2120880738,
+                                    "Position": {
+                                      "X": 48.76,
+                                      "Y": 4.78
+                                    },
+                                    "Scale": {
+                                      "ScaleX": 0.6,
+                                      "ScaleY": 0.6
+                                    },
+                                    "AnchorPoint": {
+                                      "ScaleX": 0.5,
+                                      "ScaleY": 0.5
+                                    },
+                                    "CColor": {},
+                                    "Size": {
+                                      "X": 42.0,
+                                      "Y": 18.0
+                                    },
+                                    "FrameEvent": "",
+                                    "Name": "AtlasLabel_Hero_1",
+                                    "ctype": "TextAtlasObjectData"
+                                  }
+                                ],
+                                "ActionTag": 878436527,
+                                "Position": {
+                                  "X": 199.3452,
+                                  "Y": 42.9722
+                                },
+                                "Scale": {
+                                  "ScaleX": 2.4,
+                                  "ScaleY": 2.4
+                                },
+                                "AnchorPoint": {
+                                  "ScaleX": 0.5,
+                                  "ScaleY": 0.5
+                                },
+                                "CColor": {},
+                                "Size": {
+                                  "X": 94.0,
+                                  "Y": 10.0
+                                },
+                                "FrameEvent": "",
+                                "Name": "LoadingBar_Hero_1",
+                                "ctype": "LoadingBarObjectData"
+                              }
+                            ],
+                            "ActionTag": 565966512,
+                            "Position": {
+                              "X": 56.2188,
+                              "Y": 8.0507
+                            },
+                            "Scale": {
+                              "ScaleX": 0.4,
+                              "ScaleY": 0.45
+                            },
+                            "AnchorPoint": {
+                              "ScaleX": 0.5,
+                              "ScaleY": 0.5
+                            },
+                            "CColor": {},
+                            "Size": {
+                              "X": 350.0,
+                              "Y": 86.0
+                            },
+                            "FrameEvent": "",
+                            "Name": "Sprite_Hero_1",
+                            "ctype": "SpriteObjectData"
+                          }
+                        ],
+                        "ActionTag": 34,
+                        "Position": {
+                          "X": 1.5886,
+                          "Y": 6.9509
+                        },
+                        "Scale": {
+                          "ScaleX": 1.0,
+                          "ScaleY": 1.0
+                        },
+                        "ZOrder": 2,
+                        "AnchorPoint": {},
+                        "CColor": {},
+                        "Size": {
+                          "X": 127.0,
+                          "Y": 155.0
+                        },
+                        "FrameEvent": "",
+                        "Name": "Panel_Hero_1",
+                        "ctype": "PanelObjectData"
+                      },
+                      {
+                        "BackColorAlpha": 0,
+                        "ComboBoxIndex": 1,
+                        "SingleColor": {
+                          "R": 0,
+                          "G": 0,
+                          "B": 0
+                        },
+                        "FirstColor": {
+                          "R": 0,
+                          "G": 0,
+                          "B": 0
+                        },
+                        "EndColor": {
+                          "R": 0,
+                          "G": 0,
+                          "B": 0
+                        },
+                        "ColorVector": {
+                          "ScaleX": 1.0
+                        },
+                        "TouchEnable": true,
+                        "Tag": 16,
+                        "PrePosition": {
+                          "X": 0.1944,
+                          "Y": 0.0694
+                        },
+                        "PreSize": {
+                          "X": 0.0,
+                          "Y": 0.0
+                        },
+                        "Children": [
+                          {
+                            "FileData": {
+                              "Type": "Normal",
+                              "Path": "huchey.json"
+                            },
+                            "InnerActionSpeed": 1.0,
+                            "Tag": 7701,
+                            "PrePosition": {
+                              "X": 0.4571,
+                              "Y": 0.0163
+                            },
+                            "PreSize": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "ActionTag": 545143759,
+                            "Position": {
+                              "X": 58.5107,
+                              "Y": 2.5327
+                            },
+                            "Scale": {
+                              "ScaleX": 1.0,
+                              "ScaleY": 1.0
+                            },
+                            "AnchorPoint": {},
+                            "CColor": {},
+                            "Size": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "FrameEvent": "",
+                            "Name": "ProjectNode_Hero_2",
+                            "ctype": "ProjectNodeObjectData"
+                          },
+                          {
+                            "FileData": {
+                              "Type": "Normal",
+                              "Path": "BattleScene/BS12.png"
+                            },
+                            "Tag": 47,
+                            "PrePosition": {
+                              "X": 0.5465,
+                              "Y": 0.0079
+                            },
+                            "PreSize": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "Children": [
+                              {
+                                "CharWidth": 14,
+                                "CharHeight": 18,
+                                "LabelText": "6",
+                                "StartChar": ".",
+                                "LabelAtlasFileImage_CNB": {
+                                  "Type": "Default",
+                                  "Path": "Default/TextAtlas.png"
+                                },
+                                "Tag": 3531,
+                                "PrePosition": {
+                                  "X": 0.1233,
+                                  "Y": 0.5623
+                                },
+                                "PreSize": {
+                                  "X": 0.0,
+                                  "Y": 0.0
+                                },
+                                "ActionTag": 2120880740,
+                                "Position": {
+                                  "X": 43.1694,
+                                  "Y": 48.358
+                                },
+                                "Scale": {
+                                  "ScaleX": 1.5,
+                                  "ScaleY": 1.5
+                                },
+                                "AnchorPoint": {
+                                  "ScaleX": 0.5,
+                                  "ScaleY": 0.5
+                                },
+                                "CColor": {},
+                                "Size": {
+                                  "X": 14.0,
+                                  "Y": 18.0
+                                },
+                                "FrameEvent": "",
+                                "Name": "AtlasLabel_HeroL_2",
+                                "ctype": "TextAtlasObjectData"
+                              },
+                              {
+                                "ProgressInfo": 100,
+                                "ImageFileData": {
+                                  "Type": "Normal",
+                                  "Path": "BattleScene/BS09.png"
+                                },
+                                "Tag": 77,
+                                "PrePosition": {
+                                  "X": 0.5627,
+                                  "Y": 0.5408
+                                },
+                                "PreSize": {
+                                  "X": 0.0,
+                                  "Y": 0.0
+                                },
+                                "Children": [
+                                  {
+                                    "CharWidth": 14,
+                                    "CharHeight": 18,
+                                    "LabelText": "2000",
+                                    "StartChar": ".",
+                                    "LabelAtlasFileImage_CNB": {
+                                      "Type": "Default",
+                                      "Path": "Default/TextAtlas.png"
+                                    },
+                                    "Tag": 3530,
+                                    "PrePosition": {
+                                      "X": 0.5305,
+                                      "Y": 0.453
+                                    },
+                                    "PreSize": {
+                                      "X": 0.0,
+                                      "Y": 0.0
+                                    },
+                                    "ActionTag": 2120880739,
+                                    "Position": {
+                                      "X": 49.8648,
+                                      "Y": 4.53
+                                    },
+                                    "Scale": {
+                                      "ScaleX": 0.6,
+                                      "ScaleY": 0.6
+                                    },
+                                    "AnchorPoint": {
+                                      "ScaleX": 0.5,
+                                      "ScaleY": 0.5
+                                    },
+                                    "CColor": {},
+                                    "Size": {
+                                      "X": 56.0,
+                                      "Y": 18.0
+                                    },
+                                    "FrameEvent": "",
+                                    "Name": "AtlasLabel_Hero_2",
+                                    "ctype": "TextAtlasObjectData"
+                                  }
+                                ],
+                                "ActionTag": 586373639,
+                                "Position": {
+                                  "X": 196.9326,
+                                  "Y": 46.5067
+                                },
+                                "Scale": {
+                                  "ScaleX": 2.4,
+                                  "ScaleY": 2.4
+                                },
+                                "AnchorPoint": {
+                                  "ScaleX": 0.5,
+                                  "ScaleY": 0.5
+                                },
+                                "CColor": {},
+                                "Size": {
+                                  "X": 94.0,
+                                  "Y": 10.0
+                                },
+                                "FrameEvent": "",
+                                "Name": "LoadingBar_Hero_2",
+                                "ctype": "LoadingBarObjectData"
+                              }
+                            ],
+                            "ActionTag": 992368767,
+                            "Position": {
+                              "X": 69.9457,
+                              "Y": 1.23
+                            },
+                            "Scale": {
+                              "ScaleX": 0.4,
+                              "ScaleY": 0.45
+                            },
+                            "AnchorPoint": {
+                              "ScaleX": 0.5,
+                              "ScaleY": 0.5
+                            },
+                            "CColor": {},
+                            "Size": {
+                              "X": 350.0,
+                              "Y": 86.0
+                            },
+                            "FrameEvent": "",
+                            "Name": "Sprite_Hero_2",
+                            "ctype": "SpriteObjectData"
+                          }
+                        ],
+                        "ActionTag": 35,
+                        "Position": {
+                          "X": 124.4303,
+                          "Y": 12.4945
+                        },
+                        "Scale": {
+                          "ScaleX": 1.0,
+                          "ScaleY": 1.0
+                        },
+                        "ZOrder": 2,
+                        "AnchorPoint": {},
+                        "CColor": {},
+                        "Size": {
+                          "X": 128.0,
+                          "Y": 155.0
+                        },
+                        "FrameEvent": "",
+                        "Name": "Panel_Hero_2",
+                        "ctype": "PanelObjectData"
+                      },
+                      {
+                        "BackColorAlpha": 0,
+                        "ComboBoxIndex": 1,
+                        "SingleColor": {
+                          "R": 0,
+                          "G": 0,
+                          "B": 0
+                        },
+                        "FirstColor": {
+                          "R": 0,
+                          "G": 0,
+                          "B": 0
+                        },
+                        "EndColor": {
+                          "R": 0,
+                          "G": 0,
+                          "B": 0
+                        },
+                        "ColorVector": {
+                          "ScaleX": 1.0
+                        },
+                        "TouchEnable": true,
+                        "Tag": 16,
+                        "PrePosition": {
+                          "X": 0.3972,
+                          "Y": 0.1091
+                        },
+                        "PreSize": {
+                          "X": 0.0,
+                          "Y": 0.0
+                        },
+                        "Children": [
+                          {
+                            "FileData": {
+                              "Type": "Normal",
+                              "Path": "jones.json"
+                            },
+                            "InnerActionSpeed": 1.0,
+                            "Tag": 7929,
+                            "PrePosition": {
+                              "X": 0.4775,
+                              "Y": 0.1085
+                            },
+                            "PreSize": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "ActionTag": 39577066,
+                            "Position": {
+                              "X": 62.0791,
+                              "Y": 16.8126
+                            },
+                            "Scale": {
+                              "ScaleX": 1.0,
+                              "ScaleY": 1.0
+                            },
+                            "AnchorPoint": {},
+                            "CColor": {},
+                            "Size": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "FrameEvent": "",
+                            "Name": "ProjectNode_Hero_3",
+                            "ctype": "ProjectNodeObjectData"
+                          },
+                          {
+                            "FileData": {
+                              "Type": "Normal",
+                              "Path": "BattleScene/BS12.png"
+                            },
+                            "Tag": 48,
+                            "PrePosition": {
+                              "X": 0.5282,
+                              "Y": -0.0362
+                            },
+                            "PreSize": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "Children": [
+                              {
+                                "CharWidth": 14,
+                                "CharHeight": 18,
+                                "LabelText": "7",
+                                "StartChar": ".",
+                                "LabelAtlasFileImage_CNB": {
+                                  "Type": "Default",
+                                  "Path": "Default/TextAtlas.png"
+                                },
+                                "Tag": 3533,
+                                "PrePosition": {
+                                  "X": 0.1284,
+                                  "Y": 0.5429
+                                },
+                                "PreSize": {
+                                  "X": 0.0,
+                                  "Y": 0.0
+                                },
+                                "ActionTag": 2120880742,
+                                "Position": {
+                                  "X": 44.9399,
+                                  "Y": 46.6878
+                                },
+                                "Scale": {
+                                  "ScaleX": 1.5,
+                                  "ScaleY": 1.5
+                                },
+                                "AnchorPoint": {
+                                  "ScaleX": 0.5,
+                                  "ScaleY": 0.5
+                                },
+                                "CColor": {},
+                                "Size": {
+                                  "X": 14.0,
+                                  "Y": 18.0
+                                },
+                                "FrameEvent": "",
+                                "Name": "AtlasLabel_HeroL_3",
+                                "ctype": "TextAtlasObjectData"
+                              },
+                              {
+                                "ProgressInfo": 100,
+                                "ImageFileData": {
+                                  "Type": "Normal",
+                                  "Path": "BattleScene/BS09.png"
+                                },
+                                "Tag": 78,
+                                "PrePosition": {
+                                  "X": 0.5528,
+                                  "Y": 0.5251
+                                },
+                                "PreSize": {
+                                  "X": 0.0,
+                                  "Y": 0.0
+                                },
+                                "Children": [
+                                  {
+                                    "CharWidth": 14,
+                                    "CharHeight": 18,
+                                    "LabelText": "2200",
+                                    "StartChar": ".",
+                                    "LabelAtlasFileImage_CNB": {
+                                      "Type": "Default",
+                                      "Path": "Default/TextAtlas.png"
+                                    },
+                                    "Tag": 3532,
+                                    "PrePosition": {
+                                      "X": 0.4969,
+                                      "Y": 0.467
+                                    },
+                                    "PreSize": {
+                                      "X": 0.0,
+                                      "Y": 0.0
+                                    },
+                                    "ActionTag": 2120880741,
+                                    "Position": {
+                                      "X": 46.71,
+                                      "Y": 4.67
+                                    },
+                                    "Scale": {
+                                      "ScaleX": 0.6,
+                                      "ScaleY": 0.6
+                                    },
+                                    "AnchorPoint": {
+                                      "ScaleX": 0.5,
+                                      "ScaleY": 0.5
+                                    },
+                                    "CColor": {},
+                                    "Size": {
+                                      "X": 56.0,
+                                      "Y": 18.0
+                                    },
+                                    "FrameEvent": "",
+                                    "Name": "AtlasLabel_Hero_3",
+                                    "ctype": "TextAtlasObjectData"
+                                  }
+                                ],
+                                "ActionTag": 428674849,
+                                "Position": {
+                                  "X": 193.4863,
+                                  "Y": 45.1585
+                                },
+                                "Scale": {
+                                  "ScaleX": 2.4,
+                                  "ScaleY": 2.4
+                                },
+                                "AnchorPoint": {
+                                  "ScaleX": 0.5,
+                                  "ScaleY": 0.5
+                                },
+                                "CColor": {},
+                                "Size": {
+                                  "X": 94.0,
+                                  "Y": 10.0
+                                },
+                                "FrameEvent": "",
+                                "Name": "LoadingBar_Hero_3",
+                                "ctype": "LoadingBarObjectData"
+                              }
+                            ],
+                            "ActionTag": 706791029,
+                            "Position": {
+                              "X": 68.6597,
+                              "Y": -5.6068
+                            },
+                            "Scale": {
+                              "ScaleX": 0.4,
+                              "ScaleY": 0.45
+                            },
+                            "AnchorPoint": {
+                              "ScaleX": 0.5,
+                              "ScaleY": 0.5
+                            },
+                            "CColor": {},
+                            "Size": {
+                              "X": 350.0,
+                              "Y": 86.0
+                            },
+                            "FrameEvent": "",
+                            "Name": "Sprite_Hero_3",
+                            "ctype": "SpriteObjectData"
+                          }
+                        ],
+                        "ActionTag": 36,
+                        "Position": {
+                          "X": 254.2133,
+                          "Y": 19.6339
+                        },
+                        "Scale": {
+                          "ScaleX": 1.0,
+                          "ScaleY": 1.0
+                        },
+                        "ZOrder": 2,
+                        "AnchorPoint": {},
+                        "CColor": {},
+                        "Size": {
+                          "X": 130.0,
+                          "Y": 155.0
+                        },
+                        "FrameEvent": "",
+                        "Name": "Panel_Hero_3",
+                        "ctype": "PanelObjectData"
+                      },
+                      {
+                        "BackColorAlpha": 0,
+                        "ComboBoxIndex": 1,
+                        "SingleColor": {
+                          "R": 0,
+                          "G": 0,
+                          "B": 0
+                        },
+                        "FirstColor": {
+                          "R": 0,
+                          "G": 0,
+                          "B": 0
+                        },
+                        "EndColor": {
+                          "R": 0,
+                          "G": 0,
+                          "B": 0
+                        },
+                        "ColorVector": {
+                          "ScaleX": 1.0
+                        },
+                        "TouchEnable": true,
+                        "Tag": 16,
+                        "PrePosition": {
+                          "X": 0.5931,
+                          "Y": 0.1148
+                        },
+                        "PreSize": {
+                          "X": 0.0,
+                          "Y": 0.0
+                        },
+                        "Children": [
+                          {
+                            "FileData": {
+                              "Type": "Normal",
+                              "Path": "pharaoh.json"
+                            },
+                            "InnerActionSpeed": 1.0,
+                            "Tag": 4213,
+                            "PrePosition": {
+                              "X": 0.4622,
+                              "Y": 0.1407
+                            },
+                            "PreSize": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "ActionTag": 867692787,
+                            "Position": {
+                              "X": 59.1576,
+                              "Y": 21.8141
+                            },
+                            "Scale": {
+                              "ScaleX": 1.0,
+                              "ScaleY": 1.0
+                            },
+                            "AnchorPoint": {},
+                            "CColor": {},
+                            "Size": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "FrameEvent": "",
+                            "Name": "ProjectNode_Hero_4",
+                            "ctype": "ProjectNodeObjectData"
+                          },
+                          {
+                            "FileData": {
+                              "Type": "Normal",
+                              "Path": "BattleScene/BS12.png"
+                            },
+                            "Tag": 49,
+                            "PrePosition": {
+                              "X": 0.5025,
+                              "Y": -0.0482
+                            },
+                            "PreSize": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "Children": [
+                              {
+                                "CharWidth": 14,
+                                "CharHeight": 18,
+                                "LabelText": "5",
+                                "StartChar": ".",
+                                "LabelAtlasFileImage_CNB": {
+                                  "Type": "Default",
+                                  "Path": "Default/TextAtlas.png"
+                                },
+                                "Tag": 3535,
+                                "PrePosition": {
+                                  "X": 0.1203,
+                                  "Y": 0.5327
+                                },
+                                "PreSize": {
+                                  "X": 0.0,
+                                  "Y": 0.0
+                                },
+                                "ActionTag": 2120880744,
+                                "Position": {
+                                  "X": 42.09,
+                                  "Y": 45.81
+                                },
+                                "Scale": {
+                                  "ScaleX": 1.5,
+                                  "ScaleY": 1.5
+                                },
+                                "AnchorPoint": {
+                                  "ScaleX": 0.5,
+                                  "ScaleY": 0.5
+                                },
+                                "CColor": {},
+                                "Size": {
+                                  "X": 14.0,
+                                  "Y": 18.0
+                                },
+                                "FrameEvent": "",
+                                "Name": "AtlasLabel_HeroL_4",
+                                "ctype": "TextAtlasObjectData"
+                              },
+                              {
+                                "ImageFileData": {
+                                  "Type": "Normal",
+                                  "Path": "BattleScene/BS09.png"
+                                },
+                                "Tag": 80,
+                                "PrePosition": {
+                                  "X": 0.5714,
+                                  "Y": 0.5398
+                                },
+                                "PreSize": {
+                                  "X": 0.0,
+                                  "Y": 0.0
+                                },
+                                "Children": [
+                                  {
+                                    "CharWidth": 14,
+                                    "CharHeight": 18,
+                                    "LabelText": "1100",
+                                    "StartChar": ".",
+                                    "LabelAtlasFileImage_CNB": {
+                                      "Type": "Default",
+                                      "Path": "Default/TextAtlas.png"
+                                    },
+                                    "Tag": 3534,
+                                    "PrePosition": {
+                                      "X": 0.4282,
+                                      "Y": 0.462
+                                    },
+                                    "PreSize": {
+                                      "X": 0.0,
+                                      "Y": 0.0
+                                    },
+                                    "ActionTag": 2120880743,
+                                    "Position": {
+                                      "X": 40.25,
+                                      "Y": 4.62
+                                    },
+                                    "Scale": {
+                                      "ScaleX": 0.6,
+                                      "ScaleY": 0.6
+                                    },
+                                    "AnchorPoint": {
+                                      "ScaleX": 0.5,
+                                      "ScaleY": 0.5
+                                    },
+                                    "CColor": {},
+                                    "Size": {
+                                      "X": 56.0,
+                                      "Y": 18.0
+                                    },
+                                    "FrameEvent": "",
+                                    "Name": "AtlasLabel_Hero_4",
+                                    "ctype": "TextAtlasObjectData"
+                                  }
+                                ],
+                                "ActionTag": 627742061,
+                                "Position": {
+                                  "X": 200.0045,
+                                  "Y": 46.4206
+                                },
+                                "Scale": {
+                                  "ScaleX": 2.4,
+                                  "ScaleY": 2.4
+                                },
+                                "AnchorPoint": {
+                                  "ScaleX": 0.5,
+                                  "ScaleY": 0.5
+                                },
+                                "CColor": {},
+                                "Size": {
+                                  "X": 94.0,
+                                  "Y": 10.0
+                                },
+                                "FrameEvent": "",
+                                "Name": "LoadingBar_Hero_4",
+                                "ctype": "LoadingBarObjectData"
+                              }
+                            ],
+                            "ActionTag": 390021213,
+                            "Position": {
+                              "X": 64.3262,
+                              "Y": -7.478
+                            },
+                            "Scale": {
+                              "ScaleX": 0.4,
+                              "ScaleY": 0.45
+                            },
+                            "AnchorPoint": {
+                              "ScaleX": 0.5,
+                              "ScaleY": 0.5
+                            },
+                            "CColor": {},
+                            "Size": {
+                              "X": 350.0,
+                              "Y": 86.0
+                            },
+                            "FrameEvent": "",
+                            "Name": "Sprite_Hero_4",
+                            "ctype": "SpriteObjectData"
+                          }
+                        ],
+                        "ActionTag": 37,
+                        "Position": {
+                          "X": 379.6068,
+                          "Y": 20.6695
+                        },
+                        "Scale": {
+                          "ScaleX": 1.0,
+                          "ScaleY": 1.0
+                        },
+                        "ZOrder": 2,
+                        "AnchorPoint": {},
+                        "CColor": {},
+                        "Size": {
+                          "X": 128.0,
+                          "Y": 155.0
+                        },
+                        "FrameEvent": "",
+                        "Name": "Panel_Hero_4",
+                        "ctype": "PanelObjectData"
+                      },
+                      {
+                        "BackColorAlpha": 0,
+                        "ComboBoxIndex": 1,
+                        "SingleColor": {},
+                        "FirstColor": {},
+                        "EndColor": {
+                          "R": 0,
+                          "G": 0
+                        },
+                        "ColorVector": {
+                          "ScaleX": 1.0
+                        },
+                        "TouchEnable": true,
+                        "Tag": 28,
+                        "PrePosition": {
+                          "X": 0.7962,
+                          "Y": 0.0385
+                        },
+                        "PreSize": {
+                          "X": 0.0,
+                          "Y": 0.0
+                        },
+                        "Children": [
+                          {
+                            "FileData": {
+                              "Type": "Normal",
+                              "Path": "cat_queen.json"
+                            },
+                            "InnerActionSpeed": 1.0,
+                            "Tag": 3894,
+                            "PrePosition": {
+                              "X": 0.5013,
+                              "Y": 0.1503
+                            },
+                            "PreSize": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "ActionTag": 761665802,
+                            "Position": {
+                              "X": 65.1737,
+                              "Y": 23.2938
+                            },
+                            "Scale": {
+                              "ScaleX": 1.0,
+                              "ScaleY": 1.0
+                            },
+                            "AnchorPoint": {},
+                            "CColor": {},
+                            "Size": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "FrameEvent": "",
+                            "Name": "ProjectNode_Hero_5",
+                            "ctype": "ProjectNodeObjectData"
+                          },
+                          {
+                            "FileData": {
+                              "Type": "Normal",
+                              "Path": "BattleScene/BS12.png"
+                            },
+                            "Tag": 50,
+                            "PrePosition": {
+                              "X": 0.5052,
+                              "Y": 0.0402
+                            },
+                            "PreSize": {
+                              "X": 0.0,
+                              "Y": 0.0
+                            },
+                            "Children": [
+                              {
+                                "CharWidth": 14,
+                                "CharHeight": 18,
+                                "LabelText": "5",
+                                "StartChar": ".",
+                                "LabelAtlasFileImage_CNB": {
+                                  "Type": "Default",
+                                  "Path": "Default/TextAtlas.png"
+                                },
+                                "Tag": 3537,
+                                "PrePosition": {
+                                  "X": 0.1206,
+                                  "Y": 0.5295
+                                },
+                                "PreSize": {
+                                  "X": 0.0,
+                                  "Y": 0.0
+                                },
+                                "ActionTag": 2120880746,
+                                "Position": {
+                                  "X": 42.22,
+                                  "Y": 45.54
+                                },
+                                "Scale": {
+                                  "ScaleX": 1.5,
+                                  "ScaleY": 1.5
+                                },
+                                "AnchorPoint": {
+                                  "ScaleX": 0.5,
+                                  "ScaleY": 0.5
+                                },
+                                "CColor": {},
+                                "Size": {
+                                  "X": 14.0,
+                                  "Y": 18.0
+                                },
+                                "FrameEvent": "",
+                                "Name": "AtlasLabel_HeroL_5",
+                                "ctype": "TextAtlasObjectData"
+                              },
+                              {
+                                "ProgressInfo": 20,
+                                "ImageFileData": {
+                                  "Type": "Normal",
+                                  "Path": "BattleScene/BS09.png"
+                                },
+                                "Tag": 81,
+                                "PrePosition": {
+                                  "X": 0.5727,
+                                  "Y": 0.5171
+                                },
+                                "PreSize": {
+                                  "X": 0.0,
+                                  "Y": 0.0
+                                },
+                                "Children": [
+                                  {
+                                    "CharWidth": 14,
+                                    "CharHeight": 18,
+                                    "LabelText": "200",
+                                    "StartChar": ".",
+                                    "LabelAtlasFileImage_CNB": {
+                                      "Type": "Default",
+                                      "Path": "Default/TextAtlas.png"
+                                    },
+                                    "Tag": 3536,
+                                    "PrePosition": {
+                                      "X": 0.5226,
+                                      "Y": 0.436
+                                    },
+                                    "PreSize": {
+                                      "X": 0.0,
+                                      "Y": 0.0
+                                    },
+                                    "ActionTag": 2120880745,
+                                    "Position": {
+                                      "X": 49.1213,
+                                      "Y": 4.36
+                                    },
+                                    "Scale": {
+                                      "ScaleX": 0.6,
+                                      "ScaleY": 0.6
+                                    },
+                                    "AnchorPoint": {
+                                      "ScaleX": 0.5,
+                                      "ScaleY": 0.5
+                                    },
+                                    "CColor": {},
+                                    "Size": {
+                                      "X": 42.0,
+                                      "Y": 18.0
+                                    },
+                                    "FrameEvent": "",
+                                    "Name": "AtlasLabel_Hero_5",
+                                    "ctype": "TextAtlasObjectData"
+                                  }
+                                ],
+                                "ActionTag": 1007445268,
+                                "Position": {
+                                  "X": 200.4589,
+                                  "Y": 44.468
+                                },
+                                "Scale": {
+                                  "ScaleX": 2.4,
+                                  "ScaleY": 2.4
+                                },
+                                "AnchorPoint": {
+                                  "ScaleX": 0.5,
+                                  "ScaleY": 0.5
+                                },
+                                "CColor": {},
+                                "Size": {
+                                  "X": 94.0,
+                                  "Y": 10.0
+                                },
+                                "FrameEvent": "",
+                                "Name": "LoadingBar_Hero_5",
+                                "ctype": "LoadingBarObjectData"
+                              }
+                            ],
+                            "ActionTag": 354465007,
+                            "Position": {
+                              "X": 65.681,
+                              "Y": 6.2313
+                            },
+                            "Scale": {
+                              "ScaleX": 0.4,
+                              "ScaleY": 0.45
+                            },
+                            "AnchorPoint": {
+                              "ScaleX": 0.5,
+                              "ScaleY": 0.5
+                            },
+                            "CColor": {},
+                            "Size": {
+                              "X": 350.0,
+                              "Y": 86.0
+                            },
+                            "FrameEvent": "",
+                            "Name": "Sprite_Hero_5",
+                            "ctype": "SpriteObjectData"
+                          }
+                        ],
+                        "ActionTag": 48,
+                        "Position": {
+                          "X": 509.5958,
+                          "Y": 6.934
+                        },
+                        "Scale": {
+                          "ScaleX": 1.0,
+                          "ScaleY": 1.0
+                        },
+                        "ZOrder": 2,
+                        "AnchorPoint": {},
+                        "CColor": {},
+                        "Size": {
+                          "X": 130.0,
+                          "Y": 155.0
+                        },
+                        "FrameEvent": "",
+                        "Name": "Panel_Hero_5",
+                        "ctype": "PanelObjectData"
+                      }
+                    ],
+                    "ActionTag": 511741579,
+                    "Position": {
+                      "X": 315.34,
+                      "Y": 87.294
+                    },
+                    "Scale": {
+                      "ScaleX": 1.0,
+                      "ScaleY": 1.0
+                    },
+                    "AnchorPoint": {
+                      "ScaleX": 0.5,
+                      "ScaleY": 0.5
+                    },
+                    "CColor": {},
+                    "Size": {
+                      "X": 640.0,
+                      "Y": 180.0
+                    },
+                    "FrameEvent": "",
+                    "Name": "Sprite_Herobox",
+                    "ctype": "SpriteObjectData"
+                  }
+                ],
+                "ActionTag": 31,
+                "Position": {
+                  "X": -0.0001,
+                  "Y": -1.9539
+                },
+                "Scale": {
+                  "ScaleX": 1.0,
+                  "ScaleY": 1.0
+                },
+                "ZOrder": 2,
+                "AnchorPoint": {},
+                "CColor": {},
+                "Size": {
+                  "X": 640.0,
+                  "Y": 960.0
+                },
+                "FrameEvent": "",
+                "Name": "battle",
+                "ctype": "PanelObjectData"
+              }
+            ],
+            "ActionTag": -1,
+            "Position": {
+              "X": 5.3563,
+              "Y": -0.0007
+            },
+            "Scale": {
+              "ScaleX": 1.0,
+              "ScaleY": 1.0
+            },
+            "AnchorPoint": {},
+            "CColor": {},
+            "Size": {
+              "X": 640.0,
+              "Y": 960.0
+            },
+            "FrameEvent": "",
+            "Name": "Panel",
+            "ctype": "PanelObjectData"
+          }
+        ],
+        "Position": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "Scale": {
+          "ScaleX": 1.0,
+          "ScaleY": 1.0
+        },
+        "AnchorPoint": {},
+        "CColor": {},
+        "Size": {
+          "X": 0.0,
+          "Y": 0.0
+        },
+        "FrameEvent": "",
+        "Name": "Node_1",
+        "ctype": "SingleNodeObjectData"
+      },
+      "ctype": "GameProjectData"
+    },
+    "CameraPosition": {
+      "ValueX": 0.0,
+      "ValueY": 5.0,
+      "ValueZ": -1.0
+    },
+    "CameraRotation": {
+      "ValueX": 0.0,
+      "ValueY": 0.0,
+      "ValueZ": 0.0
+    }
+  },
+  "Type": "Node"
+}

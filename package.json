@@ -1,0 +1,21 @@
+{
+  "name": "cocos_studio_shader_extension",
+  "version": "1.0.0",
+  "description": "A program to add shaders to json files exported from cocos studio, to run with the ccsl cocos studio shader library for cocos2d-js",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "cocos2d-js",
+    "cocosStudio",
+    "shader"
+  ],
+  "author": "Robert Jan Zwetsloot",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4"
+  }
+}

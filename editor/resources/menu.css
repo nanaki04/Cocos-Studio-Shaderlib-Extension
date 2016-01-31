@@ -1,0 +1,129 @@
+.menu-bar-bg {
+	background: rgb(150, 150, 200);
+	background: -webkit-linear-gradient(left top, rgb(130, 130, 255), rgb(70, 70, 120));
+	background: -o-linear-gradient(left top, rgb(130, 130, 255), rgb(70, 70, 120));
+	background: -moz-linear-gradient(left top, rgb(130, 130, 255), rgb(70, 70, 120));
+	background: linear-gradient(left top, rgb(130, 130, 255), rgb(70, 70, 120));
+}
+
+.menu-item-bg {
+	background: rgb(200, 200, 255);
+	background: -webkit-linear-gradient(left top, rgb(150, 150, 235), rgb(220, 220, 255));
+	background: -o-linear-gradient(left top, rgb(150, 150, 235), rgb(220, 220, 255));
+	background: -moz-linear-gradient(left top, rgb(150, 150, 255), rgb(220, 220, 255));
+	background: linear-gradient(left top, rgb(150, 150, 255), rgb(220, 220, 255));
+}
+
+.menu-item-bg:hover {
+	background: rgb(150, 150, 200);
+	background: -webkit-linear-gradient(left top, rgb(130, 130, 230), rgb(200, 200, 255));
+	background: -o-linear-gradient(left top, rgb(130, 130, 230), rgb(200, 200, 255));
+	background: -moz-linear-gradient(left top, rgb(130, 130, 230), rgb(200, 200, 255));
+	background: linear-gradient(left top, rgb(130, 130, 230), rgb(200, 200, 255));
+}
+
+.menu-item-bg-selected {
+	background: rgb(120, 120, 180);
+	background: -webkit-linear-gradient(left top, rgb(180, 180, 230), rgb(140, 140, 200));
+	background: -o-linear-gradient(left top, rgb(180, 180, 230), rgb(140, 140, 200));
+	background: -moz-linear-gradient(left top, rgb(180, 180, 230), rgb(140, 140, 200));
+	background: linear-gradient(left top, rgb(180, 180, 230), rgb(140, 140, 200));
+}
+
+.menu-item {
+	border: 5px outset rgb(200, 200, 255);
+	width: 100%;
+	height: 100%;
+}
+
+.menu-item-selected {
+	border: 5px inset rgb(100, 100, 200);
+	width: 100%;
+	height: 100%;
+}
+
+.menu-item-font {
+	text-align: center;
+	vertical-align: middle;
+	color: rgb(0, 0, 0);
+	font-weight: bolder;
+	font-size: 20px;
+	text-shadow: 1px 1px 5px rgb(255, 255, 255);
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+
+
+.dropdown-div {
+	text-align: center;
+	vertical-align: middle;
+	color: rgb(0, 0, 0);
+	font-weight: bolder;
+	font-size: 20px;
+	text-shadow: 1px 1px 5px rgb(255, 255, 255);
+	padding-top: 10px;
+	padding-bottom:10px;
+}
+
+.dropdown {
+	width: 150px;
+}
+
+.dropdown-button {
+	background: rgb(200, 200, 255);
+	background: -webkit-linear-gradient(left top, rgb(150, 150, 235), rgb(220, 220, 255));
+	background: -o-linear-gradient(left top, rgb(150, 150, 235), rgb(220, 220, 255));
+	background: -moz-linear-gradient(left top, rgb(150, 150, 255), rgb(220, 220, 255));
+	background: linear-gradient(left top, rgb(150, 150, 255), rgb(220, 220, 255));
+}
+
+.dropdown-button-div {
+	border: 5px outset rgb(200, 200, 255);
+}
+
+.dropdown-content {
+	display: none;
+	box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-item {
+	background: -webkit-linear-gradient(left top, rgb(150, 150, 235), rgb(220, 220, 255));
+	background: -o-linear-gradient(left top, rgb(150, 150, 235), rgb(220, 220, 255));
+	background: -moz-linear-gradient(left top, rgb(150, 150, 255), rgb(220, 220, 255));
+	background: linear-gradient(left top, rgb(150, 150, 255), rgb(220, 220, 255));
+}
+
+.dropdown-item-div {
+	border: 5px outset rgb(150, 150, 235);
+}
+
+.dropdown-item:hover {
+	background: -webkit-linear-gradient(left top, rgb(100, 100, 200), rgb(150, 150, 235));
+	background: -o-linear-gradient(left top, rgb(100, 100, 200), rgb(150, 150, 235));
+	background: -moz-linear-gradient(left top, rgb(100, 100, 200), rgb(150, 150, 235));
+	background: linear-gradient(left top, rgb(100, 100, 200), rgb(150, 150, 235));
+}
+
+.dropdown-item:hover .dropdown-item-div {
+	border: 5px inset rgb(100, 100, 200);
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .dropdown-button {
+	background: -webkit-linear-gradient(left top, rgb(100, 100, 200), rgb(150, 150, 235));
+	background: -o-linear-gradient(left top, rgb(100, 100, 200), rgb(150, 150, 235));
+	background: -moz-linear-gradient(left top, rgb(100, 100, 200), rgb(150, 150, 235));
+	background: linear-gradient(left top, rgb(100, 100, 200), rgb(150, 150, 235));
+}
+
+.dropdown:hover .dropdown-button-div {
+	border: 5px inset rgb(100, 100, 200);
+}
