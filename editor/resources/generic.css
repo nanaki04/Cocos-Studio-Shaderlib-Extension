@@ -1,0 +1,19 @@
+body {
+	background-color: rgb(0, 0, 0);
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+}
+
+.align-center {
+	margin: auto;
+	position: absolute;
+}
+
+#simulator {
+	position: absolute;
+	top: 150px;
+	width: 800px;
+	height: 600px;
+	resize: both;
+	overflow: auto;
+}

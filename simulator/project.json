@@ -1,0 +1,32 @@
+{
+    "project_type": "javascript",
+
+    "debugMode" : 1,
+    "showFPS" : false,
+    "frameRate" : 30,
+    "noCache" : false,
+    "id" : "gameCanvas",
+    "renderMode" : 0,
+    "engineDir":"frameworks/cocos2d-html5",
+
+    "modules" : ["cocos2d", "extensions"],
+
+    "jsList" : [
+        "src/namespaces.js",
+
+        "src/resource.js",
+
+        "src/ccsLoaderPatch.js",
+
+        "src/shaderLibrary/shaderProgramFactory.js",
+
+        "src/utility.js",
+
+        "src/shaderTestSprite.js",
+        "src/mainLayer.js",
+        "src/shaderTestScene.js",
+
+        "src/ccsslSimulatorScene.js",
+        "src/ccsslScroller.js"
+    ]
+}
