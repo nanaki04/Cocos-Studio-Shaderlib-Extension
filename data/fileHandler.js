@@ -3,6 +3,7 @@
   var progressHandler = require('../utility/progressHandler');
   var projectHandler = require('./projectHandler');
   var jsonParser = require('./jsonParser');
+  var paths = require('../communication/paths');
 
   var getJSONs = function(collectData) {
     projectHandler.getCurrentProject(function(currentProject) {
@@ -12,6 +13,27 @@
           jsonList: jsonList
         });
       });
+    });
+  };
+
+  var updateCurrentlyLoadedFile = function(file, done) {
+    console.log("updating currently loaded file");
+    progressHandler.createSequence()
+      .add(function(empty, collectProject) {
+        projectHandler.getCurrentProject(collectProject);
+      })
+      .add(function(project, _done) {
+        console.log("updating project specific data");
+        projectHandler.updateProjectSpecificData(project, {
+          currentlyLoadedFile: file
+        }, _done);
+      })
+      .onEnd(done);
+  };
+
+  var getCurrentlyLoadedFile = function(collectCurrentlyLoadedFile) {
+    projectHandler.getProjectSpecificData(function(projectSpecificData) {
+      collectCurrentlyLoadedFile(projectSpecificData.currentlyLoadedFile);
     });
   };
 
@@ -83,5 +105,7 @@
   module.exports.getJSONs = getJSONs;
   module.exports.getResourceList = getResourceList;
   module.exports.generateResourceFile = generateResourceFile;
+  module.exports.updateCurrentlyLoadedFile = updateCurrentlyLoadedFile;
+  module.exports.getCurrentlyLoadedFile = getCurrentlyLoadedFile;
 
 })();

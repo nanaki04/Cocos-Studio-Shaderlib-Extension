@@ -38,6 +38,13 @@
       this._cleanUp();
     };
 
+    this.forceUpdate = function() {
+      if (this._progress === this._endState) {
+        this._fireEndEvent();
+        this._cleanUp();
+      }
+    };
+
     this._onProc = function(index, value) {
       this._value = value;
       this._progress |= 1 << index;

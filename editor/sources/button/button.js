@@ -1,4 +1,4 @@
-ccssl.MenuItem = ccssl.Class.define({
+ccssl.Button = ccssl.Class.define({
   DEFAULT_CSS: {
     bg: {
       normal: "menu-item-bg",
@@ -20,9 +20,6 @@ ccssl.MenuItem = ccssl.Class.define({
   },
 
   remove: function() {
-    if (this._selected) {
-      this.deselect();
-    }
     this.removeAllEventListeners();
     this._destroyElement();
     this._parent = null;
@@ -38,6 +35,11 @@ ccssl.MenuItem = ccssl.Class.define({
     element.style.height = rect.height + "px";
   },
 
+  setTitle: function(title, maxCharacters) {
+    this._name = title;
+    this._element.label.innerHTML = this._shortenTitle(maxCharacters);
+  },
+
   setParent: function(parent) {
     this._parent = parent;
     this._parent.getElement().appendChild(this._element.bg);
@@ -47,54 +49,20 @@ ccssl.MenuItem = ccssl.Class.define({
     this._css = cssClassNames;
   },
 
-  addOnSelectEventListener: function(callback, context) {
-    return this._eventHandler.addEventListener("select", callback, context);
+  addOnClickEventListener: function(callback, context) {
+    return this._eventHandler.addEventListener("click", callback, context);
   },
 
   removeOnSelectEventListener: function(listener) {
-    return this._eventHandler.removeEventListener("select", listener);
-  },
-
-  removeOnSelectEventListeners: function() {
-    return this._eventHandler.removeEventListeners("select");
-  },
-
-  addOnDeselectEventListener: function(callback, context) {
-    return this._eventHandler.addEventListener("deselect", callback, context);
-  },
-
-  removeOnDeselectEventListener: function(listener) {
-    return this._eventHandler.removeEventListener("deselect", listener);
-  },
-
-  removeOnDeselectEventListeners: function() {
-    return this._eventHandler.removeEventListeners("deselect");
+    return this._eventHandler.removeEventListener("click", listener);
   },
 
   removeAllEventListeners: function() {
     this._eventHandler.removeAllEventListeners();
   },
 
-  select: function() {
-    if (this._selected) {
-      return;
-    }
-    ccssl.menuSelectionHandler.select(this, this._parent.getName());
-    this._selected = true;
-    this._element.bg.className = this._element.bg.className.replace(this._css.bg.normal, this._css.bg.selected);
-    this._element.item.className = this._element.item.className.replace(this._css.content.normal, this._css.content.selected);
-    this._eventHandler.fireEvent("select", [this]);
-  },
-
-  deselect: function() {
-    if (!this._selected) {
-      return;
-    }
-    ccssl.menuSelectionHandler.clear(this._parent.getName());
-    this._selected = false;
-    this._element.bg.className = this._element.bg.className.replace(this._css.bg.selected, this._css.bg.normal);
-    this._element.item.className = this._element.item.className.replace(this._css.content.selected, this._css.content.normal);
-    this._eventHandler.fireEvent("deselect", [this]);
+  onClick: function() {
+    this._eventHandler.fireEvent("click", [this]);
   },
 
   getName: function() {
@@ -138,11 +106,7 @@ ccssl.MenuItem = ccssl.Class.define({
   },
 
   _onClickCallback: function(event) {
-    if (this._selected) {
-      this.deselect();
-    } else {
-      this.select();
-    }
+    this.onClick();
     event.stopPropagation && event.stopPropagation();
     if (event.cancelBubble != null) event.cancelBubble = true;
   },

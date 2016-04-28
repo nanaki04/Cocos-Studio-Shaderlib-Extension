@@ -18,7 +18,16 @@
 
         "src/ccsLoaderPatch.js",
 
-        "src/shaderLibrary/shaderProgramFactory.js",
+        "src/shaderLibrary/debugger.js",
+        "src/shaderLibrary/ccslShaderProgram.js",
+        "src/shaderLibrary/shaderProgramHandler.js",
+        "src/shaderLibrary/shaderPrograms/defaultPosition.js",
+        "src/shaderLibrary/shaderPrograms/defaultColor.js",
+        "src/shaderLibrary/shaderPrograms/defaultTexture.js",
+        "src/shaderLibrary/shaderPrograms/brightenTexture.js",
+        "src/shaderLibrary/shaderPrograms/greyscaleTexture.js",
+        "src/shaderLibrary/shaderPrograms/illuminateTexture.js",
+        "src/shaderLibrary/shaderPrograms/illuminateTextureN.js",
 
         "src/utility.js",
 

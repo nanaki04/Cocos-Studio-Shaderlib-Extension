@@ -5,12 +5,13 @@
   var parseJson = function(path, collectResourceList) {
     _loadJson(path, function(json) {
       var serverPath = path.substring(0, path.search(/\/([^\/]*)$/) + 1).replace(/^projects\//, "");
-      console.log("LOADING JSON: " + path);
       _findJsonParser(json)(json, serverPath, collectResourceList);
     });
   };
 
   var _loadJson = function(path, collectJson) {
+    console.log("LOADING JSON: " + path);
+
     fs.readFile(path, function(err, json) {
       collectJson(JSON.parse(json));
     });
@@ -102,30 +103,29 @@
   var getNodeList = function(jsonPath, nodePath, collectNodeList) {
     _loadJson(jsonPath, function(json) {
       if (_isCcs2(json)) {
-        _getCcs2NodeList();
+        _getCcs2NodeList(json, jsonPath.substr(0, jsonPath.search(/[^/]*$/)), nodePath, collectNodeList);
       }
     });
   };
 
   var _getCcs2NodeList = function(json, rootPath, startingPath, collectNodeList) {
-    var nodeList = {
-      list: []
-    };
+    console.log("getting node list: " + json);
+
     var base = json["Content"]["Content"];
     var nodes = base["ObjectData"];
     var path = startingPath || "";
-    var tracker = progressHandler.createTracker(nodeList);
+    var tracker = progressHandler.createTracker();
 
     var loopNodes = function(node) {
-      nodeList.list.push(_createNodeInfo(node), path);
+      var nodeInfo = _createNodeInfo(node, path);
       path += "/" + (node.Name || "...");
 
       if (node.ctype === "ProjectNodeObjectData" && node.FileData && /\.json$/i.test(node.FileData.Path)) {
         tracker.add(function(_nodeList, done) {
-          var index = _nodeList.list.length;
-          getNodeList(node.FileData.Path, path, function(__nodeList) {
-            var tail = nodeList.splice(index, _nodeList.list.length - index);
-            _nodeList.list = nodeList.concat(__nodeList, tail);
+          console.log("getting sub nodes: " + rootPath + node.FileData.Path);
+          console.log(path);
+          getNodeList(rootPath + node.FileData.Path, path, function(__nodeList) {
+            nodeInfo.externalChildren = __nodeList;
             done(_nodeList);
           });
         });
@@ -134,24 +134,32 @@
       var children = node.Children;
 
       if (!children || !children.length)
-        return;
+        return nodeInfo;
 
-      children.forEach(function(child) {
-        loopNodes(child);
+      nodeInfo.children = children.map(function(child) {
+        return loopNodes(child);
       });
+      return nodeInfo;
     };
 
-    loopNodes(nodes);
-    tracker.onEnd(collectNodeList);
+    var rootNode = loopNodes(nodes);
+    tracker.onEnd(function() {
+      collectNodeList(rootNode);
+    });
+    tracker.forceUpdate();
   };
 
   var _createNodeInfo = function(node, path) {
     return {
       name: node.Name,
       path: path,
-      tag: node.Tag
+      tag: node.Tag,
+      type: node.ctype,
+      externalChildren: [],
+      children: []
     }
   };
 
   module.exports.parseJson = parseJson;
+  module.exports.getNodeList = getNodeList;
 })();

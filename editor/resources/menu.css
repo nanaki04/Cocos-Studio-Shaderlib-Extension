@@ -1,9 +1,9 @@
 .menu-bar-bg {
 	background: rgb(150, 150, 200);
-	background: -webkit-linear-gradient(left top, rgb(130, 130, 255), rgb(70, 70, 120));
-	background: -o-linear-gradient(left top, rgb(130, 130, 255), rgb(70, 70, 120));
-	background: -moz-linear-gradient(left top, rgb(130, 130, 255), rgb(70, 70, 120));
-	background: linear-gradient(left top, rgb(130, 130, 255), rgb(70, 70, 120));
+	background: -webkit-linear-gradient(left top, rgb(130, 130, 255), rgb(50, 50, 150));
+	background: -o-linear-gradient(left top, rgb(130, 130, 255), rgb(50, 50, 150));
+	background: -moz-linear-gradient(left top, rgb(130, 130, 255), rgb(50, 50, 150));
+	background: linear-gradient(left top, rgb(130, 130, 255), rgb(50, 50, 150));
 }
 
 .menu-item-bg {
@@ -55,6 +55,14 @@
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+
+.window-bg {
+	background: rgb(150, 150, 200);
+	background: -webkit-linear-gradient(left top, rgb(50, 50, 150), rgb(100, 100, 200));
+	background: -o-linear-gradient(left top, rgb(50, 50, 150), rgb(100, 100, 200));
+	background: -moz-linear-gradient(left top, rgb(50, 50, 150), rgb(100, 100, 200));
+	background: linear-gradient(left top, rgb(50, 50, 150), rgb(100, 100, 200));
 }
 
 

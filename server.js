@@ -3,7 +3,9 @@
 	var bodyParser = require('body-parser');
 	var projectHandler = require('./data/projectHandler');
 	var fileHandler = require('./data/fileHandler');
+	var nodeHandler = require('./data/nodeHandler');
 	var paths = require('./communication/paths');
+	var progressHandler = require('./utility/progressHandler');
 	var api = express();
 
 	api.use(bodyParser.json());
@@ -54,8 +56,17 @@
 
 	api.post(paths.list.files, function(request, response) {
 		var path = request.body.path;
-		fileHandler.generateResourceFile(path, function() {
-			response.send(JSON.stringify({result: true}));
+		progressHandler.createTracker(path)
+			.add(fileHandler.updateCurrentlyLoadedFile)
+			.add(fileHandler.generateResourceFile)
+			.onEnd(function() {
+				response.send(JSON.stringify({result: true}));
+			});
+	});
+
+	api.get(paths.list.nodes, function(request, response) {
+		nodeHandler.getNodeList(function(nodeList) {
+			response.send(JSON.stringify(nodeList));
 		});
 	});
 
