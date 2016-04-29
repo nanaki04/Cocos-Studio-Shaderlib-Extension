@@ -3,7 +3,9 @@
 	var bodyParser = require('body-parser');
 	var projectHandler = require('./data/projectHandler');
 	var fileHandler = require('./data/fileHandler');
+	var nodeHandler = require('./data/nodeHandler');
 	var paths = require('./communication/paths');
+	var progressHandler = require('./utility/progressHandler');
 	var api = express();
 
 	api.use(bodyParser.json());
@@ -11,6 +13,10 @@
 	api.use(express.static('editor/resources'));
 	api.use(express.static('editor/sources'));
 	api.use(express.static('communication'));
+	api.use(express.static('utility'));
+	api.use(express.static('data'));
+	api.use(express.static('projects'));
+	api.use(express.static('config'));
 
 	api.get('/', function(request, response) {
 		response.send('default');
@@ -43,8 +49,24 @@
 	});
 
 	api.get(paths.list.files, function(request, response) {
-		fileHandler.getFiles(function(filesMap) {
+		fileHandler.getJSONs(function(filesMap) {
 			response.end(JSON.stringify(filesMap));
+		});
+	});
+
+	api.post(paths.list.files, function(request, response) {
+		var path = request.body.path;
+		progressHandler.createTracker(path)
+			.add(fileHandler.updateCurrentlyLoadedFile)
+			.add(fileHandler.generateResourceFile)
+			.onEnd(function() {
+				response.send(JSON.stringify({result: true}));
+			});
+	});
+
+	api.get(paths.list.nodes, function(request, response) {
+		nodeHandler.getNodeList(function(nodeList) {
+			response.send(JSON.stringify(nodeList));
 		});
 	});
 

@@ -42,7 +42,12 @@ ccssl.FileMenuItems.Load = ccssl.MenuItem.extend({
     }.bind(this));
   },
 
-  _loadFile: function() {
-    var iFrame = document.getElementById("simulator").src = ccssl.paths.simulator;
+  _loadFile: function(menuItem) {
+    ccssl.menuSelectionHandler.pause();
+    ccssl.communicator.post(ccssl.paths.files, { path: menuItem.getName() }, function() {
+      ccssl.menuSelectionHandler.resume();
+      ccssl.menuSelectionHandler.deselectAll();
+      document.getElementById("simulator").src = ccssl.paths.simulator;
+    });
   }
 });

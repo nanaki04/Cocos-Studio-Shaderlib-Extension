@@ -3,6 +3,7 @@
     editor: "/editor",
     projects: "/editor/projects",
     files: "/editor/files",
+    nodes: "/editor/nodes",
     simulator: "/simulator"
   };
 

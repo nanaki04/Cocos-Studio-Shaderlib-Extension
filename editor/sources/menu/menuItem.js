@@ -130,6 +130,7 @@ ccssl.MenuItem = ccssl.Class.define({
 
   _destroyElement: function() {
     this._element.bg.parentNode.removeChild(this._element.bg);
+    //@todo remove event listener
   },
 
   _addOnClickEventHandler: function(element) {

@@ -3,7 +3,7 @@ ccssl.MainMenu = ccssl.Menu.extend({
     ccssl.MainMenuItems.Project,
     ccssl.MainMenuItems.File,
     ccssl.MainMenuItems.Nodes,
-    ccssl.MainMenuItems.Shaders,
+    ccssl.MainMenuItems.Materials,
     ccssl.MainMenuItems.History
   ],
 

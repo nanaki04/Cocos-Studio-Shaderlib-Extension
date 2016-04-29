@@ -11,9 +11,5 @@ body {
 
 #simulator {
 	position: absolute;
-	top: 150px;
-	width: 800px;
-	height: 600px;
-	resize: both;
 	overflow: auto;
 }
