@@ -42,7 +42,7 @@ ccssl.Button = ccssl.Class.define({
 
   setParent: function(parent) {
     this._parent = parent;
-    this._parent.getElement().appendChild(this._element.bg);
+    this._parent.appendChild(this._element.bg);
   },
 
   setCss: function(cssClassNames) {
@@ -69,13 +69,16 @@ ccssl.Button = ccssl.Class.define({
     return this._name;
   },
 
+  getElement: function() {
+    return this._element.bg;
+  },
+
   _createElement: function(title) {
     var element = document.createElement("div");
     var table = document.createElement("table");
     var row = document.createElement("tr");
     var cell = document.createElement("td");
 
-    element.style.position = "absolute";
     element.className = "menu-item-bg";
 
     this._addOnClickEventHandler(element);

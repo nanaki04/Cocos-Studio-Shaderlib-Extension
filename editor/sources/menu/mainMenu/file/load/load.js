@@ -43,11 +43,23 @@ ccssl.FileMenuItems.Load = ccssl.MenuItem.extend({
   },
 
   _loadFile: function(menuItem) {
+    var sequence = ccssl.progressHandler.createSequence();
     ccssl.menuSelectionHandler.pause();
-    ccssl.communicator.post(ccssl.paths.files, { path: menuItem.getName() }, function() {
+    sequence.add(function(empty, done) {
+      ccssl.communicator.post(ccssl.paths.files, { path: menuItem.getName() }, function() {
+        document.getElementById("simulator").src = ccssl.paths.simulator;
+        done();
+      });
+    });
+    sequence.add(function(empty, done) {
+      ccssl.communicator.get(ccssl.paths.nodes, function(nodeInfo) {
+        ccssl.nodeWindow.drawNodes(nodeInfo);
+        done();
+      });
+    });
+    sequence.onEnd(function() {
       ccssl.menuSelectionHandler.resume();
       ccssl.menuSelectionHandler.deselectAll();
-      document.getElementById("simulator").src = ccssl.paths.simulator;
     });
   }
 });

@@ -4,7 +4,8 @@
     projects: "/editor/projects",
     files: "/editor/files",
     nodes: "/editor/nodes",
-    simulator: "/simulator"
+    simulator: "/simulator",
+    action: "/editor/action"
   };
 
   if (module) {

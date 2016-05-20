@@ -6,6 +6,7 @@
 	var nodeHandler = require('./data/nodeHandler');
 	var paths = require('./communication/paths');
 	var progressHandler = require('./utility/progressHandler');
+	var actionHandler = require('./actions/actionHandler');
 	var api = express();
 
 	api.use(bodyParser.json());
@@ -67,6 +68,12 @@
 	api.get(paths.list.nodes, function(request, response) {
 		nodeHandler.getNodeList(function(nodeList) {
 			response.send(JSON.stringify(nodeList));
+		});
+	});
+
+	api.post(paths.list.action, function(request, response) {
+		actionHandler.handleAction(request.body.action, request.body.actionParameters, function() {
+			response.send(JSON.stringify({result: true}));
 		});
 	});
 
