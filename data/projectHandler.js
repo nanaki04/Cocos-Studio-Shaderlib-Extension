@@ -57,9 +57,11 @@
     fs.writeFile(PROJECT_DATA_FILE, JSON.stringify(projectData), done);
   };
 
-  var updateProjectSpecificData = function(project, newProjectSpecificData, done) {
-    console.log("updateProjectSpecificData: " + newProjectSpecificData);
-    progressHandler.createSequence(project)
+  var updateProjectSpecificData = function(newProjectSpecificData, done) {
+    progressHandler.createSequence()
+      .add(function(empty, collectProject) {
+        getCurrentProject(collectProject);
+      })
       .add(_getProjectSpecificDataFile)
       .add(_writeProjectSpecificData.bind(null, newProjectSpecificData))
       .onEnd(done);
@@ -75,39 +77,71 @@
       .onEnd(collectProjectSpecificData);
   };
 
-  var _getProjectSpecificDataFile = function(project, collectProjectSpecificFile) {
-    console.log("_getProjectSpecificDataFile: " + project);
+  var getProjectSpecificDataFolder = function(collectProjectSpecificDataFolder) {
+    getCurrentProject(function(project) {
+      _getProjectSpecificDataFolder(project, collectProjectSpecificDataFolder);
+    });
+  };
+
+  var _getProjectSpecificDataFolder = function(project, collectProjectSpecificDataFolder) {
     fs.readdir(PROJECT_SPECIFIC_DATA_FOLDER, function(err, files) {
       if (files.some(function(file) {
-        return file === project + ".json";
-      })) {
-        collectProjectSpecificFile(PROJECT_SPECIFIC_DATA_FOLDER + "/" + project + ".json");
+          return file === project;
+        })) {
+        collectProjectSpecificDataFolder(PROJECT_SPECIFIC_DATA_FOLDER + "/" + project);
         return;
       }
-      console.log("initializing project specific data file: " + project + ".json");
 
-      _initProjectSpecificDataFile(project, function() {
-        collectProjectSpecificFile(PROJECT_SPECIFIC_DATA_FOLDER + "/" + project + ".json");
+      fs.mkdir(PROJECT_SPECIFIC_DATA_FOLDER + "/" + project, function() {
+        collectProjectSpecificDataFolder(PROJECT_SPECIFIC_DATA_FOLDER + "/" + project);
       });
     });
   };
 
+  var _getProjectSpecificDataFile = function(project, collectProjectSpecificFile) {
+    var sequence = progressHandler.createSequence(project);
+
+    sequence.add(function(_project, collectProjectSpecificDataFolder) {
+      _getProjectSpecificDataFolder(_project, collectProjectSpecificDataFolder);
+    });
+
+    sequence.add(function(projectSpecificDataFolder, done) {
+      fs.readdir(projectSpecificDataFolder, function(err, files) {
+        if (files.some(function(file) {
+            return file === project + ".json";
+          })) {
+          console.log("projectSpecificDataFile: " + projectSpecificDataFolder + "/" + project + ".json");
+          done(projectSpecificDataFolder + "/" + project + ".json");
+          return;
+        }
+
+        _initProjectSpecificDataFile(project, function() {
+          done(projectSpecificDataFolder + "/" + project + ".json");
+        });
+      })
+    });
+
+    sequence.onEnd(collectProjectSpecificFile);
+  };
+
   var _initProjectSpecificDataFile = function(project, done) {
-    fs.writeFile(PROJECT_SPECIFIC_DATA_FOLDER + "/" + project + ".json", JSON.stringify({
+    fs.writeFile(PROJECT_SPECIFIC_DATA_FOLDER + "/" + project + "/" + project + ".json", JSON.stringify({
       name: project
     }), done);
   };
 
   var _readProjectSpecificData = function(projectSpecificDataFile, collectSpecificDataFileData) {
+    console.log("reading project specific data");
     fs.readFile(projectSpecificDataFile, function(err, projectSpecificFileData) {
       collectSpecificDataFileData(JSON.parse(projectSpecificFileData));
-    })
+    });
   };
 
   var _writeProjectSpecificData = function(projectSpecificData, projectSpecificFile, done) {
     progressHandler.createSequence(projectSpecificFile)
       .add(_readProjectSpecificData)
       .add(function(oldProjectSpecificData, _done) {
+        console.log("old project specific data: " + oldProjectSpecificData);
         var keys = Object.keys(projectSpecificData);
         var updatedData = keys.reduce(function(_updatedData, key) {
           _updatedData[key] = projectSpecificData[key];
@@ -134,5 +168,6 @@
   module.exports.writeResourceFileList = writeResourceFileList;
   module.exports.updateProjectSpecificData = updateProjectSpecificData;
   module.exports.getProjectSpecificData = getProjectSpecificData;
+  module.exports.getProjectSpecificDataFolder = getProjectSpecificDataFolder;
 
 })();

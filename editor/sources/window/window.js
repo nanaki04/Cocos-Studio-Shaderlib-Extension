@@ -61,6 +61,7 @@ ccssl.Window = ccssl.Class.define({
     contentRow.className = this._css.bg.static;
     headerCell.className = this._css.content.font;
     contentCell.className = this._css.content.font;
+    contentCell.style.verticalAlign = "top";
 
     return {
       bg: element,

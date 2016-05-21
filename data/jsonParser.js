@@ -155,7 +155,7 @@
       path: path,
       tag: node.Tag,
       type: node.ctype,
-      externalChildren: [],
+      externalChildren: {},
       children: []
     }
   };

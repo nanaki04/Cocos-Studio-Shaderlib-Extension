@@ -17,7 +17,7 @@
 
       ccssl.Class.addProperties(originalProto, extendedProto);
       ccssl.Class.addProperties(properties, extendedProto);
-      extendedClass.extend = this._extend;
+      extendedClass.extend = ccssl.Class._extend;
 
       return extendedClass;
     },

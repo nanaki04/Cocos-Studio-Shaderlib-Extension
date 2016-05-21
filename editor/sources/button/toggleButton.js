@@ -47,6 +47,14 @@ ccssl.ToggleButton = ccssl.Button.extend({
     this._eventHandler.fireEvent("deselect", [this]);
   },
 
+  show: function() {
+    this._element.bg.style.visibility = "visible";
+  },
+
+  hide: function() {
+    this._element.bg.style.visibility = "hidden";
+  },
+
   _onClickCallback: function(event) {
     if (this._selected) {
       this.deselect();

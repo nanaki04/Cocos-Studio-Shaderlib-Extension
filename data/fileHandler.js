@@ -5,6 +5,11 @@
   var jsonParser = require('./jsonParser');
   var paths = require('../communication/paths');
 
+  var FILE_DATA_TYPES = {
+    HISTORY: "_HISTORY",
+    SELECTION: "_SELECTION"
+  };
+
   var getJSONs = function(collectData) {
     projectHandler.getCurrentProject(function(currentProject) {
       _loopDirectory("projects/" + currentProject, function(fileList) {
@@ -17,18 +22,9 @@
   };
 
   var updateCurrentlyLoadedFile = function(file, done) {
-    console.log("updating currently loaded file");
-    progressHandler.createSequence()
-      .add(function(empty, collectProject) {
-        projectHandler.getCurrentProject(collectProject);
-      })
-      .add(function(project, _done) {
-        console.log("updating project specific data");
-        projectHandler.updateProjectSpecificData(project, {
-          currentlyLoadedFile: file
-        }, _done);
-      })
-      .onEnd(done);
+    projectHandler.updateProjectSpecificData({
+      currentlyLoadedFile: file
+    }, done);
   };
 
   var getCurrentlyLoadedFile = function(collectCurrentlyLoadedFile) {
@@ -46,6 +42,82 @@
       resourceList.unshift(path.replace(/^projects\//, ""));
       projectHandler.writeResourceFileList(resourceList, done);
     });
+  };
+
+  var _getCurrentlyLoadedFileDataPath = function(type, collectCurrentlyLoadedFileData) {
+    var tracker = progressHandler.createTracker({})
+      .add(function(fileData, done) {
+        projectHandler.getProjectSpecificDataFolder(function(projectSpecificDataFolder) {
+          fileData.projectSpecificDataFolder = projectSpecificDataFolder;
+          done(fileData);
+        });
+      })
+      .add(function(fileData, done) {
+        getCurrentlyLoadedFile(function(currentlyLoadedFile) {
+          fileData.currentlyLoadedFile = currentlyLoadedFile;
+          done(fileData);
+        });
+      });
+
+    progressHandler.createSequence()
+      .add(function(empty, collectFileData) {
+        tracker.onEnd(collectFileData);
+      })
+      .add(function(fileData, collectFileName) {
+        fs.readdir(fileData.projectSpecificDataFolder, function(err, files) {
+          var fileName = (fileData.currentlyLoadedFile.replace(/\.json/gi, "") + type + ".json").replace(/\//g, "_");
+          var filePath = fileData.projectSpecificDataFolder + "/" + fileName;
+
+          if (files.some(function(file) {
+              return file === fileName;
+            })) {
+            collectFileName(filePath);
+            return;
+          }
+
+          fs.writeFile(filePath, JSON.stringify({}), function() {
+            collectFileName(filePath);
+          });
+        });
+      })
+      .onEnd(collectCurrentlyLoadedFileData);
+  };
+
+  var getCurrentlyLoadedFileData = function(type, collectCurrentlyLoadedFileData) {
+    _getCurrentlyLoadedFileDataPath(type, function(fileDataPath) {
+      console.log("FILE DATA PATH");
+      console.log(fileDataPath);
+      fs.readFile(fileDataPath, function(err, data) {
+        console.log("getCurrentlyLoadedFileData");
+        console.log(err);
+        console.log(JSON.parse(data));
+        collectCurrentlyLoadedFileData(JSON.parse(data), fileDataPath);
+      });
+    });
+  };
+
+  var updateCurrentlyLoadedFileData = function(type, data, done) {
+    var sequence = progressHandler.createSequence({})
+      .add(function(result, collectCurrentlyLoadedFileData) {
+        getCurrentlyLoadedFileData(type, function(fileData, fileDataPath) {
+          result.originalData = fileData;
+          result.fileDataPath = fileDataPath;
+          collectCurrentlyLoadedFileData(result);
+        });
+      })
+      .onEnd(function(result) {
+        var keys = Object.keys(data);
+        var updatedData = keys.reduce(function(_updatedData, key) {
+          _updatedData[key] = data[key];
+          return _updatedData;
+        }, result.originalData);
+
+        result.updatedData = updatedData;
+
+        fs.writeFile(result.fileDataPath, JSON.stringify(updatedData), function() {
+          done(result);
+        });
+      });
   };
 
   var _readDirectoryFileInfo = function(directory, collectFileInfo) {
@@ -102,10 +174,13 @@
     }, []);
   };
 
+  module.exports.FILE_DATA_TYPES = FILE_DATA_TYPES;
   module.exports.getJSONs = getJSONs;
   module.exports.getResourceList = getResourceList;
   module.exports.generateResourceFile = generateResourceFile;
   module.exports.updateCurrentlyLoadedFile = updateCurrentlyLoadedFile;
   module.exports.getCurrentlyLoadedFile = getCurrentlyLoadedFile;
+  module.exports.getCurrentlyLoadedFileData = getCurrentlyLoadedFileData;
+  module.exports.updateCurrentlyLoadedFileData = updateCurrentlyLoadedFileData;
 
 })();

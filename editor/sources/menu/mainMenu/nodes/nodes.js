@@ -8,10 +8,7 @@ ccssl.MainMenuItems.Nodes = ccssl.MenuItem.extend({
   },
 
   _onSelectCallback: function(menuItem) {
-    //tmp
-    ccssl.communicator.get(ccssl.paths.nodes, function() {
 
-    });
   },
 
   _onDeselectCallback: function(menuItem) {
