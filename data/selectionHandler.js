@@ -19,7 +19,7 @@
           selection.push(node);
         }
       });
-      projectHandler.updateProjectSpecificData({currentSelection: selection}, done);
+      updateSelectionDataFile({currentSelection: selection}, done);
     });
   };
 
@@ -35,17 +35,17 @@
           selection.splice(index, 1);
         }
       });
-      projectHandler.updateProjectSpecificData({currentSelection: selection}, done);
+      updateSelectionDataFile({currentSelection: selection}, done);
     });
   };
 
   var clearCurrentSelection = function(done) {
-    projectHandler.updateProjectSpecificData({currentSelection: []}, done);
+    updateSelectionDataFile({currentSelection: []}, done);
   };
 
   var getCurrentSelection = function(collectCurrentSelection) {
-    projectHandler.getProjectSpecificData(function(projectSpecificData) {
-      collectCurrentSelection(projectSpecificData.currentSelection || []);
+    getSelectionDataFile(function(selectionData) {
+      collectCurrentSelection(selectionData.currentSelection || []);
     });
   };
 

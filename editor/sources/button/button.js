@@ -45,6 +45,10 @@ ccssl.Button = ccssl.Class.define({
     this._parent.appendChild(this._element.bg);
   },
 
+  getParent: function() {
+    return this._parent;
+  },
+
   setCss: function(cssClassNames) {
     this._css = cssClassNames;
   },

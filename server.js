@@ -7,6 +7,7 @@
 	var paths = require('./communication/paths');
 	var progressHandler = require('./utility/progressHandler');
 	var actionHandler = require('./actions/actionHandler');
+	var selectionHandler = require('./data/selectionHandler');
 	var api = express();
 
 	api.use(bodyParser.json());
@@ -57,11 +58,18 @@
 
 	api.post(paths.list.files, function(request, response) {
 		var path = request.body.path;
+		var currentSelection;
 		progressHandler.createTracker(path)
 			.add(fileHandler.updateCurrentlyLoadedFile)
 			.add(fileHandler.generateResourceFile)
+			.add(function(_path, done) {
+				selectionHandler.getCurrentSelection(function(_currentSelection) {
+					currentSelection = _currentSelection;
+					done();
+				});
+			})
 			.onEnd(function() {
-				response.send(JSON.stringify({result: true}));
+				response.send(JSON.stringify({currentSelection: currentSelection}));
 			});
 	});
 

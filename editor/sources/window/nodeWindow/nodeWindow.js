@@ -12,31 +12,24 @@ ccssl.NodeWindow = ccssl.Window.extend({
     return this;
   },
 
-  drawNodes: function(nodeInfo) {
+  drawNodes: function(nodeInfo, currentSelection) {
     if (this._nodeTree != null) {
       this._nodeTree.remove();
     }
-    this._nodeTree = this._drawNodes(nodeInfo);
+    this._nodeTree = this._drawNodes(nodeInfo, currentSelection);
   },
 
-  _drawNodes: function(nodeInfo) {
+  _drawNodes: function(nodeInfo, currentSelection) {
     if (nodeInfo == null) {
       return null;
     }
 
-    var item;
-    if (nodeInfo.tag == null) {
-      item = new ccssl.NodeLabel().init(nodeInfo.name, 50);
-    } else {
-      item = new ccssl.NodeButton().init(nodeInfo.name, 50);
-    }
-    item.setNodeInfo(nodeInfo);
-
+    var item = this._initNodeItem(nodeInfo, currentSelection);
     var nodeTree = new ccssl.NodeWindowTree().init(item);
     nodeTree.setParent(this._element.content);
 
     (nodeInfo.children || []).forEach(function(child) {
-      var subTree = this._drawNodes(child);
+      var subTree = this._drawNodes(child, currentSelection);
       if (subTree == null) {
         return;
       }
@@ -44,7 +37,7 @@ ccssl.NodeWindow = ccssl.Window.extend({
     }.bind(this));
 
     if (nodeInfo.externalChildren && Object.keys(nodeInfo.externalChildren).length !== 0) {
-      var subTree = this._drawNodes(nodeInfo.externalChildren);
+      var subTree = this._drawNodes(nodeInfo.externalChildren, currentSelection);
       if (subTree == null) {
         return;
       }
@@ -52,5 +45,18 @@ ccssl.NodeWindow = ccssl.Window.extend({
     }
 
     return nodeTree;
+  },
+
+  _initNodeItem: function(nodeInfo, currentSelection) {
+    var classDefinition = nodeInfo.tag == null ? ccssl.NodeLabel : ccssl.NodeButton;
+    var item = new classDefinition().init(nodeInfo.name, /* max title characters */ 50);
+    var selectionIndex = currentSelection.indexOf(nodeInfo.tag);
+    item.setNodeInfo(nodeInfo);
+    if (~selectionIndex) {
+      item.select();
+      currentSelection.splice(selectionIndex, 1);
+    }
+
+    return item;
   }
 });
