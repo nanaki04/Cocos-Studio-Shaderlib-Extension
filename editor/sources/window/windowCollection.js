@@ -1,4 +1,4 @@
-ccssl.Window = ccssl.Class.define({
+ccssl.WindowCollection = ccssl.Class.define({
   DEFAULT_CSS: {
     bg: {
       static: "window-bg",
@@ -26,6 +26,8 @@ ccssl.Window = ccssl.Class.define({
     this._windows.push(tabWindow);
     this._addTabButton(tabWindow.getName());
     this._element.content.appendChild(tabWindow.getElement());
+    tabWindow.setSize(this._windowSize);
+    tabWindow.redraw();
     tabWindow.hide();
     if (this._windows.length === 1) {
       this._tabButtons[0].select();

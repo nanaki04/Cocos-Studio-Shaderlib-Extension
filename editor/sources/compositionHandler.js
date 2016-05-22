@@ -1,9 +1,11 @@
-ccssl.compsitionHandler = {
+ccssl.compositionHandler = {
   DEFAULT_CONFIG: {
     rows: [
       [
         {
-          type: "mainMenu"
+          type: "mainMenu",
+          width: { fixed: false, weight: 1 },
+          height: { fixed: true, px: 50 }
         }
       ],
       [
@@ -12,33 +14,61 @@ ccssl.compsitionHandler = {
           rows: [
             [
               {
-                type: "simulator"
+                type: "row",
+                rows: [
+                  {
+                    type: "simulator",
+                    width: { fixed: false, weight: 1 },
+                    height: { fixed: false, weight: 1 }
+                  }
+                ]
+              },
+              {
+                type: "row",
+                rows: [
+                  {
+                    type: "timeline",
+                    width: { fixed: false, weight: 1 },
+                    height: { fixed: true, px: 150 }
+                  }
+                ]
               }
             ],
             [
-              //timeline
+              {
+                type: "windowCollection",
+                width: { fixed: true, px: 500 },
+                height: { fixed: false, weight: 1 }
+              }
             ]
           ]
-        },
-        {
-          type: "windowCollection"
         }
       ]
     ]
   },
 
-  _rows: [],
-
-  addRow: function() {
+  init: function() {
+    this._composition = this.DEFAULT_CONFIG;
   },
 
-  insertRow: function(index) {
-    this._rows.splice(index, 0, []);
+  buildComposition: function() {
+
   },
 
-  _createCell: function(fixedSize) {
-    return {
-      fixedSize: fixedSize
-    }
+  _parseRowLevel: function(rows, assignedHeight, assignedWidth) {
+
+  },
+
+  calculateValuePerWeight: function(rows, assignedValue, valueType) {
+    var totalWeight = 0;
+    return Math.floor(rows.reduce(function(remainingValue, row) {
+      if (!row[valueType] || !row[valueType].fixed) {
+        totalWeight++;
+      } else {
+        remainingValue -= row[valueType].px;
+      }
+      return remainingValue;
+    }, assignedValue) / totalWeight);
   }
+
 };
