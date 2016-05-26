@@ -7,7 +7,8 @@
 
   var FILE_DATA_TYPES = {
     HISTORY: "_HISTORY",
-    SELECTION: "_SELECTION"
+    SELECTION: "_SELECTION",
+    MATERIALS: "_MATERIALS"
   };
 
   var getJSONs = function(collectData) {
@@ -97,7 +98,7 @@
   };
 
   var updateCurrentlyLoadedFileData = function(type, data, done) {
-    var sequence = progressHandler.createSequence({})
+    progressHandler.createSequence({})
       .add(function(result, collectCurrentlyLoadedFileData) {
         getCurrentlyLoadedFileData(type, function(fileData, fileDataPath) {
           result.originalData = fileData;
@@ -109,6 +110,29 @@
         var keys = Object.keys(data);
         var updatedData = keys.reduce(function(_updatedData, key) {
           _updatedData[key] = data[key];
+          return _updatedData;
+        }, result.originalData);
+
+        result.updatedData = updatedData;
+
+        fs.writeFile(result.fileDataPath, JSON.stringify(updatedData), function() {
+          done(result);
+        });
+      });
+  };
+
+  var deleteEntriesFromCurrentlyLoadedFileData = function(type, entries, done) {
+    progressHandler.createSequence({})
+      .add(function(result, collectCurrentlyLoadedFileData) {
+        getCurrentlyLoadedFileData(type, function(fileData, fileDataPath) {
+          result.originalData = fileData;
+          result.fileDataPath = fileDataPath;
+          collectCurrentlyLoadedFileData(result);
+        });
+      })
+      .onEnd(function(result) {
+        var updatedData = entries.reduce(function(_updatedData, key) {
+          delete _updatedData[key];
           return _updatedData;
         }, result.originalData);
 
@@ -182,5 +206,6 @@
   module.exports.getCurrentlyLoadedFile = getCurrentlyLoadedFile;
   module.exports.getCurrentlyLoadedFileData = getCurrentlyLoadedFileData;
   module.exports.updateCurrentlyLoadedFileData = updateCurrentlyLoadedFileData;
+  module.exports.deleteEntriesFromCurrentlyLoadedFileData = deleteEntriesFromCurrentlyLoadedFileData;
 
 })();

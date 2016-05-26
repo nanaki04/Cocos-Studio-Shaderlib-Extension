@@ -53,7 +53,11 @@ ccssl.FileMenuItems.Load = ccssl.MenuItem.extend({
     });
     sequence.add(function(response, done) {
       ccssl.communicator.get(ccssl.paths.nodes, function(nodeInfo) {
-        ccssl.nodeWindow.drawNodes(nodeInfo, response.currentSelection);
+        var nodeWindow = ccssl.compositionHandler.getRegisteredElementByType(ccssl.compositionHandler.ELEMENT_TYPES.NODE_WINDOW);
+        if (!nodeWindow) {
+          return;
+        }
+        nodeWindow.drawNodes(nodeInfo, response.currentSelection);
         done();
       });
     });

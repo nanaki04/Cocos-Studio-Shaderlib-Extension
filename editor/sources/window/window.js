@@ -79,6 +79,14 @@ ccssl.Window = ccssl.Class.define({
     element.style.height = this._windowSize.height + "px";
   },
 
+  setParent: function(parent) {
+    this._parent = parent;
+  },
+
+  getParent: function() {
+    return this._parent;
+  },
+
   _createElement: function(title) {
     var element = document.createElement("div");
     var table = document.createElement("table");

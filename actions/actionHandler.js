@@ -6,7 +6,11 @@
 
   var actions = {
     selectNode: require('./selectNode'),
-    deselectNode: require('./deselectNode')
+    deselectNode: require('./deselectNode'),
+    updateMaterial: require('./updateMaterial'),
+    deleteMaterial: require('./deleteMaterial'),
+    updateGlobalMaterial: require('./updateGlobalMaterial'),
+    deleteGlobalMaterial: require('./deleteGlobalMaterial')
   };
 
   var handleAction = function(actionName, parameters, done) {

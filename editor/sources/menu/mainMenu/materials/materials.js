@@ -8,7 +8,9 @@ ccssl.MainMenuItems.Materials = ccssl.MenuItem.extend({
   },
 
   _onSelectCallback: function(menuItem) {
-
+    ccssl.communicator.get(ccssl.paths.shaders, function(response) {
+      console.log(response);
+    });
   },
 
   _onDeselectCallback: function(menuItem) {

@@ -37,7 +37,7 @@ ccssl.SimulatorFrame = ccssl.Class.define({
     var element = this.getElement();
     element.style.top = this._pos.y + "px";
     element.style.left = this._pos.x + "px";
-    element.style.width = this._size.width + "px";
+    element.style.width = Math.max((this._size.width - 5), 0) + "px";
     element.style.height = this._size.height + "px";
   },
 

@@ -22,20 +22,25 @@ ccssl.WindowCollection = ccssl.Class.define({
     return this;
   },
 
-  addWindow: function(tabWindow) {
+  addChild: function(tabWindow) {
+    if (~this._windows.indexOf(tabWindow)) {
+      return;
+    }
     this._windows.push(tabWindow);
     this._addTabButton(tabWindow.getName());
     this._element.content.appendChild(tabWindow.getElement());
-    tabWindow.setSize(this._windowSize);
+    tabWindow.setParent(this);
+    tabWindow.setRect({ x: 0, y: 50, width: this._windowSize.width, height: this._windowSize.height });
     tabWindow.redraw();
     tabWindow.hide();
     if (this._windows.length === 1) {
       this._tabButtons[0].select();
     }
+    return this._windows.length - 1;
   },
 
   removeWindow: function(tabWindow) {
-    var index = this._windows.indexOf(window);
+    var index = this._windows.indexOf(tabWindow);
     if (!~index) {
       return;
     }
@@ -70,6 +75,7 @@ ccssl.WindowCollection = ccssl.Class.define({
   },
 
   setSize: function(size) {
+    size.height = Math.max(size.height - 50, 0);
     this._windowSize = size;
   },
 
@@ -90,6 +96,8 @@ ccssl.WindowCollection = ccssl.Class.define({
     var content = document.createElement("div");
     var tabButtons = document.createElement("table");
     var tabRow = document.createElement("tr");
+
+    tabButtons.style.height = "50px";
 
     element.style.position = "absolute";
     element.className = this._css.bg.static;
@@ -138,10 +146,12 @@ ccssl.WindowCollection = ccssl.Class.define({
   },
 
   showWindow: function(index) {
+    this._tabButtons[index].select();
     this._windows[index].show();
   },
 
   hideWindow: function(index) {
+    this._tabButtons[index].deselect();
     this._windows[index].hide();
   },
 

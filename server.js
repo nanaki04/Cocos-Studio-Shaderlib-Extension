@@ -8,6 +8,7 @@
 	var progressHandler = require('./utility/progressHandler');
 	var actionHandler = require('./actions/actionHandler');
 	var selectionHandler = require('./data/selectionHandler');
+  var shaderHandler = require('./data/shaderHandler');
 	var api = express();
 
 	api.use(bodyParser.json());
@@ -84,6 +85,13 @@
 			response.send(JSON.stringify({result: true}));
 		});
 	});
+
+	api.get(paths.list.shaders, function(request, response) {
+    shaderHandler.getShaderList(function(shaderList) {
+      console.log(shaderList);
+      response.send(JSON.stringify(shaderList));
+    })
+  });
 
 	api.listen(1337, function() {
 		console.log("server started");
