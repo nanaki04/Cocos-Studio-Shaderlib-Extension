@@ -7,6 +7,7 @@
   var actions = {
     selectNode: require('./selectNode'),
     deselectNode: require('./deselectNode'),
+    newMaterial: require('./newMaterial'),
     updateMaterial: require('./updateMaterial'),
     deleteMaterial: require('./deleteMaterial'),
     updateGlobalMaterial: require('./updateGlobalMaterial'),

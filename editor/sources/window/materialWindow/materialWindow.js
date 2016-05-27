@@ -11,6 +11,17 @@ ccssl.MaterialWindow = ccssl.Window.extend({
     return this;
   },
 
+  show: function() {
+    ccssl.Window.prototype.show.apply(this, arguments);
+    this.updateMaterialList(function() {});
+  },
+
+  updateMaterialList: function(done) {
+    ccssl.communicator.get(ccssl.paths.materials, function(materials) {
+      console.log(materials);
+      done();
+    });
+  },
 
   _initNewButton: function() {
     this._newMaterialButton = new ccssl.NewMaterialButton().init();

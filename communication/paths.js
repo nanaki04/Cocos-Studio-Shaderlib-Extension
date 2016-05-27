@@ -6,7 +6,8 @@
     nodes: "/editor/nodes",
     simulator: "/simulator",
     action: "/editor/action",
-    shaders: "/editor/shaders"
+    shaders: "/editor/shaders",
+    materials: "/editor/materials"
   };
 
   if (module) {

@@ -7,7 +7,7 @@
 
     run: function (done) {
       this._completed = true;
-      materialHandler.updateGlobalMaterialDataFile(this._parameters.material.name, this._parameters.material, function (materialData) {
+      materialHandler.updateGlobalMaterialDataFile(this._parameters.material.id, this._parameters.material, function (materialData) {
         this._parameters.revertData = materialData.originalData;
         done();
       }.bind(this));
@@ -16,9 +16,9 @@
     revert: function (done) {
       this._completed = false;
       if (!this._parameters.revertData || !Object.keys(this._parameters.revertData).length) {
-        materialHandler.deleteGlobalMaterial(this._parameters.material.name, done);
+        materialHandler.deleteGlobalMaterial(this._parameters.material.id, done);
       } else {
-        materialHandler.updateGlobalMaterialDataFile(this._parameters.material.name, this._parameters.revertData, done);
+        materialHandler.updateGlobalMaterialDataFile(this._parameters.material.id, this._parameters.revertData, done);
       }
     }
   });

@@ -9,6 +9,7 @@
 	var actionHandler = require('./actions/actionHandler');
 	var selectionHandler = require('./data/selectionHandler');
   var shaderHandler = require('./data/shaderHandler');
+  var materialHandler = require('./data/materialHandler');
 	var api = express();
 
 	api.use(bodyParser.json());
@@ -88,10 +89,16 @@
 
 	api.get(paths.list.shaders, function(request, response) {
     shaderHandler.getShaderList(function(shaderList) {
-      console.log(shaderList);
       response.send(JSON.stringify(shaderList));
     })
   });
+
+	api.get(paths.list.materials, function(request, response) {
+    materialHandler.getMaterialDataFile(function(fileData) {
+      console.log(fileData);
+      response.send(JSON.stringify(fileData));
+    });
+	});
 
 	api.listen(1337, function() {
 		console.log("server started");

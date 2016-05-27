@@ -13,7 +13,17 @@ ccssl.NewMaterialButton = ccssl.Button.extend({
 
   _onClickNewMaterialButton: function() {
     //create new material backend
-    var editWindow = new ccssl.MaterialEditWindow().init("new material");
+    var materialData = {
+      name: "new material"
+    };
+    ccssl.communicator.post(ccssl.paths.action, {
+      action: "newMaterial",
+      actionParameters: {
+        material: materialData
+      }
+    }, function() {});
+
+    var editWindow = new ccssl.MaterialEditWindow().init(materialData.name);
     var windowCollection = this._parent.getParent();
     var windowIndex = windowCollection.addChild(editWindow);
     windowCollection.showWindow(windowIndex);

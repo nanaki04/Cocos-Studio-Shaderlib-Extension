@@ -11,7 +11,7 @@
 
       progressHandler.createSequence()
         .add(function(empty, collectMaterial) {
-          materialHandler.getGlobalMaterialDataFile(this._parameters.materialName, collectMaterial);
+          materialHandler.getGlobalMaterialDataFile(this._parameters.materialId, collectMaterial);
         })
         .onEnd(function(materialData) {
           this._parameters.revertData = materialData;
@@ -21,7 +21,7 @@
 
     revert: function(done) {
       this._completed = false;
-      materialHandler.updateGlobalMaterialDataFile(this._parameters.materialName, this._parameters.revertData, done);
+      materialHandler.updateGlobalMaterialDataFile(this._parameters.materialId, this._parameters.revertData, done);
     }
   });
 
