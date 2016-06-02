@@ -13,8 +13,8 @@ ccssl.Button = ccssl.Class.define({
 
   init: function(title, maxCharacters) {
     this._name = title;
-    this._element = this._createElement(this._shortenTitle(maxCharacters));
     this.setCss(this.DEFAULT_CSS);
+    this._element = this._createElement(this._shortenTitle(maxCharacters));
     this._eventHandler = new ccssl.EventHandler().init();
     return this;
   },
@@ -83,7 +83,7 @@ ccssl.Button = ccssl.Class.define({
     var row = document.createElement("tr");
     var cell = document.createElement("td");
 
-    element.className = "menu-item-bg";
+    element.className = this._css.bg.normal;
 
     this._addOnClickEventHandler(element);
 
@@ -93,8 +93,8 @@ ccssl.Button = ccssl.Class.define({
 
     cell.innerHTML = title;
 
-    table.className = "menu-item";
-    cell.className = "menu-item-font";
+    table.className = this._css.content.normal;
+    cell.className = this._css.content.font;
 
     return {
       bg: element,

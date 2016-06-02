@@ -36,7 +36,19 @@ ccssl.WindowCollection = ccssl.Class.define({
     if (this._windows.length === 1) {
       this._tabButtons[0].select();
     }
+
+    tabWindow.addOnNameChangeEvent(this._onWindowNameChange, this);
+
     return this._windows.length - 1;
+  },
+
+  _onWindowNameChange: function(tabWindow, name) {
+    var index = this._windows.indexOf(tabWindow);
+    if (!~index) {
+      return;
+    }
+    var tabButton = this._tabButtons[index];
+    tabButton.setTitle(name, 75 / Math.round(this._windows.length));
   },
 
   removeWindow: function(tabWindow) {
@@ -89,6 +101,9 @@ ccssl.WindowCollection = ccssl.Class.define({
     element.style.left = this._pos.x + "px";
     element.style.width = this._windowSize.width + "px";
     element.style.height = this._windowSize.height + "px";
+    (this._windows || []).forEach(function(_window) {
+      _window.redraw();
+    });
   },
 
   _createElement: function() {
@@ -141,7 +156,7 @@ ccssl.WindowCollection = ccssl.Class.define({
   _recalculateTabButtonNames: function() {
     this._tabButtons.forEach(function(tabButton) {
       var name = tabButton.getName();
-      tabButton.setTitle(name, 150 / Math.round(this._windows.length));
+      tabButton.setTitle(name, 75 / Math.round(this._windows.length));
     }.bind(this));
   },
 

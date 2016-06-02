@@ -18,11 +18,23 @@ ccssl.Window = ccssl.Class.define({
     this._windowSize = windowSize;
     this.setCss(this.DEFAULT_CSS);
     this._element = this._createElement(name);
+    this._eventHandler = new ccssl.EventHandler().init();
+
     return this;
+  },
+
+  addOnNameChangeEvent: function(callback, context) {
+    return this._eventHandler.addEventListener("name_change", callback, context);
+  },
+
+  removeOnNameChangeEvent: function(eventListener) {
+    return this._eventHandler.removeEventListener("name_change", eventListener);
   },
 
   setName: function(name) {
     this._name = name;
+    this._element.header.innerHTML = name;
+    this._eventHandler.fireEvent("name_change", [this, name]);
   },
 
   getName: function() {
@@ -77,6 +89,11 @@ ccssl.Window = ccssl.Class.define({
     element.style.left = this._pos.x + "px";
     element.style.width = this._windowSize.width + "px";
     element.style.height = this._windowSize.height + "px";
+  },
+
+  remove: function() {
+    this._destroyElement();
+    this._eventHandler.remove();
   },
 
   setParent: function(parent) {

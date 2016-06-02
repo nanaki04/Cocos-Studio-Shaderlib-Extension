@@ -9,6 +9,26 @@ body {
 	position: absolute;
 }
 
+.textbox {
+    border: 3px groove rgb(50, 50, 150);
+    outline: 0;
+    height: 30px;
+    padding: 3px 3px 3px 3px;
+    width: 95%;
+}
+
+.textbox:focus {
+    border: 4px groove rgb(130, 130, 255);
+    outline: 0;
+    height: 30px;
+    padding: 3px 3px 3px 3px;
+    width: 95%;
+}
+
+.margin {
+    margin: 5px 5px 5px 5px;
+}
+
 #simulator {
 	position: absolute;
 	overflow: auto;

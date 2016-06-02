@@ -37,6 +37,11 @@ ccssl.Menu = ccssl.Class.define({
     this.setSize({width: rect.width, height: rect.height});
   },
 
+  setItemRect: function(rect) {
+    this.setPos({x: rect.x, y: rect.y});
+    this._itemSize = {width: rect.width, height: rect.height};
+  },
+
   getRect: function() {
     return {
       x: this._pos.x,
@@ -121,7 +126,6 @@ ccssl.Menu = ccssl.Class.define({
   },
 
   _calculateItemRect: function(index) {
-    var pos = this._pos;
     var itemSize = this._itemSize;
     var vertical = this._vertical;
     return {

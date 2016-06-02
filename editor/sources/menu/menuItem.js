@@ -16,6 +16,7 @@ ccssl.MenuItem = ccssl.Class.define({
     this._element = this._createElement(this._shortenTitle(maxCharacters));
     this.setCss(this.DEFAULT_CSS);
     this._eventHandler = new ccssl.EventHandler().init();
+    this.setEnabled(true);
     return this;
   },
 
@@ -76,7 +77,7 @@ ccssl.MenuItem = ccssl.Class.define({
   },
 
   select: function() {
-    if (this._selected) {
+    if (this._selected || !this._enabled) {
       return;
     }
     ccssl.menuSelectionHandler.select(this, this._parent.getName());
@@ -87,7 +88,7 @@ ccssl.MenuItem = ccssl.Class.define({
   },
 
   deselect: function() {
-    if (!this._selected) {
+    if (!this._selected || !this._enabled) {
       return;
     }
     ccssl.menuSelectionHandler.clear(this._parent.getName());
@@ -95,6 +96,10 @@ ccssl.MenuItem = ccssl.Class.define({
     this._element.bg.className = this._element.bg.className.replace(this._css.bg.selected, this._css.bg.normal);
     this._element.item.className = this._element.item.className.replace(this._css.content.selected, this._css.content.normal);
     this._eventHandler.fireEvent("deselect", [this]);
+  },
+
+  setEnabled: function(enable) {
+    this._enabled = enable;
   },
 
   getName: function() {
@@ -138,6 +143,9 @@ ccssl.MenuItem = ccssl.Class.define({
   },
 
   _onClickCallback: function(event) {
+    if (!this._enabled) {
+      return;
+    }
     if (this._selected) {
       this.deselect();
     } else {
