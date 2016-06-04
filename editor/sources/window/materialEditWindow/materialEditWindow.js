@@ -17,6 +17,14 @@ ccssl.MaterialEditWindow = ccssl.Window.extend({
     this._selectShaderButton.redraw();
   },
 
+  focusMaterialNameTextbox: function() {
+    this._materialNameTextbox.focus();
+  },
+
+  selectMaterialNameTextBoxText: function() {
+    this._materialNameTextbox.select();
+  },
+
   _initMaterialNameTextbox: function(name) {
     this._materialNameTextbox = new ccssl.MaterialNameTextbox().init(name);
     this._element.content.appendChild(this._materialNameTextbox.getElement());

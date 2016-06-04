@@ -27,5 +27,7 @@ ccssl.NewMaterialButton = ccssl.Button.extend({
     var windowCollection = this._parent.getParent();
     var windowIndex = windowCollection.addChild(editWindow);
     windowCollection.showWindow(windowIndex);
+    editWindow.focusMaterialNameTextbox();
+    editWindow.selectMaterialNameTextBoxText();
   }
 });

@@ -18,9 +18,9 @@ ccssl.MaterialWindow = ccssl.Window.extend({
 
   updateMaterialList: function(done) {
     ccssl.communicator.get(ccssl.paths.materials, function(materials) {
-      console.log(materials);
+      this._initMaterialList(materials);
       done();
-    });
+    }.bind(this));
   },
 
   _initNewButton: function() {
@@ -29,7 +29,17 @@ ccssl.MaterialWindow = ccssl.Window.extend({
     this._newMaterialButton.setParent(this);
   },
 
-  _initMaterialList: function() {
-
+  _initMaterialList: function(materials) {
+    var keys = Object.keys(materials);
+    this._materialList = keys.map(function(key) {
+      var material = materials[key];
+      var materialButtonsInterface = new ccssl.MaterialButtonsInterface.Interface()
+        .init(material.name, material.id);
+      this._element.content.appendChild(materialButtonsInterface.getElement());
+      materialButtonsInterface.setParent(this);
+      materialButtonsInterface.setWidth(this._windowSize.width);
+      materialButtonsInterface.redraw();
+      return materialButtonsInterface;
+    }.bind(this));
   }
 });

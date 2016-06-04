@@ -14,6 +14,14 @@ ccssl.MaterialNameTextbox = ccssl.Class.define({
     return eventListener;
   },
 
+  focus: function() {
+    this._element.focus();
+  },
+
+  select: function() {
+    this._element.select();
+  },
+
   _wrapOnChangeEventListener: function(callback, context) {
     return function(_callback, _context, _element) {
       _callback.call(_context, _element.value);
@@ -55,7 +63,7 @@ ccssl.MaterialNameTextbox = ccssl.Class.define({
     var element = document.createElement("input");
     element.type = "text";
     element.className = "textbox margin";
-    element.innerHTML = text;
+    element.value = text;
 
     return element;
   }

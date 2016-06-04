@@ -89,6 +89,9 @@ ccssl.WindowCollection = ccssl.Class.define({
   setSize: function(size) {
     size.height = Math.max(size.height - 50, 0);
     this._windowSize = size;
+    (this._windows || []).forEach(function(_window) {
+      _window.setSize(size);
+    });
   },
 
   getSize: function() {
