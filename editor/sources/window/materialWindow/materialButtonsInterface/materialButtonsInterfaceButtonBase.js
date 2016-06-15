@@ -1,9 +1,11 @@
 ccssl.MaterialButtonsInterface.ButtonBase = ccssl.Button.extend({
-  init: function(materialName, materialId, type) {
+  init: function(material, buttonInterface, type) {
     ccssl.Button.prototype.init.call(this, type, 50);
 
-    this._materialName = materialName;
-    this._materialId = materialId;
+    this._material = material;
+    this._materialName = material.name;
+    this._materialId = material.id;
+    this._buttonInterface = buttonInterface;
   },
 
   setSize: function(size) {

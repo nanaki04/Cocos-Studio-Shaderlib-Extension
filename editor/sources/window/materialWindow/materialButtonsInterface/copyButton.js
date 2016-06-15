@@ -1,6 +1,6 @@
 ccssl.MaterialButtonsInterface.CopyButton = ccssl.MaterialButtonsInterface.ButtonBase.extend({
-  init: function(materialName, materialId) {
-    ccssl.MaterialButtonsInterface.ButtonBase.prototype.init.call(this, materialName, materialId, "copy");
+  init: function(material, buttonInterface) {
+    ccssl.MaterialButtonsInterface.ButtonBase.prototype.init.call(this, material, buttonInterface, "copy");
     this.addOnClickEventListener(this._onClickCopyButton, this);
 
     return this;

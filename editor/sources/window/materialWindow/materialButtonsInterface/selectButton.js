@@ -1,8 +1,8 @@
 ccssl.MaterialButtonsInterface.SelectButton = ccssl.ToggleButton.extend({
-  init: function(materialName, materialId) {
-    ccssl.ToggleButton.prototype.init.call(this, materialName, 50);
-    this._materialName = materialName;
-    this._materialId = materialId;
+  init: function(material, buttonInterface) {
+    ccssl.ToggleButton.prototype.init.call(this, material.name, 50);
+    this._material = material;
+    this._buttonInterface = buttonInterface;
     this.addOnSelectEventListener(this._onSelectMaterial, this);
     this.addOnDeselectEventListener(this._onDeselectMaterial, this);
 

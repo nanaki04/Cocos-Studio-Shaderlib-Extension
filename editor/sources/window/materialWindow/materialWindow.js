@@ -17,10 +17,27 @@ ccssl.MaterialWindow = ccssl.Window.extend({
   },
 
   updateMaterialList: function(done) {
+    this._removeAllMaterialInterfaces();
     ccssl.communicator.get(ccssl.paths.materials, function(materials) {
       this._initMaterialList(materials);
       done();
     }.bind(this));
+  },
+
+  removeMaterialInterface: function(materialInterface) {
+    var index = (this._materialList || []).indexOf(materialInterface);
+    if (~index) {
+      this._materialList.splice(index, 1);
+    }
+    materialInterface.remove();
+  },
+
+  _removeAllMaterialInterfaces: function() {
+    var length = (this._materialList || []).length;
+    for (var x = length - 1; x > -1; x--) {
+      this._materialList[x].remove();
+    }
+    this._materialList = [];
   },
 
   _initNewButton: function() {
@@ -34,7 +51,7 @@ ccssl.MaterialWindow = ccssl.Window.extend({
     this._materialList = keys.map(function(key) {
       var material = materials[key];
       var materialButtonsInterface = new ccssl.MaterialButtonsInterface.Interface()
-        .init(material.name, material.id);
+        .init(material);
       this._element.content.appendChild(materialButtonsInterface.getElement());
       materialButtonsInterface.setParent(this);
       materialButtonsInterface.setWidth(this._windowSize.width);

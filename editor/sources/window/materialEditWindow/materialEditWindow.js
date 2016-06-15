@@ -1,13 +1,15 @@
 ccssl.MaterialEditWindow = ccssl.Window.extend({
-  init: function(name) {
+  init: function(material) {
     ccssl.Window.prototype.init.call(this,
       { x: 0, y: 0 },
       { width: 0, height: 0 },
-      name
+      material.name
     );
 
-    this._initMaterialNameTextbox(name);
+    this._material = material;
+    this._initMaterialNameTextbox(material.name);
     this._initSelectShaderButton();
+    this._initSaveButton();
 
     return this;
   },
@@ -38,8 +40,24 @@ ccssl.MaterialEditWindow = ccssl.Window.extend({
     this._selectShaderButton.setParent(this);
   },
 
+  _initSaveButton: function() {
+    this._saveButton = new ccssl.Button().init("save", 4);
+    this._saveButton.setParent(this._element.content);
+    this._saveButton.addOnClickEventListener(this._saveMaterial, this);
+  },
+
   _onChangeMaterialName: function(name) {
     this.setName(name);
+    this._material.name = name;
+  },
+
+  _saveMaterial: function() {
+    ccssl.communicator.post(ccssl.paths.action, {
+      action: "updateMaterial",
+      actionParameters: {
+        material: this._material
+      }
+    }, function() {});
   }
 
 });

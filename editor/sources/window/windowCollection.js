@@ -58,6 +58,13 @@ ccssl.WindowCollection = ccssl.Class.define({
     }
     this._removeTabButton(index);
     this._element.content.removeChild(tabWindow.getElement());
+    this._windows.splice(index, 1);
+
+    if (index > 0) {
+      this.showWindow(index - 1);
+    } else if (this._windows.length) {
+      this.showWindow(0);
+    }
   },
 
   setCss: function(css) {

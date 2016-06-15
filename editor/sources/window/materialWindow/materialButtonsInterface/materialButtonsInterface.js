@@ -1,16 +1,17 @@
 ccssl.MaterialButtonsInterface.Interface = ccssl.Class.define({
   PROPORTIONS: {
     HEIGHT: 50,
-    DEFAULT_WIDTH: 450,
+    DEFAULT_WIDTH: 500,
     SELECT_BUTTON_WIDTH_PERCENT: 50,
-    EDIT_BUTTON_WIDTH_PERCENT: 12,
-    COPY_BUTTON_WIDTH_PERCENT: 12,
-    DELETE_BUTTON_WIDTH_PERCENT: 12
+    EDIT_BUTTON_WIDTH_PERCENT: 13,
+    COPY_BUTTON_WIDTH_PERCENT: 13,
+    DELETE_BUTTON_WIDTH_PERCENT: 13
   },
 
-  init: function(materialName, materialId) {
-    this._id = materialId;
-    this._name = materialName;
+  init: function(material) {
+    this._material = material;
+    this._id = material.id;
+    this._name = material.name;
     this._element = this._createElement();
     this._selectButton = this._initSelectButton();
     this._editButton = this._initEditButton();
@@ -22,6 +23,14 @@ ccssl.MaterialButtonsInterface.Interface = ccssl.Class.define({
 
   setParent: function(parent) {
     this._parent = parent;
+  },
+
+  getParent: function() {
+    return this._parent;
+  },
+
+  getWindow: function() {
+    return this.getParent();
   },
 
   setWidth: function(width) {
@@ -39,6 +48,19 @@ ccssl.MaterialButtonsInterface.Interface = ccssl.Class.define({
 
   getElement: function() {
     return this._element.root;
+  },
+
+  remove: function() {
+    if (!this._element.root.parentNode) {
+      return;
+    }
+    console.log("destroying: " + this._id);
+    this._destroyElement();
+    this.getWindow().removeMaterialInterface(this);
+  },
+
+  _destroyElement: function() {
+    this._element.root.parentNode.removeChild(this._element.root);
   },
 
   _createElement: function() {
@@ -64,25 +86,25 @@ ccssl.MaterialButtonsInterface.Interface = ccssl.Class.define({
   },
 
   _initSelectButton: function() {
-    var selectButton = new ccssl.MaterialButtonsInterface.SelectButton().init(this._name, this._id);
+    var selectButton = new ccssl.MaterialButtonsInterface.SelectButton().init(this._material, this);
     selectButton.setParent(this._element.select);
     return selectButton;
   },
 
   _initEditButton: function() {
-    var editButton = new ccssl.MaterialButtonsInterface.EditButton().init(this._name, this._id);
+    var editButton = new ccssl.MaterialButtonsInterface.EditButton().init(this._material, this);
     editButton.setParent(this._element.edit);
     return editButton;
   },
 
   _initCopyButton: function() {
-    var copyButton = new ccssl.MaterialButtonsInterface.CopyButton().init(this._name, this._id);
+    var copyButton = new ccssl.MaterialButtonsInterface.CopyButton().init(this._material, this);
     copyButton.setParent(this._element.copy);
     return copyButton;
   },
 
   _initDeleteButton: function() {
-    var deleteButton = new ccssl.MaterialButtonsInterface.DeleteButton().init(this._name, this._id);
+    var deleteButton = new ccssl.MaterialButtonsInterface.DeleteButton().init(this._material, this);
     deleteButton.setParent(this._element.delete);
     return deleteButton;
   }

@@ -12,7 +12,6 @@ ccssl.NewMaterialButton = ccssl.Button.extend({
   },
 
   _onClickNewMaterialButton: function() {
-    //create new material backend
     var materialData = {
       name: "new material"
     };
@@ -21,13 +20,14 @@ ccssl.NewMaterialButton = ccssl.Button.extend({
       actionParameters: {
         material: materialData
       }
-    }, function() {});
-
-    var editWindow = new ccssl.MaterialEditWindow().init(materialData.name);
-    var windowCollection = this._parent.getParent();
-    var windowIndex = windowCollection.addChild(editWindow);
-    windowCollection.showWindow(windowIndex);
-    editWindow.focusMaterialNameTextbox();
-    editWindow.selectMaterialNameTextBoxText();
+    }, function(result) {
+      var savedMaterialData = result.result;
+      var editWindow = new ccssl.MaterialEditWindow().init(savedMaterialData);
+      var windowCollection = this._parent.getParent();
+      var windowIndex = windowCollection.addChild(editWindow);
+      windowCollection.showWindow(windowIndex);
+      editWindow.focusMaterialNameTextbox();
+      editWindow.selectMaterialNameTextBoxText();
+    }.bind(this));
   }
 });

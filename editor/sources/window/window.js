@@ -18,6 +18,7 @@ ccssl.Window = ccssl.Class.define({
     this._windowSize = windowSize;
     this.setCss(this.DEFAULT_CSS);
     this._element = this._createElement(name);
+    this._closeButton = this._initCloseButton();
     this._eventHandler = new ccssl.EventHandler().init();
 
     return this;
@@ -89,9 +90,11 @@ ccssl.Window = ccssl.Class.define({
     element.style.left = this._pos.x + "px";
     element.style.width = this._windowSize.width + "px";
     element.style.height = this._windowSize.height + "px";
+    this._element.closeButton.style.left = (this._windowSize.width - 57) + "px";
   },
 
   remove: function() {
+    this._closeButton.remove();
     this._destroyElement();
     this._eventHandler.remove();
   },
@@ -104,12 +107,17 @@ ccssl.Window = ccssl.Class.define({
     return this._parent;
   },
 
+  getWindowCollection: function() {
+    return this.getParent();
+  },
+
   _createElement: function(title) {
     var element = document.createElement("div");
     var table = document.createElement("table");
     var headerRow = document.createElement("tr");
     var contentRow = document.createElement("tr");
     var headerCell = document.createElement("td");
+    var closeButtonHolder = document.createElement("div");
     var contentCell = document.createElement("td");
 
     element.style.position = "absolute";
@@ -118,6 +126,7 @@ ccssl.Window = ccssl.Class.define({
     element.style.width = this._windowSize.width + "px";
     element.style.top = this._pos.y + "px";
     element.style.left = this._pos.x + "px";
+    element.style.overflow = "auto";
 
     document.body.appendChild(element);
     this._addOnClickEventHandler(element);
@@ -125,6 +134,7 @@ ccssl.Window = ccssl.Class.define({
     element.appendChild(table);
     table.appendChild(headerRow);
     headerRow.appendChild(headerCell);
+    headerRow.appendChild(closeButtonHolder);
     table.appendChild(contentRow);
     contentRow.appendChild(contentCell);
 
@@ -141,12 +151,32 @@ ccssl.Window = ccssl.Class.define({
     headerCell.className = this._css.content.font;
     contentCell.className = this._css.content.font;
     contentCell.style.verticalAlign = "top";
+    closeButtonHolder.style.width = "50px";
+    closeButtonHolder.style.position = "absolute";
+
 
     return {
       bg: element,
       header: headerCell,
+      closeButton: closeButtonHolder,
       content: contentCell
     }
+  },
+
+  _initCloseButton: function() {
+    var closeButton = new ccssl.Button().init("x", 1);
+    closeButton.addOnClickEventListener(function() {
+      var windowCollection = this.getWindowCollection();
+      if (windowCollection) {
+        windowCollection.removeWindow(this);
+      } else {
+        this.remove();
+      }
+    }, this);
+    closeButton.setParent(this._element.closeButton);
+    closeButton.setRect({x: 0, y: 0, width: 50, height: 50});
+
+    return closeButton;
   },
 
   getElement: function() {

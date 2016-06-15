@@ -6,8 +6,6 @@ ccssl.NodeWindow = ccssl.Window.extend({
       "Nodes"
     );
 
-    this.stretchHeight();
-
     return this;
   },
 

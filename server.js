@@ -82,8 +82,8 @@
 	});
 
 	api.post(paths.list.action, function(request, response) {
-		actionHandler.handleAction(request.body.action, request.body.actionParameters, function() {
-			response.send(JSON.stringify({result: true}));
+		actionHandler.handleAction(request.body.action, request.body.actionParameters, function(result) {
+			response.send(JSON.stringify({result: result || true}));
 		});
 	});
 

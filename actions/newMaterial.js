@@ -6,7 +6,7 @@
   var newMaterial = base.extend({
     _actionName: "newMaterial",
 
-    run: function(done) {
+    run: function(collectResult) {
       this._completed = true;
 
       progressHandler.createSequence(this._parameters.material)
@@ -19,7 +19,9 @@
         .onEnd(function(material) {
           var materialData = {};
           materialData[material.id] = material;
-          materialHandler.updateMaterialDataFile(materialData, done);
+          materialHandler.updateMaterialDataFile(materialData, function() {
+            collectResult(material);
+          });
         });
     },
 

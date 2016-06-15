@@ -14,37 +14,58 @@
     deleteGlobalMaterial: require('./deleteGlobalMaterial')
   };
 
-  var handleAction = function(actionName, parameters, done) {
-    console.log(actionName);
-    console.log(parameters);
+  var handleAction = function(actionName, parameters, collectResult) {
     var action = _createAction(actionName, parameters);
-    console.log(action);
+    var returnValue = null;
     progressHandler.createTracker([action])
       .add(_updateHistoryDataSave)
-      .add(_executeActionsRun)
-      .onEnd(done);
+      .add(function(actions, done) {
+        _executeActionsRun(actions, function(result) {
+          returnValue = result;
+          done();
+        });
+      })
+      .onEnd(function() {
+        collectResult(returnValue);
+      });
   };
 
-  var undoActions = function(actionDataList, done) {
+  var undoActions = function(actionDataList, collectResult) {
     var actions = actionDataList.reduce(function(_actions, actionData) {
       actions.unshift(_restoreActionFromActionData(actionData));
       return _actions;
     }, []);
+    var returnValue = null;
     progressHandler.createTracker(actions)
       .add(_updateHistoryDataUndo)
-      .add(_executeActionsRevert)
-      .onEnd(done);
+      .add(function(actions, done) {
+        _executeActionsRevert(actions, function(result) {
+          returnValue = result;
+          done();
+        });
+      })
+      .onEnd(function() {
+        collectResult(returnValue);
+      });
   };
 
-  var redoActions = function(actionDataList, done) {
+  var redoActions = function(actionDataList, collectResult) {
     var actions = actionDataList.reduce(function(_actions, actionData) {
       actions.unshift(_restoreActionFromActionData(actionData));
       return _actions;
     }, []);
-    progressHandler.createTracker(actions)
-      .add(_updateHistoryDataRedo)
-      .add(_executeActionsRun)
-      .onEnd(done);
+    var returnValue = null;
+    progressHandler.createTracker([action])
+      .add(_updateHistoryDataSave)
+      .add(function(actions, done) {
+        _executeActionsRun(actions, function(result) {
+          returnValue = result;
+          done();
+        });
+      })
+      .onEnd(function() {
+        collectResult(returnValue);
+      });
   };
 
   var deleteActions = function(actionDataList, done) {
@@ -89,9 +110,9 @@
     return history[history.length - 1].id + 1;
   };
 
-  var _executeActionsRevert = function(actions, done) {
+  var _executeActionsRevert = function(actions, collectResult) {
     if (!actions || !actions.length) {
-      return done();
+      return collectResult();
     }
     var sequence = progressHandler.createSequence();
     actions.forEach(function(action) {
@@ -99,22 +120,20 @@
         action.revert(_done);
       });
     });
-    sequence.onEnd(done);
+    sequence.onEnd(collectResult);
   };
 
-  var _executeActionsRun = function(actions, done) {
-    console.log("_executeActionsRun");
-    console.log(actions);
+  var _executeActionsRun = function(actions, collectResult) {
     if (!actions || !actions.length) {
-      return done();
+      return collectResult();
     }
     var sequence = progressHandler.createSequence();
     actions.forEach(function(action) {
-      sequence.add(function(empty, _done) {
-        action.run(_done);
+      sequence.add(function(empty, _collectResult) {
+        action.run(_collectResult);
       });
     });
-    sequence.onEnd(done);
+    sequence.onEnd(collectResult);
   };
 
   var _updateHistoryDataUndo = function(actions, done) {
