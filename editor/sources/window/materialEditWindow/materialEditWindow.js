@@ -8,7 +8,7 @@ ccssl.MaterialEditWindow = ccssl.Window.extend({
 
     this._material = material;
     this._initMaterialNameTextbox(material.name);
-    this._initSelectShaderButton();
+    this._initSelectShaderButton(material.shader);
     this._initSaveButton();
 
     return this;
@@ -16,6 +16,9 @@ ccssl.MaterialEditWindow = ccssl.Window.extend({
 
   redraw: function() {
     this.base.redraw.apply(this);
+    var rect = {x: 0, y: 0, width: this._windowSize.width - 30, height: 50};
+    this._selectShaderButton.setRect(rect);
+    this._saveButton.setRect(rect);
     this._selectShaderButton.redraw();
   },
 
@@ -34,10 +37,13 @@ ccssl.MaterialEditWindow = ccssl.Window.extend({
     this._materialNameTextbox.addOnChangeEventListener(this._onChangeMaterialName, this);
   },
 
-  _initSelectShaderButton: function() {
-    this._selectShaderButton = new ccssl.SelectShaderButton().init();
+  _initSelectShaderButton: function(shaderName) {
+    this._selectShaderButton = new ccssl.SelectShaderButton().init(shaderName);
     this._element.content.appendChild(this._selectShaderButton.getElement());
     this._selectShaderButton.setParent(this);
+    this._selectShaderButton.addOnChangeShaderEventListener(function(shaderName) {
+      this._material.shader = shaderName;
+    }, this);
   },
 
   _initSaveButton: function() {

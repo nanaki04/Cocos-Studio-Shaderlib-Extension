@@ -32,6 +32,11 @@ ccssl.MaterialWindow = ccssl.Window.extend({
     materialInterface.remove();
   },
 
+  redraw: function() {
+    this.base.redraw.call(this);
+    this._newMaterialButton.setRect({x: 0, y: 0, width: this._windowSize.width - 25, height: 50});
+  },
+
   _removeAllMaterialInterfaces: function() {
     var length = (this._materialList || []).length;
     for (var x = length - 1; x > -1; x--) {

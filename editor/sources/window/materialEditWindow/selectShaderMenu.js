@@ -1,5 +1,5 @@
 ccssl.SelectShaderMenu = ccssl.Menu.extend({
-  init: function(pos, size) {
+  init: function(pos, size, currentShader) {
     ccssl.Menu.prototype.init.call(this,
       pos,
       size,
@@ -8,17 +8,27 @@ ccssl.SelectShaderMenu = ccssl.Menu.extend({
     );
 
     this._eventHandler = new ccssl.EventHandler().init();
-    this._createMenuItems();
+    this._createMenuItems(currentShader);
 
     return this;
   },
 
-  _createMenuItems: function() {
+  remove: function() {
+    this.removeAllMenuItems();
+    this._eventHandler.removeAllEventListeners();
+  },
+
+  _createMenuItems: function(currentShader) {
     ccssl.communicator.get(ccssl.paths.shaders, function(response) {
       (response || []).forEach(function(shader) {
         var menuItem = new ccssl.MenuItem().init(shader, 50);
-        menuItem.addOnSelectEventListener(this._selectShader, this);
+
         this.addMenuItem(menuItem);
+        if (shader === currentShader) {
+          menuItem.select();
+          menuItem.setEnabled(false);
+        }
+        menuItem.addOnSelectEventListener(this._selectShader, this);
       }.bind(this));
     }.bind(this));
   },

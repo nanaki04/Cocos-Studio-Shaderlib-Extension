@@ -86,10 +86,14 @@ ccssl.Window = ccssl.Class.define({
 
   redraw: function() {
     var element = this.getElement();
+    var content = this._element.content;
+    var contentHeight = this._windowSize.height - 75;
     element.style.top = this._pos.y + "px";
     element.style.left = this._pos.x + "px";
     element.style.width = this._windowSize.width + "px";
     element.style.height = this._windowSize.height + "px";
+    content.style.height = contentHeight + "px";
+    console.log(contentHeight);
     this._element.closeButton.style.left = (this._windowSize.width - 57) + "px";
   },
 
@@ -119,6 +123,7 @@ ccssl.Window = ccssl.Class.define({
     var headerCell = document.createElement("td");
     var closeButtonHolder = document.createElement("div");
     var contentCell = document.createElement("td");
+    var contentDiv = document.createElement("div");
 
     element.style.position = "absolute";
     element.className = this._css.bg.static;
@@ -126,7 +131,6 @@ ccssl.Window = ccssl.Class.define({
     element.style.width = this._windowSize.width + "px";
     element.style.top = this._pos.y + "px";
     element.style.left = this._pos.x + "px";
-    element.style.overflow = "auto";
 
     document.body.appendChild(element);
     this._addOnClickEventHandler(element);
@@ -137,6 +141,7 @@ ccssl.Window = ccssl.Class.define({
     headerRow.appendChild(closeButtonHolder);
     table.appendChild(contentRow);
     contentRow.appendChild(contentCell);
+    contentCell.appendChild(contentDiv);
 
     table.style.height = "100%";
     table.style.width = "100%";
@@ -149,8 +154,9 @@ ccssl.Window = ccssl.Class.define({
     headerRow.className = this._css.bg.normal;
     contentRow.className = this._css.bg.static;
     headerCell.className = this._css.content.font;
-    contentCell.className = this._css.content.font;
+    contentDiv.className = this._css.content.font;
     contentCell.style.verticalAlign = "top";
+    contentDiv.style.overflow = "auto";
     closeButtonHolder.style.width = "50px";
     closeButtonHolder.style.position = "absolute";
 
@@ -159,7 +165,7 @@ ccssl.Window = ccssl.Class.define({
       bg: element,
       header: headerCell,
       closeButton: closeButtonHolder,
-      content: contentCell
+      content: contentDiv
     }
   },
 
