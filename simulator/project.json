@@ -36,6 +36,7 @@
         "src/shaderTestScene.js",
 
         "src/ccsslSimulatorScene.js",
-        "src/ccsslScroller.js"
+        "src/ccsslScroller.js",
+        "src/ccsslReceiver.js"
     ]
 }

@@ -86,8 +86,6 @@ ccssl.Scroller = ccui.ScrollView.extend({
     container.height = Math.max(container.y + container.height, max.y) - Math.min(container.y, min.y);
     child.x = -min.x;
     child.y = -min.y;
-    console.log(-min.x);
-    console.log(-min.y);
   },
 
   /**
@@ -110,7 +108,6 @@ ccssl.Scroller = ccui.ScrollView.extend({
    * @param touch
    */
   interceptTouchEvent: function(type, sender, touch) {
-    console.debug("INTERCEPTING");
     if (this.ON_TOUCH_EVENT_INTERCEPTORS[type] == null) {
       return;
     }
@@ -127,24 +124,20 @@ ccssl.Scroller = ccui.ScrollView.extend({
    * @returns {boolean}
    */
   onTouchBegan: function(touch, event) {
-    console.debug("touch began started");
     if (!ccui.ScrollView.prototype.onTouchBegan.apply(this, arguments)) {
       return false;
     }
-    console.debug("TOUCH EVENT PROCCED");
     this._touchStartingPoint = touch.getLocation();
     return true;
   },
 
   //子供から受け取ったTouchBeganイベント
   _interceptOnTouchBegan: function(sender, touch) {
-    console.debug("TOUCH START INTERCEPTED");
     this.onTouchBegan(touch, ccui.Widget.TOUCH_BEGAN);
   },
 
   //子供から受け取ったTouchMovedイベント
   _interceptOnTouchMoved: function(sender, touch) {
-    console.debug("TOUCH MOVED INTERCEPTED");
     var diff = Math.abs(this._touchStartingPoint.x - touch.getLocation().x) + Math.abs(this._touchStartingPoint.y - touch.getLocation().y);
     if (this._overrideChild || diff > this._distanceBeforeOverrideChild) {
       sender.setHighlighted(false);
@@ -155,14 +148,12 @@ ccssl.Scroller = ccui.ScrollView.extend({
 
   //子供から受け取ったTouchEndedイベント
   _interceptOnTouchEnded: function(sender, touch) {
-    console.debug("TOUCH ENDED INTERCEPTED");
     this._overrideChild = false;
     this.onTouchEnded(touch, ccui.Widget.TOUCH_ENDED);
   },
 
   //子供から受け取ったTouchCancelledイベント
   _interceptOnTouchCancelled: function(sender, touch) {
-    console.debug("TOUCH CANCELED INTERCEPTED");
     this._overrideChild = false;
     this.onTouchCancelled(touch, ccui.Widget.TOUCH_CANCELED);
   }

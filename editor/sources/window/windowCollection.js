@@ -172,7 +172,6 @@ ccssl.WindowCollection = ccssl.Class.define({
 
   showWindow: function(index) {
     this._tabButtons[index].select();
-    this._windows[index].show();
   },
 
   hideWindow: function(index) {
@@ -188,7 +187,7 @@ ccssl.WindowCollection = ccssl.Class.define({
       }
       tabButton.deselect();
     });
-    this.showWindow(index);
+    this._windows[index].show();
   },
 
   _onDeselectTabButton: function(toggleButton) {
