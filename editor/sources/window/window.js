@@ -93,7 +93,6 @@ ccssl.Window = ccssl.Class.define({
     element.style.width = this._windowSize.width + "px";
     element.style.height = this._windowSize.height + "px";
     content.style.height = contentHeight + "px";
-    console.log(contentHeight);
     this._element.closeButton.style.left = (this._windowSize.width - 57) + "px";
   },
 

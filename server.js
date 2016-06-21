@@ -81,6 +81,23 @@
 		});
 	});
 
+  api.post(paths.list.selection, function(request, response) {
+    var type = request.body.type;
+    var identifier = request.body.identifier || "currentSelection";
+
+    if (type === "get") {
+      selectionHandler.getSelection(identifier, function(selection) {
+        response.send(JSON.stringify({selection: selection}));
+      });
+      return;
+    }
+
+    var selection = request.body.selection;
+    selectionHandler.saveSelection(selection, identifier, function() {
+      response.send(JSON.stringify({result: true}));
+    });
+  });
+
 	api.post(paths.list.action, function(request, response) {
 		actionHandler.handleAction(request.body.action, request.body.actionParameters, function(result) {
 			response.send(JSON.stringify({result: result || true}));

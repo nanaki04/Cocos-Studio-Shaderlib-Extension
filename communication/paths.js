@@ -4,6 +4,7 @@
     projects: "/editor/projects",
     files: "/editor/files",
     nodes: "/editor/nodes",
+    selection: "/editor/selection",
     simulator: "/simulator",
     action: "/editor/action",
     shaders: "/editor/shaders",

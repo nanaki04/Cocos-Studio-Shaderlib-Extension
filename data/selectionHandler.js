@@ -49,15 +49,21 @@
     });
   };
 
-  var saveSelection = function() {
+  var getSelection = function(identifier, collectSelection) {
+    getSelectionDataFile(function(selectionData) {
+      collectSelection((selectionData && selectionData[identifier]) || {});
+    });
+  };
+
+  var saveSelection = function(selection, identifier, done) {
 
   };
 
-  var loadSelection = function() {
+  var loadSelection = function(identifier, collectSelection) {
 
   };
 
-  var deleteSelection = function() {
+  var deleteSelection = function(identifier, done) {
 
   };
 
@@ -74,6 +80,7 @@
   module.exports.removeFromCurrentSelection = removeFromCurrentSelection;
   module.exports.clearCurrentSelection = clearCurrentSelection;
   module.exports.getCurrentSelection = getCurrentSelection;
+  module.exports.getSelection = getSelection;
   module.exports.saveSelection = saveSelection;
   module.exports.loadSelection = loadSelection;
   module.exports.deleteSelection = deleteSelection;

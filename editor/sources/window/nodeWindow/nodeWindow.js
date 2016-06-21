@@ -9,11 +9,13 @@ ccssl.NodeWindow = ccssl.Window.extend({
     return this;
   },
 
-  drawNodes: function(nodeInfo, currentSelection) {
+  drawNodes: function(nodeInfo) {
     if (this._nodeTree != null) {
       this._nodeTree.remove();
     }
-    this._nodeTree = this._drawNodes(nodeInfo, currentSelection);
+    ccssl.nodeSelection.get(function(currentSelection) {
+      this._nodeTree = this._drawNodes(nodeInfo, currentSelection);
+    }.bind(this), "currentSelection");
   },
 
   _drawNodes: function(nodeInfo, currentSelection) {

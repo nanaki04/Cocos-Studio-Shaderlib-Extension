@@ -57,7 +57,7 @@ ccssl.FileMenuItems.Load = ccssl.MenuItem.extend({
         if (!nodeWindow) {
           return;
         }
-        nodeWindow.drawNodes(nodeInfo, response.currentSelection);
+        nodeWindow.drawNodes(nodeInfo);
         done();
       });
     });
