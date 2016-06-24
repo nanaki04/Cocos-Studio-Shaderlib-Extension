@@ -11,9 +11,11 @@ ccssl.Receiver = cc.Class.extend({
 
   _handleMessage: function(event) {
     console.log(event);
+    var message = this._decodeMessage(event.data);
+    new ccssl.CommandCenter().run(message);
   },
 
   _decodeMessage: function(message) {
-
+    return JSON.parse(message);
   }
 });

@@ -56,13 +56,16 @@ ccssl.ToggleButton = ccssl.Button.extend({
   },
 
   _onClickCallback: function(event) {
+    event.stopPropagation && event.stopPropagation();
+    if (event.cancelBubble != null) event.cancelBubble = true;
+    if (!this._enabled) {
+      return;
+    }
     if (this._selected) {
       this.deselect();
     } else {
       this.select();
     }
     this.onClick();
-    event.stopPropagation && event.stopPropagation();
-    if (event.cancelBubble != null) event.cancelBubble = true;
   }
 });

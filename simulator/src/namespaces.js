@@ -1,2 +1,3 @@
-ccsl = {};
-ccssl = {};
+var ccsl = {};
+var ccssl = {};
+var module = false;

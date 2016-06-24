@@ -17,20 +17,38 @@ ccssl.NodeButton = ccssl.ToggleButton.extend({
   },
 
   _onSelectNodeButton: function() {
-    ccssl.communicator.post(ccssl.paths.action, {
-      action: "selectNode",
-      actionParameters: { nodes: [this._nodeInfo.tag] }
-    }, function() {
-      console.log("select node: " + this._nodeInfo.tag);
-    }.bind(this));
+    this.setEnabled(false);
+    ccssl.progressHandler.createTracker(this._nodeInfo.identifier)
+      .add(function(identifier, done) {
+        ccssl.nodeSelection.append(identifier, done);
+      })
+      .add(function(identifier, done) {
+        ccssl.communicator.post(ccssl.paths.action, {
+          action: "selectNode",
+          actionParameters: { nodes: [this._nodeInfo.identifier] }
+        }, done);
+      }.bind(this))
+      .onEnd(function() {
+        this.setEnabled(true);
+        //todo revert cache on fail
+      }.bind(this));
   },
 
   _onDeselectNodeButton: function() {
-    ccssl.communicator.post(ccssl.paths.action, {
-      action: "deselectNode",
-      actionParameters: { nodes: [this._nodeInfo.tag] }
-    }, function() {
-      console.log("deselect node: " + this._nodeInfo.tag);
-    }.bind(this));
+    this.setEnabled(false);
+    ccssl.progressHandler.createTracker(this._nodeInfo.identifier)
+      .add(function(identifier, done) {
+        ccssl.nodeSelection.remove(identifier, done);
+      })
+      .add(function(identifier, done) {
+        ccssl.communicator.post(ccssl.paths.action, {
+          action: "deselectNode",
+          actionParameters: { nodes: [this._nodeInfo.identifier] }
+        }, done);
+      }.bind(this))
+      .onEnd(function() {
+        this.setEnabled(true);
+        //todo revert cache on fail
+      }.bind(this));
   }
 });

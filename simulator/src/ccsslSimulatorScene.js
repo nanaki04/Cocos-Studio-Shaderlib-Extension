@@ -7,6 +7,20 @@ ccssl.SimulatorScene = cc.Scene.extend({
     this._loadSelectedCssFile();
   },
 
+  getLoadedResourceNode: function() {
+    if (!this._loadedResource) {
+      return null;
+    }
+    return this._loadedResource.node;
+  },
+
+  getLoadedResourceAction: function() {
+    if (!this._loadedResource) {
+      return null;
+    }
+    return this._loadedResource.action;
+  },
+
   _loadSelectedCssFile: function() {
     var selectedCssFile = this._getSelectedCssFile();
     if (!selectedCssFile)
@@ -16,6 +30,7 @@ ccssl.SimulatorScene = cc.Scene.extend({
       return false;
     ccsObject.node.runAction(ccsObject.action);
     this._scroller.addChild(ccsObject.node);
+    this._loadedResource = ccsObject;
     return true;
   },
 

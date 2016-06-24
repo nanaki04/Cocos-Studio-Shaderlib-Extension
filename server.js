@@ -21,6 +21,7 @@
 	api.use(express.static('data'));
 	api.use(express.static('projects'));
 	api.use(express.static('config'));
+	api.use(express.static('enums'));
 
 	api.get('/', function(request, response) {
 		response.send('default');

@@ -1,6 +1,7 @@
 (function() {
   var fs = require('fs');
   var progressHandler = require('../utility/progressHandler');
+  var nodeDefinitions = require('../enums/nodeDefinitions');
 
   var parseJson = function(path, collectResourceList) {
     _loadJson(path, function(json) {
@@ -109,8 +110,6 @@
   };
 
   var _getCcs2NodeList = function(json, rootPath, startingPath, collectNodeList) {
-    console.log("getting node list: " + json);
-
     var base = json["Content"]["Content"];
     var nodes = base["ObjectData"];
     var path = startingPath || "";
@@ -122,8 +121,6 @@
 
       if (node.ctype === "ProjectNodeObjectData" && node.FileData && /\.json$/i.test(node.FileData.Path)) {
         tracker.add(function(_nodeList, done) {
-          console.log("getting sub nodes: " + rootPath + node.FileData.Path);
-          console.log(path);
           getNodeList(rootPath + node.FileData.Path, path, function(__nodeList) {
             nodeInfo.externalChildren = __nodeList;
             done(_nodeList);
@@ -150,14 +147,29 @@
   };
 
   var _createNodeInfo = function(node, path) {
+    var nodeIdentifierType = _getNodeIdentifierType(node);
     return {
       name: node.Name,
       path: path,
       tag: node.Tag,
       type: node.ctype,
+      identifierType: nodeIdentifierType,
+      identifier: _getNodeIdentifier(node, nodeIdentifierType),
       externalChildren: {},
       children: []
     }
+  };
+
+  var _getNodeIdentifierType = function(node) {
+    if (node.Tag) return nodeDefinitions.NODE_ITENTIFIER_TYPES.TAG;
+    if (node.ActionTag) return nodeDefinitions.NODE_ITENTIFIER_TYPES.ACTION_TAG;
+    return nodeDefinitions.NODE_ITENTIFIER_TYPES.NAME;
+  };
+
+  var _getNodeIdentifier = function(node, identifierType) {
+    if (identifierType === nodeDefinitions.NODE_ITENTIFIER_TYPES.TAG) return node.Tag;
+    if (identifierType === nodeDefinitions.NODE_ITENTIFIER_TYPES.ACTION_TAG) return node.ActionTag;
+    return node.Name;
   };
 
   module.exports.parseJson = parseJson;

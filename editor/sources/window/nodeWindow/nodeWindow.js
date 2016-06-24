@@ -47,9 +47,9 @@ ccssl.NodeWindow = ccssl.Window.extend({
   },
 
   _initNodeItem: function(nodeInfo, currentSelection) {
-    var classDefinition = nodeInfo.tag == null ? ccssl.NodeLabel : ccssl.NodeButton;
+    var classDefinition = !nodeInfo.identifier ? ccssl.NodeLabel : ccssl.NodeButton;
     var item = new classDefinition().init(nodeInfo.name, /* max title characters */ 50);
-    var selectionIndex = currentSelection.indexOf(nodeInfo.tag);
+    var selectionIndex = currentSelection.indexOf(nodeInfo.identifier);
     item.setNodeInfo(nodeInfo);
     if (~selectionIndex) {
       item.select();

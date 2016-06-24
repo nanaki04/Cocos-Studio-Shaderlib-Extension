@@ -16,6 +16,7 @@ ccssl.Button = ccssl.Class.define({
     this.setCss(this.DEFAULT_CSS);
     this._element = this._createElement(this._shortenTitle(maxCharacters));
     this._eventHandler = new ccssl.EventHandler().init();
+    this._enabled = true;
     return this;
   },
 
@@ -77,6 +78,10 @@ ccssl.Button = ccssl.Class.define({
     return this._element.bg;
   },
 
+  setEnabled: function(enable) {
+    this._enabled = enable;
+  },
+
   _createElement: function(title) {
     var element = document.createElement("div");
     var table = document.createElement("table");
@@ -113,9 +118,12 @@ ccssl.Button = ccssl.Class.define({
   },
 
   _onClickCallback: function(event) {
-    this.onClick();
     event.stopPropagation && event.stopPropagation();
     if (event.cancelBubble != null) event.cancelBubble = true;
+    if (!this._enabled) {
+      return;
+    }
+    this.onClick();
   },
 
   _shortenTitle: function(maxCharacter) {

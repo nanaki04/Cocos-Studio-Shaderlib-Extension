@@ -1,5 +1,6 @@
 (function() {
   var progressHandler = require('../utility/progressHandler');
+  var queue = new (require('../utility/queue').Queue)();
   var projectHandler = require('./projectHandler');
   var fileHandler = require('./fileHandler');
 
@@ -9,12 +10,7 @@
       getCurrentSelection(collectCurrentSelection);
     });
     sequence.onEnd(function(selection) {
-      console.log("adding to current selection");
-      console.log(selection);
-      console.log(nodes);
       (nodes || []).forEach(function(node) {
-        console.log(node);
-        console.log(selection.indexOf(node));
         if (!~selection.indexOf(node)) {
           selection.push(node);
         }
@@ -51,7 +47,7 @@
 
   var getSelection = function(identifier, collectSelection) {
     getSelectionDataFile(function(selectionData) {
-      collectSelection((selectionData && selectionData[identifier]) || {});
+      collectSelection((selectionData && selectionData[identifier]) || []);
     });
   };
 
@@ -69,11 +65,21 @@
 
 
   var getSelectionDataFile = function(collectFileData) {
-    fileHandler.getCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.SELECTION, collectFileData);
+    queue.enqueue(function(empty, unlock) {
+      fileHandler.getCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.SELECTION, function(fileData) {
+        unlock();
+        collectFileData(fileData);
+      });
+    }, this);
   };
 
   var updateSelectionDataFile = function(data, done) {
-    fileHandler.updateCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.SELECTION, data, done);
+    queue.enqueue(function(empty, unlock) {
+      fileHandler.updateCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.SELECTION, data, function(responseData) {
+        unlock();
+        done(responseData);
+      });
+    }, this);
   };
 
   module.exports.addToCurrentSelection = addToCurrentSelection;

@@ -16,6 +16,7 @@ ccssl.MaterialButtonsInterface.SelectButton = ccssl.ToggleButton.extend({
   _onSelectMaterial: function() {
     ccssl.nodeSelection.get(function(currentSelection) {
       ccssl.messageDispatcher.postMessage({
+        message: "applyMaterial",
         material: this._material,
         selection: currentSelection
       });

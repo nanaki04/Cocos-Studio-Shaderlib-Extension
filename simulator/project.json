@@ -14,9 +14,13 @@
     "jsList" : [
         "src/namespaces.js",
 
+        "../jsExtensions.js",
+        "../nodeDefinitions.js",
+
         "src/resource.js",
 
         "src/ccsLoaderPatch.js",
+        "src/ccuiSeekWidgetByActionTagPatch.js",
 
         "src/shaderLibrary/debugger.js",
         "src/shaderLibrary/ccslShaderProgram.js",
@@ -29,6 +33,8 @@
         "src/shaderLibrary/shaderPrograms/illuminateTexture.js",
         "src/shaderLibrary/shaderPrograms/illuminateTextureN.js",
 
+        "src/shaderLibrary/shaderFileClassDictionary.js",
+
         "src/utility.js",
 
         "src/shaderTestSprite.js",
@@ -37,6 +43,9 @@
 
         "src/ccsslSimulatorScene.js",
         "src/ccsslScroller.js",
-        "src/ccsslReceiver.js"
+        "src/ccsslReceiver.js",
+
+        "src/ccsslCommands/applyMaterial.js",
+        "src/ccsslCommands/commandCenter.js"
     ]
 }
