@@ -4,12 +4,18 @@
   var projectHandler = require('./projectHandler');
   var jsonParser = require('./jsonParser');
   var paths = require('../communication/paths');
+  var queue = require('../utility/queue');
 
   var FILE_DATA_TYPES = {
     HISTORY: "_HISTORY",
     SELECTION: "_SELECTION",
-    MATERIALS: "_MATERIALS"
+    MATERIALS: "_MATERIALS",
+    MATERIAL_NODES: "_MATERIAL_NODES"
   };
+
+  var fileAccessQueues = FILE_DATA_TYPES.reduce(function(queues, type, key) {
+    queues[type] = new queue.Queue();
+  }, {});
 
   var getJSONs = function(collectData) {
     projectHandler.getCurrentProject(function(currentProject) {
@@ -86,13 +92,11 @@
 
   var getCurrentlyLoadedFileData = function(type, collectCurrentlyLoadedFileData) {
     _getCurrentlyLoadedFileDataPath(type, function(fileDataPath) {
-      console.log("FILE DATA PATH");
-      console.log(fileDataPath);
-      fs.readFile(fileDataPath, function(err, data) {
-        console.log("getCurrentlyLoadedFileData");
-        console.log(err);
-        console.log(JSON.parse(data));
-        collectCurrentlyLoadedFileData(JSON.parse(data), fileDataPath);
+      fileAccessQueues[type].enqueue(function(empty, unlockFileAccess) {
+        fs.readFile(fileDataPath, function (err, data) {
+          unlockFileAccess();
+          collectCurrentlyLoadedFileData(JSON.parse(data), fileDataPath);
+        });
       });
     });
   };
@@ -115,33 +119,39 @@
 
         result.updatedData = updatedData;
 
-        fs.writeFile(result.fileDataPath, JSON.stringify(updatedData), function() {
-          done(result);
+        fileAccessQueues[type].enqueue(function(empty, unlockFileAccess) {
+          fs.writeFile(result.fileDataPath, JSON.stringify(updatedData), function() {
+            unlockFileAccess();
+            done(result);
+          });
         });
       });
   };
 
-  var deleteEntriesFromCurrentlyLoadedFileData = function(type, entries, done) {
-    progressHandler.createSequence({})
-      .add(function(result, collectCurrentlyLoadedFileData) {
-        getCurrentlyLoadedFileData(type, function(fileData, fileDataPath) {
-          result.originalData = fileData;
-          result.fileDataPath = fileDataPath;
-          collectCurrentlyLoadedFileData(result);
-        });
-      })
-      .onEnd(function(result) {
-        var updatedData = entries.reduce(function(_updatedData, key) {
-          delete _updatedData[key];
-          return _updatedData;
-        }, result.originalData);
+  var deleteEntriesFromCurrentlyLoadedFileData = function(type, entryKeys, done) {
+      progressHandler.createSequence({})
+        .add(function (result, collectCurrentlyLoadedFileData) {
+          getCurrentlyLoadedFileData(type, function (fileData, fileDataPath) {
+            result.originalData = fileData;
+            result.fileDataPath = fileDataPath;
+            collectCurrentlyLoadedFileData(result);
+          });
+        })
+        .onEnd(function (result) {
+          var updatedData = entryKeys.reduce(function (_updatedData, key) {
+            delete _updatedData[key];
+            return _updatedData;
+          }, result.originalData);
 
-        result.updatedData = updatedData;
+          result.updatedData = updatedData;
 
-        fs.writeFile(result.fileDataPath, JSON.stringify(updatedData), function() {
-          done(result);
+          fileAccessQueues[type].enqueue(function(empty, unlockFileAccess) {
+            fs.writeFile(result.fileDataPath, JSON.stringify(updatedData), function () {
+              unlockFileAccess();
+              done(result);
+            });
+          });
         });
-      });
   };
 
   var _readDirectoryFileInfo = function(directory, collectFileInfo) {

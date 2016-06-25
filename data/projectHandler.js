@@ -5,10 +5,19 @@
   var PROJECT_DATA_FILE = "data/projectData.json";
   var PROJECT_RESOURCES_FILE = "data/projectResourceList.json";
   var PROJECT_SPECIFIC_DATA_FOLDER = "data/projectData";
+  var queue = require('../utility/queue');
+
+  var fileAccessQueues = {
+    PROJECT_DATA_FILE: new queue.Queue(),
+    PROJECT_RESOURCE_FILE: new queue.Queue()
+  };
 
   var getCurrentProject = function(collectResult) {
-    fs.readFile(PROJECT_DATA_FILE, function(err, data) {
-      collectResult(JSON.parse(data).currentProject);
+    fileAccessQueues.PROJECT_DATA_FILE.enqueue(function(empty, unlockFileAccess) {
+      fs.readFile(PROJECT_DATA_FILE, function(err, data) {
+        unlockFileAccess();
+        collectResult(JSON.parse(data).currentProject);
+      });
     });
   };
 
@@ -30,9 +39,14 @@
   };
 
   var writeResourceFileList = function(resourceList, done) {
-    fs.writeFile(PROJECT_RESOURCES_FILE, JSON.stringify({
-      res: resourceList
-    }), done);
+    fileAccessQueues.PROJECT_RESOURCE_FILE.enqueue(function(empty, unlockFileAccess) {
+      fs.writeFile(PROJECT_RESOURCES_FILE, JSON.stringify({
+        res: resourceList
+      }), function() {
+        unlockFileAccess();
+        done();
+      });
+    });
   };
 
   var _handleProjectData = function(project, projectData, done) {
@@ -42,19 +56,27 @@
   };
 
   var _readProjectData = function(project, done, sequenceHandler) {
-    fs.readFile(PROJECT_DATA_FILE, function(err, data) {
-      var projectData = JSON.parse(data);
-      if (projectData.currentProject === project) {
-        sequenceHandler.forceEnd();
-        return;
-      }
-      done(projectData);
+    fileAccessQueues.PROJECT_DATA_FILE.enqueue(function(empty, unlockFileAccess) {
+      fs.readFile(PROJECT_DATA_FILE, function(err, data) {
+        unlockFileAccess();
+        var projectData = JSON.parse(data);
+        if (projectData.currentProject === project) {
+          sequenceHandler.forceEnd();
+          return;
+        }
+        done(projectData);
+      });
     });
   };
 
   var _writeProjectData = function(project, projectData, done) {
     projectData.currentProject = project;
-    fs.writeFile(PROJECT_DATA_FILE, JSON.stringify(projectData), done);
+    fileAccessQueues.PROJECT_DATA_FILE.enqueue(function(empty, unlockFileAccess) {
+      fs.writeFile(PROJECT_DATA_FILE, JSON.stringify(projectData), function() {
+        unlockFileAccess();
+        done();
+      });
+    });
   };
 
   var updateProjectSpecificData = function(newProjectSpecificData, done) {
@@ -131,9 +153,11 @@
   };
 
   var _readProjectSpecificData = function(projectSpecificDataFile, collectSpecificDataFileData) {
-    console.log("reading project specific data");
-    fs.readFile(projectSpecificDataFile, function(err, projectSpecificFileData) {
-      collectSpecificDataFileData(JSON.parse(projectSpecificFileData));
+    _getDynamicFileQueue(projectSpecificDataFile).enqueue(function(empty, unlockFileAccess) {
+      fs.readFile(projectSpecificDataFile, function(err, projectSpecificFileData) {
+        unlockFileAccess();
+        collectSpecificDataFileData(JSON.parse(projectSpecificFileData));
+      });
     });
   };
 
@@ -141,25 +165,33 @@
     progressHandler.createSequence(projectSpecificFile)
       .add(_readProjectSpecificData)
       .add(function(oldProjectSpecificData, _done) {
-        console.log("old project specific data: " + oldProjectSpecificData);
         var keys = Object.keys(projectSpecificData);
         var updatedData = keys.reduce(function(_updatedData, key) {
           _updatedData[key] = projectSpecificData[key];
           return _updatedData;
         }, oldProjectSpecificData);
-        console.log("_writeProjectSpecificData: " + JSON.stringify(updatedData));
 
-        fs.writeFile(projectSpecificFile, JSON.stringify(updatedData), _done);
+        _getDynamicFileQueue(projectSpecificFile).enqueue(function(empty, unlockFileAccess) {
+          fs.writeFile(projectSpecificFile, JSON.stringify(updatedData), function() {
+            unlockFileAccess();
+            _done();
+          });
+        });
       })
       .onEnd(done);
   };
 
   var _readResourceFolder = function(value, collectResourceList) {
     getCurrentProject(function(project) {
-      console.log("project");
-      console.log(project);
       fileHandler.getResourceList("projects/" + project, collectResourceList);
     });
+  };
+
+  var _getDynamicFileQueue = function(file) {
+    if (fileAccessQueues[file] == null) {
+      fileAccessQueues[file] = new queue.Queue();
+    }
+    return fileAccessQueues[file];
   };
 
   module.exports.getCurrentProject = getCurrentProject;

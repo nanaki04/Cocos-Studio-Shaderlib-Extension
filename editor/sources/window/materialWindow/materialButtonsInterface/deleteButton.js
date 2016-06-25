@@ -15,5 +15,6 @@ ccssl.MaterialButtonsInterface.DeleteButton = ccssl.MaterialButtonsInterface.But
     }, function() {
       this._buttonInterface.remove();
     }.bind(this));
+    //todo remove material from nodes in the simulator
   }
 });

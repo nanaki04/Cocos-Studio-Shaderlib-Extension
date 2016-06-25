@@ -11,7 +11,8 @@
     updateMaterial: require('./updateMaterial'),
     deleteMaterial: require('./deleteMaterial'),
     updateGlobalMaterial: require('./updateGlobalMaterial'),
-    deleteGlobalMaterial: require('./deleteGlobalMaterial')
+    deleteGlobalMaterial: require('./deleteGlobalMaterial'),
+    applyMaterial: require('./applyMaterial')
   };
 
   var handleAction = function(actionName, parameters, collectResult) {

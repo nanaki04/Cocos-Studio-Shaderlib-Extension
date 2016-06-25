@@ -1,7 +1,5 @@
 (function() {
   var progressHandler = require('../utility/progressHandler');
-  var queue = new (require('../utility/queue').Queue)();
-  var projectHandler = require('./projectHandler');
   var fileHandler = require('./fileHandler');
 
   var addToCurrentSelection = function(nodes, done) {
@@ -65,21 +63,11 @@
 
 
   var getSelectionDataFile = function(collectFileData) {
-    queue.enqueue(function(empty, unlock) {
-      fileHandler.getCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.SELECTION, function(fileData) {
-        unlock();
-        collectFileData(fileData);
-      });
-    }, this);
+    fileHandler.getCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.SELECTION, collectFileData);
   };
 
   var updateSelectionDataFile = function(data, done) {
-    queue.enqueue(function(empty, unlock) {
-      fileHandler.updateCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.SELECTION, data, function(responseData) {
-        unlock();
-        done(responseData);
-      });
-    }, this);
+    fileHandler.updateCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.SELECTION, data, done);
   };
 
   module.exports.addToCurrentSelection = addToCurrentSelection;

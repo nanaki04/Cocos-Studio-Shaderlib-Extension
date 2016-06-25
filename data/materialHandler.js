@@ -58,18 +58,6 @@
     return GLOBAL_MATERIAL_FOLDER + "/" + materialId + ".json";
   };
 
-  var getMaterialDataFile = function(collectFileData) {
-    fileHandler.getCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.MATERIALS, collectFileData);
-  };
-
-  var updateMaterialDataFile = function(data, done) {
-    fileHandler.updateCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.MATERIALS, data, done);
-  };
-
-  var deleteMaterialEntries = function(materialList, done) {
-    fileHandler.deleteEntriesFromCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.MATERIALS, materialList, done);
-  };
-
   var generateMaterialId = function(collectId) {
     progressHandler.createSequence()
       .add(function(empty, collectIdData) {
@@ -85,6 +73,46 @@
       });
   };
 
+  var getMaterial = function(id, collectMaterial) {
+    getMaterialDataFile(function(materialData) {
+      if (materialData[id] == null) {
+        getGlobalMaterial(id, collectMaterial);
+        return;
+      }
+      collectMaterial(materialData[id]);
+    });
+  };
+
+  var getGlobalMaterial = function(id, collectMaterial) {
+    //todo
+    return collectMaterial({});
+    //getGlobalMaterialDataFile(id, collectMaterial);
+  };
+
+  var getMaterialDataFile = function(collectFileData) {
+    fileHandler.getCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.MATERIALS, collectFileData);
+  };
+
+  var updateMaterialDataFile = function(data, done) {
+    fileHandler.updateCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.MATERIALS, data, done);
+  };
+
+  var deleteMaterialEntries = function(materialList, done) {
+    fileHandler.deleteEntriesFromCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.MATERIALS, materialList, done);
+  };
+
+  var getMaterialNodesDataFile = function(collectFileData) {
+    fileHandler.getCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.MATERIAL_NODES, collectFileData);
+  };
+
+  var updateMaterialNodesDataFile = function(materialNodeData, done) {
+    fileHandler.updateCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.MATERIAL_NODES, materialNodeData, done);
+  };
+
+  var deleteMaterialNodesEntries = function(materialIdList, done) {
+    fileHandler.deleteEntriesFromCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.MATERIAL_NODES, materialIdList, done);
+  };
+
   module.exports.getGlobalMaterialList = getGlobalMaterialList;
   module.exports.getGlobalMaterialDataFile = getGlobalMaterialDataFile;
   module.exports.updateGlobalMaterialDataFile = updateGlobalMaterialDataFile;
@@ -93,4 +121,8 @@
   module.exports.updateMaterialDataFile = updateMaterialDataFile;
   module.exports.deleteMaterialEntries = deleteMaterialEntries;
   module.exports.generateMaterialId = generateMaterialId;
+  module.exports.getMaterial = getMaterial;
+  module.exports.getMaterialNodesDataFile = getMaterialNodesDataFile;
+  module.exports.updateMaterialNodesDataFile = updateMaterialNodesDataFile;
+  module.exports.deleteMaterialNodesEntry = deleteMaterialNodesEntries;
 })();

@@ -1,23 +1,44 @@
 (function() {
   var base = require('./action');
   var materialHandler = require('../data/materialHandler');
+  var progressHandler = require('../utility/progressHandler');
 
   var deleteMaterial = base.extend({
     _actionName: "deleteMaterial",
 
     run: function(done) {
       this._completed = true;
-      materialHandler.deleteMaterialEntries([this._parameters.materialId], function(materialData) {
-        this._parameters.revertData = materialData.originalData[this._parameters.materialId];
-        done();
-      }.bind(this));
+      this._parameters.revertData = {};
+      progressHandler.createTracker(this._parameters)
+        .add(function(parameters, _done) {
+          materialHandler.deleteMaterialEntries([parameters.materialId], function(materialData) {
+            parameters.revertData.materialData = materialData.originalData[parameters.materialId];
+            _done();
+          });
+        })
+        .add(function(parameters, _done) {
+          materialHandler.deleteMaterialNodesEntries([parameters.materialId], function(materialNodesData) {
+            parameters.revertData.materialNodesData = materialNodesData.originalData[parameters.materialId];
+            _done();
+          });
+        })
+        .onEnd(done);
     },
 
     revert: function(done) {
       this._completed = false;
       var materialData = {};
-      materialData[this._parameters.materialId] = this._parameters.revertData;
-      materialHandler.updateMaterialDataFile(materialData, done);
+      var materialNodesData = {};
+      materialData[this._parameters.materialId] = this._parameters.revertData.materialData;
+      materialNodesData[this._parameters.materialId] = this._parameters.revertData.materialNodesData;
+      progressHandler.createTracker()
+        .add(function(empty, _done) {
+          materialHandler.updateMaterialDataFile(materialData, _done);
+        })
+        .add(function(empty, _done) {
+          materialHandler.updateMaterialNodesDataFile(materialNodesData, _done);
+        })
+        .onEnd(done);
     }
   });
 

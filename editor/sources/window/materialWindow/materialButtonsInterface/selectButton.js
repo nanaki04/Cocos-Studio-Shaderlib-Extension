@@ -13,14 +13,28 @@ ccssl.MaterialButtonsInterface.SelectButton = ccssl.ToggleButton.extend({
     ccssl.MaterialButtonsInterface.ButtonBase.prototype.setSize.apply(this, arguments);
   },
 
-  _onSelectMaterial: function() {
+  _applyMaterialToSelection: function(selectionType) {
+    this.setEnabled(false);
     ccssl.nodeSelection.get(function(currentSelection) {
       ccssl.messageDispatcher.postMessage({
         message: "applyMaterial",
         material: this._material,
         selection: currentSelection
       });
-    }.bind(this), "currentSelection");
+    }.bind(this), selectionType);
+    ccssl.communicator.post(ccssl.paths.action, {
+      action: "applyMaterial",
+      actionParameters: {
+        materialId: this._material.id,
+        selection: selectionType
+      }
+    }, function() {
+      this.setEnabled(true);
+    }.bind(this));
+  },
+
+  _onSelectMaterial: function() {
+    this._applyMaterialToSelection("currentSelection");
   },
 
   _onDeselectMaterial: function() {
