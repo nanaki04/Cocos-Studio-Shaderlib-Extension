@@ -22,6 +22,7 @@ ccssl.MaterialButtonsInterface.SelectButton = ccssl.ToggleButton.extend({
         selection: currentSelection
       });
     }.bind(this), selectionType);
+    console.log("selectButton: posting apply material");
     ccssl.communicator.post(ccssl.paths.action, {
       action: "applyMaterial",
       actionParameters: {
@@ -29,6 +30,7 @@ ccssl.MaterialButtonsInterface.SelectButton = ccssl.ToggleButton.extend({
         selection: selectionType
       }
     }, function() {
+      console.log("selectButton: enabling");
       this.setEnabled(true);
     }.bind(this));
   },

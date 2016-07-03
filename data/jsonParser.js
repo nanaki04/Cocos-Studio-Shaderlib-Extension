@@ -11,8 +11,6 @@
   };
 
   var _loadJson = function(path, collectJson) {
-    console.log("LOADING JSON: " + path);
-
     fs.readFile(path, function(err, json) {
       collectJson(JSON.parse(json));
     });
@@ -78,7 +76,6 @@
 
     var sequence = progressHandler.createSequence(resources);
     var jsons = _extractJsons(resources);
-    console.log(resources.length);
 
     jsons.forEach(function(json) {
       sequence.add(function(_resources, collectResources) {
@@ -114,13 +111,14 @@
     var nodes = base["ObjectData"];
     var path = startingPath || "";
     var tracker = progressHandler.createTracker();
+    tracker._instanceID = rootPath + startingPath;
 
     var loopNodes = function(node) {
       var nodeInfo = _createNodeInfo(node, path);
       path += "/" + (node.Name || "...");
 
       if (node.ctype === "ProjectNodeObjectData" && node.FileData && /\.json$/i.test(node.FileData.Path)) {
-        tracker.add(function(_nodeList, done) {
+        tracker.add(function(_nodeList, done, _tracker) {
           getNodeList(rootPath + node.FileData.Path, path, function(__nodeList) {
             nodeInfo.externalChildren = __nodeList;
             done(_nodeList);

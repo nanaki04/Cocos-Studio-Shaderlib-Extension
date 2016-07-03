@@ -43,25 +43,36 @@ ccssl.FileMenuItems.Load = ccssl.MenuItem.extend({
   },
 
   _loadFile: function(menuItem) {
+    console.log("editor/sources/menu/mainMenu/file/load/load._loadFile");
     var sequence = ccssl.progressHandler.createSequence();
     ccssl.menuSelectionHandler.pause();
     sequence.add(function(empty, collectResponse) {
+      console.log("editor/sources/menu/mainMenu/file/load/load._loadFile: posting file");
       ccssl.communicator.post(ccssl.paths.files, { path: menuItem.getName() }, function(response) {
         document.getElementById("simulator").src = ccssl.paths.simulator;
+        console.log("editor/sources/menu/mainMenu/file/load/load._loadFile: collecting response: ");
+        console.debug(response);
         collectResponse(response);
       });
     });
     sequence.add(function(response, done) {
+      console.log("editor/sources/menu/mainMenu/file/load/load._loadFile: getting nodes");
       ccssl.communicator.get(ccssl.paths.nodes, function(nodeInfo) {
+        console.log("editor/sources/menu/mainMenu/file/load/load._loadFile: nodes gotten succesfully");
+        console.debug(nodeInfo);
         var nodeWindow = ccssl.compositionHandler.getRegisteredElementByType(ccssl.compositionHandler.ELEMENT_TYPES.NODE_WINDOW);
         if (!nodeWindow) {
+          console.log("no node window");
           return;
         }
+        console.log("drawing nodes");
         nodeWindow.drawNodes(nodeInfo);
+        console.log("donw");
         done();
       });
     });
     sequence.onEnd(function() {
+      console.log("end");
       ccssl.menuSelectionHandler.resume();
       ccssl.menuSelectionHandler.deselectAll();
     });

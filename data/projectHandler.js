@@ -132,7 +132,6 @@
         if (files.some(function(file) {
             return file === project + ".json";
           })) {
-          console.log("projectSpecificDataFile: " + projectSpecificDataFolder + "/" + project + ".json");
           done(projectSpecificDataFolder + "/" + project + ".json");
           return;
         }

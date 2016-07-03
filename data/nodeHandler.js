@@ -10,7 +10,9 @@
         fileHandler.getCurrentlyLoadedFile(collectCurrentlyLoadedFile);
       })
       .add(function(currentlyLoadedFile, done) {
-        jsonParser.getNodeList(currentlyLoadedFile, "", done);
+        jsonParser.getNodeList(currentlyLoadedFile, "", function(result) {
+          done(result);
+        });
       })
       .onEnd(collectNodeList);
   };

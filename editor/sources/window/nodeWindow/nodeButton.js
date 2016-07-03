@@ -18,9 +18,14 @@ ccssl.NodeButton = ccssl.ToggleButton.extend({
 
   _onSelectNodeButton: function() {
     this.setEnabled(false);
-    ccssl.progressHandler.createTracker(this._nodeInfo.identifier)
-      .add(function(identifier, done) {
-        ccssl.nodeSelection.append(identifier, done);
+    ccssl.progressHandler.createSequence(this._nodeInfo.identifier)
+      .add(function(identifier, done, sequenceHandler) {
+        ccssl.nodeSelection.append(identifier, function(result) {
+          if (!result) {
+            sequenceHandler.forceEnd();
+          }
+          done(identifier);
+        });
       })
       .add(function(identifier, done) {
         ccssl.communicator.post(ccssl.paths.action, {
