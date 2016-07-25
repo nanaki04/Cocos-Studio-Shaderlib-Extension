@@ -16,7 +16,6 @@
   var fileAccessQueues = function(fileDataTypes) {
     var keys = Object.keys(fileDataTypes);
     return keys.reduce(function(queues, key) {
-      console.log("creating queue for: " + key);
       queues[fileDataTypes[key]] = new queue.Queue();
       return queues;
     }, {});

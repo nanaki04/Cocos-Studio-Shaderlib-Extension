@@ -6,7 +6,6 @@
 
   p.init = function(parameters) {
     this._parameters = parameters;
-    console.log("action this._parameters: " + parameters);
     this._completed = false;
     this._id = 0;
 

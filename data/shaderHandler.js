@@ -7,7 +7,6 @@
   var getShaderList = function(collectShaderList) {
     fs.readdir(SHADER_PROGRAM_ROOT, function(err, files) {
       console.log(err);
-      console.log(files);
       collectShaderList(files);
     });
   };

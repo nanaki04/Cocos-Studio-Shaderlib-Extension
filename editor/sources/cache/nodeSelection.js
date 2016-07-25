@@ -38,8 +38,10 @@ ccssl.nodeSelection = {
       var nodeSelection = this._nodeSelection[identifier];
       if (!~nodeSelection.indexOf(nodeId)) {
         nodeSelection.push(nodeId);
+        done && done(true);
+        return;
       }
-      done && done(this._nodeSelection[identifier]);
+      done && done(false);
     }.bind(this), identifier);
   },
 

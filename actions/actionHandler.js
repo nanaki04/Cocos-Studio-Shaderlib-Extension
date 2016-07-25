@@ -162,19 +162,13 @@
   };
 
   var _updateHistoryDataSave = function(actions, done) {
-    console.log("_updateHistoryDataSave");
-    console.log(actions);
     progressHandler.createSequence()
       .add(function(empty, collectHistoryData) {
         getCurrentHistoryFile(collectHistoryData);
       })
       .onEnd(function(historyData) {
-        console.log("update history save");
-        console.log(historyData);
         historyData = _appendHistoryData("history", historyData, actions);
-        console.log(historyData.history);
         historyData = _trimHistory(historyData);
-        console.log(historyData.history);
         historyData.reverted = [];
         updateHistoryFile(historyData, done);
       });
