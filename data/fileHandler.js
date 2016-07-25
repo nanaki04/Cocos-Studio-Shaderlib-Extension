@@ -13,9 +13,14 @@
     MATERIAL_NODES: "_MATERIAL_NODES"
   };
 
-  var fileAccessQueues = FILE_DATA_TYPES.reduce(function(queues, type, key) {
-    queues[type] = new queue.Queue();
-  }, {});
+  var fileAccessQueues = function(fileDataTypes) {
+    var keys = Object.keys(fileDataTypes);
+    return keys.reduce(function(queues, key) {
+      console.log("creating queue for: " + key);
+      queues[fileDataTypes[key]] = new queue.Queue();
+      return queues;
+    }, {});
+  }(FILE_DATA_TYPES);
 
   var getJSONs = function(collectData) {
     projectHandler.getCurrentProject(function(currentProject) {

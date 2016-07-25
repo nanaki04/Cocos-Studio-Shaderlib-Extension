@@ -7,14 +7,20 @@
   var PROJECT_SPECIFIC_DATA_FOLDER = "data/projectData";
   var queue = require('../utility/queue');
 
+  console.log("creating queue for: " + "PROJECT_DATA_FILE");
+  console.log("creating queue for: " + "PROJECT_RESOURCE_FILE");
   var fileAccessQueues = {
     PROJECT_DATA_FILE: new queue.Queue(),
     PROJECT_RESOURCE_FILE: new queue.Queue()
   };
 
   var getCurrentProject = function(collectResult) {
+    console.log("getting project");
+    console.time("get_project");
     fileAccessQueues.PROJECT_DATA_FILE.enqueue(function(empty, unlockFileAccess) {
       fs.readFile(PROJECT_DATA_FILE, function(err, data) {
+        console.log("unlocking project");
+        console.timeEnd("get_project");
         unlockFileAccess();
         collectResult(JSON.parse(data).currentProject);
       });
@@ -56,8 +62,12 @@
   };
 
   var _readProjectData = function(project, done, sequenceHandler) {
+    console.time("read_project");
+    console.log("locking project file (read(");
     fileAccessQueues.PROJECT_DATA_FILE.enqueue(function(empty, unlockFileAccess) {
       fs.readFile(PROJECT_DATA_FILE, function(err, data) {
+        console.timeEnd("read_project");
+        console.log("unlocking project file (read)");
         unlockFileAccess();
         var projectData = JSON.parse(data);
         if (projectData.currentProject === project) {
@@ -71,8 +81,12 @@
 
   var _writeProjectData = function(project, projectData, done) {
     projectData.currentProject = project;
+    console.time("write_project");
+    console.log("locking project file (write)");
     fileAccessQueues.PROJECT_DATA_FILE.enqueue(function(empty, unlockFileAccess) {
       fs.writeFile(PROJECT_DATA_FILE, JSON.stringify(projectData), function() {
+        console.timeEnd("write_project");
+        console.log("unlocking project file (write)");
         unlockFileAccess();
         done();
       });
@@ -132,7 +146,6 @@
         if (files.some(function(file) {
             return file === project + ".json";
           })) {
-          console.log("projectSpecificDataFile: " + projectSpecificDataFolder + "/" + project + ".json");
           done(projectSpecificDataFolder + "/" + project + ".json");
           return;
         }
