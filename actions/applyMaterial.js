@@ -25,6 +25,7 @@
           updatedData[data.parameters.materialId] = data.selection;
           materialHandler.updateMaterialNodesDataFile(updatedData, function(result) {
             data.parameters.revertData = result.originalData[data.parameters.materialId];
+            done();
           });
         });
     },

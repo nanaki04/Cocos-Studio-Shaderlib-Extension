@@ -1,7 +1,7 @@
 ccssl.FileMenu = ccssl.Menu.extend({
   MENU_ITEMS: [
     ccssl.FileMenuItems.Load,
-    ccssl.FileMenuItems.Save
+    ccssl.FileMenuItems.Export
   ],
 
   init: function() {

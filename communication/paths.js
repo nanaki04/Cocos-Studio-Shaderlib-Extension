@@ -8,7 +8,8 @@
     simulator: "/simulator",
     action: "/editor/action",
     shaders: "/editor/shaders",
-    materials: "/editor/materials"
+    materials: "/editor/materials",
+    export: "/export"
   };
 
   if (module) {

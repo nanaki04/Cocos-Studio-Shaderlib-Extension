@@ -106,7 +106,54 @@
   };
 
   var updateMaterialNodesDataFile = function(materialNodeData, done) {
-    fileHandler.updateCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.MATERIAL_NODES, materialNodeData, done);
+
+    var removeDuplicateNodeEntries = function(originalMaterialNodeData, newMaterialNodeData) {
+      var newDataKeys = Object.keys(newMaterialNodeData);
+      var originalDataKeys = Object.keys(originalMaterialNodeData);
+
+      console.log("ORIGINAL DATA");
+
+      newDataKeys.forEach(function(newDataKey) {
+        originalDataKeys.forEach(function(originalDataKey) {
+          if (newDataKey === originalDataKey) {
+            return;
+          }
+
+          console.log(originalDataKey);
+
+          var newNodeList = newMaterialNodeData[newDataKey];
+          var originalNodeList = originalMaterialNodeData[originalDataKey];
+
+          console.log(originalNodeList);
+
+          newNodeList.forEach(function(nodeId) {
+            var index = originalNodeList.indexOf(nodeId);
+            if (~index) {
+              originalNodeList.splice(index, 1);
+            }
+          });
+        });
+      });
+    };
+
+    var overwriteNewData = function(originalMaterialNodeData, newMaterialNodeData) {
+      var newDataKeys = Object.keys(newMaterialNodeData);
+      newDataKeys.forEach(function(newDataKey) {
+        originalMaterialNodeData[newDataKey] = newMaterialNodeData[newDataKey];
+      });
+    };
+
+    progressHandler.createSequence()
+      .add(function(empty, collectMaterialNodesFileData) {
+        getMaterialNodesDataFile(function(materialFileData) {
+          removeDuplicateNodeEntries(materialFileData, materialNodeData);
+          overwriteNewData(materialFileData, materialNodeData);
+          collectMaterialNodesFileData(materialFileData);
+        });
+      })
+      .onEnd(function(_materialNodeData) {
+        fileHandler.updateCurrentlyLoadedFileData(fileHandler.FILE_DATA_TYPES.MATERIAL_NODES, _materialNodeData, done);
+      });
   };
 
   var deleteMaterialNodesEntries = function(materialIdList, done) {

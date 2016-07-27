@@ -10,6 +10,15 @@
     });
   };
 
+  var getBase = function(json) {
+    var base = (json["Content"] && json["Content"]["Content"]) || json["widgetTree"] || json["nodeTree"] || json["gameobjects"];
+    if (base) {
+      return base;
+    }
+    console.log("data/jsonParser: unable to parse json base");
+    return json;
+  };
+
   var _loadJson = function(path, collectJson) {
     fs.readFile(path, function(err, json) {
       collectJson(JSON.parse(json));
@@ -172,4 +181,5 @@
 
   module.exports.parseJson = parseJson;
   module.exports.getNodeList = getNodeList;
+  module.exports.getBase = getBase;
 })();
