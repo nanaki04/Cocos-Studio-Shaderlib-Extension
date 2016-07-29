@@ -8,7 +8,13 @@ ccssl.FileMenuItems.Export = ccssl.MenuItem.extend({
   },
 
   _onSelectCallback: function(menuItem) {
+    ccssl.menuSelectionHandler.pause();
+    ccssl.communicator.post(ccssl.paths.export, { target: "file" }, function() {
+      ccssl.menuSelectionHandler.resume();
+      ccssl.menuSelectionHandler.deselectAll();
 
+      console.log("file exported");
+    });
   },
 
   _onDeselectCallback: function(menuItem) {

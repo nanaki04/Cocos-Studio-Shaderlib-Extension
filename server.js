@@ -118,6 +118,15 @@
     });
 	});
 
+	api.post(paths.list.export, function(request, response) {
+    if (request.body.target === "file") {
+      fileHandler.exportCurrentlyLoadedFile(function() {
+        console.log("file exported");
+        response.send(JSON.stringify({result: true}));
+      });
+    }
+  });
+
 	api.listen(1337, function() {
 		console.log("server started");
 	});

@@ -8,7 +8,13 @@ ccssl.ProjectMenuItems.Export = ccssl.MenuItem.extend({
   },
 
   _onSelectCallback: function(menuItem) {
+    ccssl.menuSelectionHandler.pause();
+    ccssl.communicator.post(ccssl.paths.export, { target: "project" }, function() {
+      ccssl.menuSelectionHandler.resume();
+      ccssl.menuSelectionHandler.deselectAll();
 
+      console.log("project exported");
+    });
   },
 
   _onDeselectCallback: function(menuItem) {
