@@ -22,5 +22,3 @@ To run the program:
 2. type: ``` node server.js ```
 3. startup google chrome (other browsers may, but are not guaranteed to work).
 4. type: ``` http://localhost:1337/editor ``` in the adress bar.
-
-test
