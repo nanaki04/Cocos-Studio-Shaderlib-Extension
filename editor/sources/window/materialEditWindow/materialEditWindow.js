@@ -43,6 +43,7 @@ ccssl.MaterialEditWindow = ccssl.Window.extend({
     this._selectShaderButton.setParent(this);
     this._selectShaderButton.addOnChangeShaderEventListener(function(shaderName) {
       this._material.shader = shaderName;
+      //recreate uniform controls
     }, this);
   },
 
@@ -64,6 +65,21 @@ ccssl.MaterialEditWindow = ccssl.Window.extend({
         material: this._material
       }
     }, function() {});
+  },
+
+  _initUniformControls: function() {
+    this._uniformControlCollection = new ccssl.UniformControlCollection().init();
+  },
+
+  _destroyUniformControls: function() {
+    this._uniformControlCollection.removeAllControls();
+  },
+
+  _createUniformControls: function(shaderName) {
+    this._destroyUniformControls();
+    new ccssl.UniformControlGenerator().generateControls(shaderName).forEach(function(control) {
+      this._uniformControlCollection.addControl(control);
+    }.bind(this));
   }
 
 });

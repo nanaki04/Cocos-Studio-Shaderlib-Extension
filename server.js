@@ -111,6 +111,12 @@
     })
   });
 
+	api.post(paths.list.shaders, function(request, response) {
+    shaderHandler.getUniforms(request.body.shaderName, function(uniformData) {
+      response.send(JSON.stringify(uniformData));
+    });
+  });
+
 	api.get(paths.list.materials, function(request, response) {
     materialHandler.getMaterialDataFile(function(fileData) {
       console.log(fileData);
