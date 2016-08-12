@@ -8,7 +8,9 @@ ccssl.MaterialEditWindow = ccssl.Window.extend({
 
     this._material = material;
     this._initMaterialNameTextbox(material.name);
+    this._initUniformControls();
     this._initSelectShaderButton(material.shader);
+    this._createUniformControls(material.shader);
     this._initSaveButton();
 
     return this;
@@ -44,6 +46,7 @@ ccssl.MaterialEditWindow = ccssl.Window.extend({
     this._selectShaderButton.addOnChangeShaderEventListener(function(shaderName) {
       this._material.shader = shaderName;
       //recreate uniform controls
+      this._createUniformControls(shaderName);
     }, this);
   },
 

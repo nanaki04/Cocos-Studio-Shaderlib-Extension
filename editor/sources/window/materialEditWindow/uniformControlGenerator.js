@@ -6,7 +6,10 @@ ccssl.UniformControlGenerator = ccssl.Class.define({
   },
 
   generateControls: function(shaderName) {
+    ccssl.communicator.post(ccssl.paths.shaders, {shaderName: shaderName}, function() {
 
+    });
+    return [];
   },
 
   _initScriptTag: function(shaderName) {
