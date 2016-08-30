@@ -72,6 +72,7 @@ ccssl.MaterialEditWindow = ccssl.Window.extend({
 
   _initUniformControls: function() {
     this._uniformControlCollection = new ccssl.UniformControlCollection().init();
+    this.addContent(this._uniformControlCollection.getElement());
   },
 
   _destroyUniformControls: function() {
@@ -80,8 +81,10 @@ ccssl.MaterialEditWindow = ccssl.Window.extend({
 
   _createUniformControls: function(shaderName) {
     this._destroyUniformControls();
-    new ccssl.UniformControlGenerator().generateControls(shaderName).forEach(function(control) {
-      this._uniformControlCollection.addControl(control);
+    new ccssl.UniformControlGenerator().generateControls(shaderName, function(controls) {
+      controls.forEach(function(control) {
+        this._uniformControlCollection.addControl(control);
+      }.bind(this));
     }.bind(this));
   }
 
