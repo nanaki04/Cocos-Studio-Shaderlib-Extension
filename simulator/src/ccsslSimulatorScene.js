@@ -5,6 +5,7 @@ ccssl.SimulatorScene = cc.Scene.extend({
     this.addChild(this.mainLayer);
     this._setupScroller();
     this._loadSelectedCssFile();
+    new ccssl.MessageDispatcher().postMessage("onLoad");
   },
 
   getLoadedResourceNode: function() {

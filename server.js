@@ -10,6 +10,7 @@
 	var selectionHandler = require('./data/selectionHandler');
   var shaderHandler = require('./data/shaderHandler');
   var materialHandler = require('./data/materialHandler');
+  var animationHandler = require('./data/animationHandler');
 	var api = express();
 
 	api.use(bodyParser.json());
@@ -131,6 +132,24 @@
         response.send(JSON.stringify({result: true}));
       });
     }
+  });
+
+	api.get(paths.list.animation, function(request, response) {
+    animationHandler.getOriginalAnimationData(function(animationData) {
+      response.send(JSON.stringify(animationData));
+    });
+  });
+
+  api.get(paths.list.keyframes, function(request, response) {
+    animationHandler.getKeyframeData(function(keyframeData) {
+      response.send(JSON.stringify(keyframeData));
+    });
+  });
+
+	api.get(paths.list.material_nodes, function(request, response) {
+	  materialHandler.getMaterialNodesDataFile(function(materialNodesData) {
+	    response.send(JSON.stringify(materialNodesData));
+    });
   });
 
 	api.listen(1337, function() {

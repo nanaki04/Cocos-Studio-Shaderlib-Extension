@@ -47,7 +47,7 @@ ccssl.FileMenuItems.Load = ccssl.MenuItem.extend({
     ccssl.menuSelectionHandler.pause();
     sequence.add(function(empty, collectResponse) {
       ccssl.communicator.post(ccssl.paths.files, { path: menuItem.getName() }, function(response) {
-        document.getElementById("simulator").src = ccssl.paths.simulator;
+        ccssl.compositionHandler.getRegisteredElementByType(ccssl.compositionHandler.ELEMENT_TYPES.SIMULATOR).reload();
         collectResponse(response);
       });
     });

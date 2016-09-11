@@ -3,12 +3,12 @@ ccssl.UniformControlGenerator = ccssl.Class.define({
     return this;
   },
 
-  generateControls: function(shaderName, collectControls) {
+  generateControls: function(shaderName, uniformValues, collectControls) {
     ccssl.communicator.post(ccssl.paths.shaders, {shaderName: shaderName}, function(uniforms) {
       var keys = Object.keys(uniforms || {});
       collectControls(keys.map(function(uniformName) {
         var uniformDefinition = uniforms[uniformName];
-        return new ccssl.UniformControl().init(uniformName, uniformDefinition);
+        return new ccssl.UniformControl().init(uniformName, uniformDefinition, uniformValues[uniformName]);
       }));
     });
   }

@@ -8,7 +8,7 @@ ccsl.BrightenTexture = ccsl.ShaderProgram.extend({
   ],
 
   UNIFORMS: {
-    "u_light_01_intensity": {type: "1f", value: 1.5, min: 0, max: 2}
+    "u_intensity": {type: "1f", value: 1.5, min: 0, max: 2}
   },
 
   DEPENDENT_SHADER: "DefaultTexture",

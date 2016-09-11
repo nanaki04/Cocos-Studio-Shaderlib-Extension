@@ -1,0 +1,31 @@
+1. parse json animation data and extract:
+    - animation total duration / Content.Content.Animation { Duration, Speed, Timelines, ctype }
+    - animation names and start and end frames / Content.Content.AnimationList [{StartIndex, EndIndex, Name, RenderColor}]
+
+2. send the data using a GET method
+
+2.5 gather saved keyframe data and send using a GET method
+
+3. assemble a table representing the timeline
+    - create a column per frame
+    - create a row per active material
+    - save every in an object with material id as key, containing arrays with indices based on frames
+    - change bg color to red when a key frame is set (add a number per value change ?)
+    - add an on click event handler to open a window showing detailed information about the keyframe
+        - uniform name
+        - uniform value
+        - delete button
+        - disable button ?
+
+4. add a record toggle button
+    - outline controls with animation support with red
+    - add keyframe when changing values of red outlined controls
+    - update keyframe data to file
+
+5. add an animation pulldown
+
+6. add a play button
+
+7. add a loop checkbox (for preview only)
+
+8. export functionality

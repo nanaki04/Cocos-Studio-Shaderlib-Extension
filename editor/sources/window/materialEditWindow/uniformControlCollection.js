@@ -22,6 +22,13 @@ ccssl.UniformControlCollection = ccssl.Class.define({
     this._controls = [];
   },
 
+  getValues: function() {
+    return this._controls.reduce(function(values, control) {
+      values[control.getName()] = control.getValue();
+      return values;
+    }, {});
+  },
+
   _createElement: function() {
     var element = document.createElement("div");
 

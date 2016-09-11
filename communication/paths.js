@@ -9,6 +9,9 @@
     action: "/editor/action",
     shaders: "/editor/shaders",
     materials: "/editor/materials",
+    material_nodes: "/editor/material_nodes",
+    animation: "/editor/animation",
+    keyframes: "/editor/keyframes",
     export: "/export"
   };
 

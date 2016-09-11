@@ -1,5 +1,8 @@
 ccssl.SimulatorFrame = ccssl.Class.define({
   init: function() {
+    this._initOnSimulatorLoadCallback();
+    this.reload();
+
     return this;
   },
 
@@ -41,7 +44,44 @@ ccssl.SimulatorFrame = ccssl.Class.define({
     element.style.height = this._size.height + "px";
   },
 
+  reload: function() {
+    this.getElement().src = ccssl.paths.simulator;
+  },
+
   getElement: function() {
     return this._element || document.getElementById("simulator");
+  },
+
+  _initOnSimulatorLoadCallback: function() {
+    ccssl.receiver.addOnLoadCallback(this._applyMaterials, this);
+  },
+
+  _applyMaterials: function() {
+    ccssl.progressHandler.createTracker({})
+      .add(function(materialData, collectMaterialData) {
+        ccssl.communicator.get(ccssl.paths.material_nodes, function(materialNodes) {
+          materialData.nodes = materialNodes;
+          collectMaterialData(materialData);
+        });
+      })
+      .add(function(materialData, collectMaterialData) {
+        ccssl.communicator.get(ccssl.paths.materials, function(materials) {
+          materialData.materials = materials;
+          collectMaterialData(materialData);
+        });
+      })
+      .onEnd(function(materialData) {
+        var ids = Object.keys(materialData.nodes);
+        ids.forEach(function(id) {
+          if (!materialData.nodes[id].length || !materialData.materials[id]) {
+            return;
+          }
+          ccssl.messageDispatcher.postMessage({
+            message: "applyMaterial",
+            material: materialData.materials[id],
+            selection: materialData.nodes[id]
+          });
+        });
+      });
   }
 });

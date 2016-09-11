@@ -179,7 +179,34 @@
     return node.Name;
   };
 
+  var getAnimationData = function(jsonPath, collectAnimationData) {
+    _loadJson(jsonPath, function(json) {
+      if (_isCcs2(json)) {
+        collectAnimationData(_getCcs2AnimationData(json));
+        return;
+      }
+      console.log("jsonParser.getAnimationData: no adequate parser found.");
+      return collectAnimationData({});
+    });
+  };
+
+  var _getCcs2AnimationData = function(json) {
+    var base = json["Content"]["Content"];
+    return {
+      duration: base["Animation"]["Duration"],
+      speed: base["Animation"]["Speed"],
+      animations: (base["AnimationList"] || []).map(function(animationData) {
+        return {
+          startIndex: animationData["StartIndex"],
+          endIndex: animationData["EndIndex"],
+          name: animationData["Name"]
+        }
+      })
+    };
+  };
+
   module.exports.parseJson = parseJson;
   module.exports.getNodeList = getNodeList;
   module.exports.getBase = getBase;
+  module.exports.getAnimationData = getAnimationData;
 })();

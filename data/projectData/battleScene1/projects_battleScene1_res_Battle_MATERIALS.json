@@ -1,17 +1,1 @@
-{
-  "31": {
-    "name": "brighten",
-    "id": 31,
-    "shader": "brightenTexture.js"
-  },
-  "32": {
-    "name": "greyScale",
-    "id": 32,
-    "shader": "greyscaleTexture.js"
-  },
-  "33": {
-    "name": "default",
-    "id": 33,
-    "shader": "defaultTexture.js"
-  }
-}
+{"31":{"name":"brighten","id":31,"shader":"brightenTexture.js","values":{"u_intensity":1.4}},"32":{"name":"greyScale","id":32,"shader":"greyscaleTexture.js"},"33":{"name":"default","id":33,"shader":"defaultTexture.js"}}

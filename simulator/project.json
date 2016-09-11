@@ -44,6 +44,7 @@
         "src/ccsslSimulatorScene.js",
         "src/ccsslScroller.js",
         "src/ccsslReceiver.js",
+        "src/ccsslMessageDispatcher.js",
 
         "src/ccsslCommands/applyMaterial.js",
         "src/ccsslCommands/commandCenter.js"

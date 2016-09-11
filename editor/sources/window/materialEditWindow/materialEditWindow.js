@@ -10,7 +10,7 @@ ccssl.MaterialEditWindow = ccssl.Window.extend({
     this._initMaterialNameTextbox(material.name);
     this._initUniformControls();
     this._initSelectShaderButton(material.shader);
-    this._createUniformControls(material.shader);
+    this._createUniformControls(material.shader, material.values);
     this._initSaveButton();
 
     return this;
@@ -62,6 +62,7 @@ ccssl.MaterialEditWindow = ccssl.Window.extend({
   },
 
   _saveMaterial: function() {
+    this._updateMaterialUniformValues();
     ccssl.communicator.post(ccssl.paths.action, {
       action: "updateMaterial",
       actionParameters: {
@@ -79,13 +80,17 @@ ccssl.MaterialEditWindow = ccssl.Window.extend({
     this._uniformControlCollection.removeAllControls();
   },
 
-  _createUniformControls: function(shaderName) {
+  _createUniformControls: function(shaderName, uniformValues) {
     this._destroyUniformControls();
-    new ccssl.UniformControlGenerator().generateControls(shaderName, function(controls) {
+    new ccssl.UniformControlGenerator().generateControls(shaderName, uniformValues || {}, function(controls) {
       controls.forEach(function(control) {
         this._uniformControlCollection.addControl(control);
       }.bind(this));
     }.bind(this));
+  },
+
+  _updateMaterialUniformValues: function() {
+    this._material.values = this._uniformControlCollection.getValues();
   }
 
 });
