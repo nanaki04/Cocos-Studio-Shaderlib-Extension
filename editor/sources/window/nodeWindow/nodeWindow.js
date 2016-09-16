@@ -6,7 +6,16 @@ ccssl.NodeWindow = ccssl.Window.extend({
       "Nodes"
     );
 
+    this.reload(function() {});
+
     return this;
+  },
+
+  reload: function(done) {
+    ccssl.communicator.get(ccssl.paths.nodes, function(nodeInfo) {
+      this.drawNodes(nodeInfo);
+      done();
+    }.bind(this));
   },
 
   drawNodes: function(nodeInfo) {

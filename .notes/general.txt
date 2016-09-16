@@ -1,0 +1,3 @@
+- Need a way to see and edit all the nodes a material is applied to.
+- Need a way to see what material is applied to a node in the node list.
+- Need a filter sprite nodes only option.

@@ -17,6 +17,11 @@ document.body.onload = function() {
     comp.ELEMENT_TYPES.NODE_WINDOW
   );
 
+  comp.registerElement(
+    new ccssl.Timeline().init(),
+    comp.ELEMENT_TYPES.TIMELINE
+  );
+
   comp.buildComposition();
 
   //var windowCollection = new ccssl.WindowCollection().init(

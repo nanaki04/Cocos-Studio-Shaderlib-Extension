@@ -29,7 +29,11 @@ if (module) {
       var index = this._count;
       this._updateEndState(index);
       this._count++;
-      asyncFunction.call(context, this._value, this._onProc.bind(this, index), this);
+
+      setTimeout(
+        asyncFunction.bind(context, this._value, this._onProc.bind(this, index), this),
+        1
+      );
 
       return this;
     };
@@ -155,7 +159,9 @@ if (module) {
         context: context
       });
 
-      (!index || this._getProgress(index - 1) & 1 << index - 1) && this._fireCallback(index);
+      (!index || this._getProgress(index - 1) & 1 << index - 1) && setTimeout(function() {
+        this._fireCallback(index)
+      }.bind(this), 1);
 
       return this;
     };

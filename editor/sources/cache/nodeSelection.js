@@ -46,12 +46,12 @@ ccssl.nodeSelection = {
   },
 
   remove: function(nodeId, done, identifier) {
-    var nodeSelection = this.get(function() {
+    this.get(function() {
       identifier = identifier || "currentSelection";
       var nodeSelection = this._nodeSelection[identifier];
       var index = nodeSelection.indexOf(nodeId);
       if (~index) {
-        nodeSelection.slice(index, 1);
+        nodeSelection.splice(index, 1);
       }
       done && done(nodeSelection);
     }.bind(this), identifier);

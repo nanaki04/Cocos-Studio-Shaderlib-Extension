@@ -28,11 +28,11 @@ ccssl.Timeline = ccssl.Class.define({
     element.style.width = rect.width + "px";
     element.style.height = rect.height + "px";
 
-    this._animationPulldown.redraw();
-    this._grid.redraw();
-    this._loopCheckbox.redraw();
-    this._playButton.redraw();
-    this._recordButton.redraw();
+    this._animationPulldown && this._animationPulldown.redraw();
+    this._grid && this._grid.redraw();
+    this._loopCheckbox && this._loopCheckbox.redraw();
+    this._playButton && this._playButton.redraw();
+    this._recordButton && this._recordButton.redraw();
   },
 
   reload: function() {
@@ -84,7 +84,7 @@ ccssl.Timeline = ccssl.Class.define({
   },
 
   _initLoopCheckbox: function(timelineData) {
-    return new ccssl.TimelineCheckbox().init(timelineData);
+    return new ccssl.TimelineLoopCheckbox().init(timelineData);
   },
 
   _initPlayButton: function(timelineData) {
