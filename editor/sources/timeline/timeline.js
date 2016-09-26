@@ -35,13 +35,14 @@ ccssl.Timeline = ccssl.Class.define({
     this._recordButton && this._recordButton.redraw();
   },
 
-  reload: function() {
+  reload: function(done) {
     this._refreshTimelineData(function(timelineData) {
       this._animationPulldown.reload(timelineData);
       this._grid.reload(timelineData);
       this._loopCheckbox.reload(timelineData);
       this._playButton.reload(timelineData);
       this._recordButton.reload(timelineData);
+      done();
     }.bind(this));
   },
 

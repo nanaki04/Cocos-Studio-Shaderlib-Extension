@@ -44,13 +44,22 @@ ccssl.ProjectMenuItems.Load = ccssl.MenuItem.extend({
 
   _loadProject: function(menuItem) {
     ccssl.menuSelectionHandler.pause();
-    var data = {
-      type: "load",
-      project: menuItem.getName()
-    };
-    ccssl.communicator.post(ccssl.paths.projects, data, function(response) {
-      ccssl.menuSelectionHandler.resume();
-      ccssl.menuSelectionHandler.deselectAll();
-    }.bind(this));
+    ccssl.progressHandler.createSequence()
+      .add(function(empty, done) {
+        var data = {
+          type: "load",
+          project: menuItem.getName()
+        };
+        ccssl.communicator.post(ccssl.paths.projects, data, function(response) {
+          done();
+        }.bind(this));
+      })
+      .add(function(empty, done) {
+        ccssl.componentHandler.reloadAll(done);
+      })
+      .onEnd(function() {
+        ccssl.menuSelectionHandler.resume();
+        ccssl.menuSelectionHandler.deselectAll();
+      });
   }
 });

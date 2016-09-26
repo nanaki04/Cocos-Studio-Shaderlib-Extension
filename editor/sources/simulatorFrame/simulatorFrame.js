@@ -44,8 +44,9 @@ ccssl.SimulatorFrame = ccssl.Class.define({
     element.style.height = this._size.height + "px";
   },
 
-  reload: function() {
+  reload: function(done) {
     this.getElement().src = ccssl.paths.simulator;
+    done && done();
   },
 
   getElement: function() {

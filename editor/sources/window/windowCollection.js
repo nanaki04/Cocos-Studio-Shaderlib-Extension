@@ -222,5 +222,9 @@ ccssl.WindowCollection = ccssl.Class.define({
 
   deselect: function() {
 
+  },
+
+  reload: function(done) {
+    done && done();
   }
 });

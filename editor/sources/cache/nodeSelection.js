@@ -61,5 +61,9 @@ ccssl.nodeSelection = {
     this.get(function(nodeSelection) {
       this.set(nodeSelection, identifier, done);
     }.bind(this), identifier);
+  },
+
+  clear: function() {
+    this._nodeSelection = {};
   }
 };

@@ -84,6 +84,14 @@ ccssl.Window = ccssl.Class.define({
     this.getElement().style.display = "none";
   },
 
+  isVisible: function() {
+    return this.getElement().style.display === "block";
+  },
+
+  isHidden: function() {
+    return this.getElement().style.display === "none";
+  },
+
   redraw: function() {
     var element = this.getElement();
     var content = this._element.content;
@@ -94,6 +102,10 @@ ccssl.Window = ccssl.Class.define({
     element.style.height = this._windowSize.height + "px";
     content.style.height = contentHeight + "px";
     this._element.closeButton.style.left = (this._windowSize.width - 57) + "px";
+  },
+
+  reload: function(done) {
+    done && done();
   },
 
   remove: function() {

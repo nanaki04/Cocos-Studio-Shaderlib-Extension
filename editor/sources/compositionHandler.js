@@ -80,6 +80,15 @@ ccssl.compositionHandler = {
     return this._registeredElements[type].indexOf(element);
   },
 
+  getAllRegisteredElements: function() {
+    var keys = Object.keys(this._registeredElements);
+    return keys.reduce(function(elements, key) {
+      var elementsByType = this._registeredElements[key] || [];
+      elements = elements.concat(elementsByType);
+      return elements;
+    }.bind(this), []);
+  },
+
   buildComposition: function() {
     var rect = {
       x: 0,

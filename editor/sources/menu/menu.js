@@ -117,6 +117,10 @@ ccssl.Menu = ccssl.Class.define({
     }.bind(this));
   },
 
+  reload: function(done) {
+    done();
+  },
+
   _createElement: function() {
     var element = document.createElement("div");
     document.body.appendChild(element);

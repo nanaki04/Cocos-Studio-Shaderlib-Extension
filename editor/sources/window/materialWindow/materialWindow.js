@@ -13,14 +13,14 @@ ccssl.MaterialWindow = ccssl.Window.extend({
 
   show: function() {
     ccssl.Window.prototype.show.apply(this, arguments);
-    this.updateMaterialList(function() {});
+    this.updateMaterialList();
   },
 
   updateMaterialList: function(done) {
     this._removeAllMaterialInterfaces();
-    ccssl.communicator.get(ccssl.paths.materials, function(materials) {
+    ccssl.cache.materials.get(function(materials) {
       this._initMaterialList(materials);
-      done();
+      done && done();
     }.bind(this));
   },
 
@@ -35,6 +35,14 @@ ccssl.MaterialWindow = ccssl.Window.extend({
   redraw: function() {
     this.base.redraw.call(this);
     this._newMaterialButton.setRect({x: 0, y: 0, width: this._windowSize.width - 50, height: 50});
+  },
+
+  reload: function(done) {
+    if (this.isHidden()) {
+      done && done();
+      return;
+    }
+    this.updateMaterialList(done || function() {});
   },
 
   _removeAllMaterialInterfaces: function() {

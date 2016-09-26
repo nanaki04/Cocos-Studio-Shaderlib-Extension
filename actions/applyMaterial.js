@@ -23,7 +23,7 @@
         .onEnd(function(data) {
           var updatedData = {};
           updatedData[data.parameters.materialId] = data.selection;
-          materialHandler.updateMaterialNodesDataFile(updatedData, function(result) {
+          materialHandler.mergeWithMaterialNodesDataFile(updatedData, function(result) {
             data.parameters.revertData = result.originalData[data.parameters.materialId];
             done();
           });

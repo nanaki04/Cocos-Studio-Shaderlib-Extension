@@ -24,6 +24,8 @@ document.body.onload = function() {
 
   comp.buildComposition();
 
+  ccssl.componentHandler = new ccssl.ComponentHandler().init();
+
   //var windowCollection = new ccssl.WindowCollection().init(
   //  { x: 0, y: 50 },
   //  { width: 500, height: 800 }

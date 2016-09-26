@@ -63,12 +63,7 @@ ccssl.MaterialEditWindow = ccssl.Window.extend({
 
   _saveMaterial: function() {
     this._updateMaterialUniformValues();
-    ccssl.communicator.post(ccssl.paths.action, {
-      action: "updateMaterial",
-      actionParameters: {
-        material: this._material
-      }
-    }, function() {});
+    ccssl.cache.materials.update(this._material);
   },
 
   _initUniformControls: function() {

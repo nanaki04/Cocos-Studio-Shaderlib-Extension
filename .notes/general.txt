@@ -1,3 +1,9 @@
 - Need a way to see and edit all the nodes a material is applied to.
 - Need a way to see what material is applied to a node in the node list.
 - Need a filter sprite nodes only option.
+
+- remove materials from the simulator when no longer applied
+- make material nodes append to the old selection when applying a material to a new selection
+- make a remove material from selection option
+- make a remove material from all nodes option
+- make an apply material to current selection and remove from all other nodes option

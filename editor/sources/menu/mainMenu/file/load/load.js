@@ -52,11 +52,7 @@ ccssl.FileMenuItems.Load = ccssl.MenuItem.extend({
       });
     });
     sequence.add(function(response, done) {
-      var nodeWindow = ccssl.compositionHandler.getRegisteredElementByType(ccssl.compositionHandler.ELEMENT_TYPES.NODE_WINDOW);
-      if (!nodeWindow) {
-        done();
-      }
-      nodeWindow.reload(done);
+      ccssl.componentHandler.reloadAll(done);
     });
     sequence.onEnd(function() {
       ccssl.menuSelectionHandler.resume();

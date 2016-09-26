@@ -13,17 +13,17 @@ ccssl.NodeWindow = ccssl.Window.extend({
 
   reload: function(done) {
     ccssl.communicator.get(ccssl.paths.nodes, function(nodeInfo) {
-      this.drawNodes(nodeInfo);
-      done();
+      this.drawNodes(nodeInfo, done);
     }.bind(this));
   },
 
-  drawNodes: function(nodeInfo) {
+  drawNodes: function(nodeInfo, done) {
     if (this._nodeTree != null) {
       this._nodeTree.remove();
     }
     ccssl.nodeSelection.get(function(currentSelection) {
       this._nodeTree = this._drawNodes(nodeInfo, currentSelection);
+      done && done();
     }.bind(this), "currentSelection");
   },
 
