@@ -59,8 +59,14 @@ ccssl.Timeline = ccssl.Class.define({
         });
       })
       .add(function(timelineData, collectTimelineData) {
-        ccssl.communicator.get(ccssl.paths.animation, function(materialNodes) {
-          timelineData.materialNodes = materialNodes;
+        ccssl.communicator.get(ccssl.paths.animation, function(animationData) {
+          timelineData.animation = animationData;
+          collectTimelineData(timelineData);
+        });
+      })
+      .add(function(timelineData, collectTimelineData) {
+        ccssl.cache.materials.getActiveMaterials(function(activeMaterials) {
+          timelineData.activeMaterials = activeMaterials;
           collectTimelineData(timelineData);
         });
       })
@@ -71,7 +77,10 @@ ccssl.Timeline = ccssl.Class.define({
 
   _createElement: function() {
     var element = document.createElement("div");
-    element.style.overflow = "scroll";
+    element.style.overflow = "auto";
+    element.className = "window-bg";
+    element.style.position = "absolute";
+    document.body.appendChild(element);
 
     return element;
   },
@@ -81,7 +90,10 @@ ccssl.Timeline = ccssl.Class.define({
   },
 
   _initGrid: function(timelineData) {
-    return new ccssl.TimelineGrid().init(timelineData);
+    var timelineGrid = new ccssl.TimelineGrid().init(timelineData);
+    this.getElement().appendChild(timelineGrid.getElement());
+
+    return timelineGrid;
   },
 
   _initLoopCheckbox: function(timelineData) {

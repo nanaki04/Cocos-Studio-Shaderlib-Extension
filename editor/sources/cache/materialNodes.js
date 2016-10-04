@@ -30,6 +30,19 @@ ccssl.cache.materialNodes = {
     });
   },
 
+  getActiveMaterialIds: function(collectActiveMaterialIds) {
+    this.get(function(materialNodes) {
+      var keys = Object.keys(materialNodes);
+      var activeMaterialIds = keys.reduce(function(activeMaterialIds, key) {
+        if (materialNodes[key].length) {
+          activeMaterialIds.push(key);
+        }
+        return activeMaterialIds;
+      }, []);
+      collectActiveMaterialIds(activeMaterialIds);
+    });
+  },
+
   update: function(materialId, selectionType, done) {
     if (this._materialNodes) {
       this._update(materialId, selectionType, done);

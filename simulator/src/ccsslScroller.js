@@ -67,16 +67,25 @@ ccssl.Scroller = ccui.ScrollView.extend({
   },
 
   addChild: function(child) {
+    this._size = cc.winSize;
+    this.setSize(this._size);
+
     ccui.ScrollView.prototype.addChild.apply(this, arguments);
     var max = cc.p(child.x + (1 - child.anchorX) * child.width, child.y + (1 - child.anchorY) * child.height);
     var min = cc.p(child.x - child.anchorX * child.width, child.y - child.anchorY - child.height);
+
+    console.log("parent min: x: " + min.x + ", y: " + min.y);
+    console.log("parent max: x: " + max.x + ", y: " + max.y);
+
     var loopChildren = function(node, posRelativeToScrollContainer) {
       node.getChildren().forEach(function(_child) {
+        var childMax = cc.p(_child.x + (1 - _child.anchorX) * _child.width, _child.y + (1 - _child.anchorY) * _child.height);
+        var childMin = cc.p(_child.x - _child.anchorX * _child.width, _child.y - _child.anchorY - _child.height);
         var _posRelativeToScrollContainer = cc.p(posRelativeToScrollContainer.x + _child.x, posRelativeToScrollContainer.y + _child.y);
-        max.x = Math.max(max.x, _posRelativeToScrollContainer.x + (1 - _child.anchorX) * _child.width);
-        max.y = Math.max(max.y, _posRelativeToScrollContainer.y + (1 - _child.anchorY) * _child.height);
-        min.x = Math.min(min.x, _posRelativeToScrollContainer.x - _child.anchorX * _child.width);
-        min.y = Math.min(min.y, _posRelativeToScrollContainer.y - _child.anchorY * _child.height);
+        max.x = Math.max(max.x, _posRelativeToScrollContainer.x + childMax.x);
+        max.y = Math.max(max.y, _posRelativeToScrollContainer.y + childMax.y);
+        min.x = Math.min(min.x, _posRelativeToScrollContainer.x - childMin.x);
+        min.y = Math.min(min.y, _posRelativeToScrollContainer.y - childMin.y);
         loopChildren(_child, _posRelativeToScrollContainer);
       })
     };
@@ -84,6 +93,19 @@ ccssl.Scroller = ccui.ScrollView.extend({
     var container = this.getInnerContainer();
     container.width = Math.max(container.x + container.width, max.x) - Math.min(container.x, min.x);
     container.height = Math.max(container.y + container.height, max.y) - Math.min(container.y, min.y);
+
+    console.log("container width: " + container.width);
+    console.log("container height: " + container.height);
+    console.log("container anchorX: " + container.anchorX);
+    console.log("container anchorY: " + container.anchorY);
+    console.log("container x: " + container.x);
+    console.log("container y: " + container.y);
+
+    console.log("parent x: " + (-min.x).toString());
+    console.log("parent y: " + (-min.y).toString());
+    console.log("parent anchorX: " + child.anchorX);
+    console.log("parent ahcnorY: " + child.anchorY);
+
     child.x = -min.x;
     child.y = -min.y;
   },

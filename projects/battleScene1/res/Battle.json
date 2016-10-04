@@ -5,7 +5,7 @@
   "Content": {
     "Content": {
       "Animation": {
-        "Duration": 0,
+        "Duration": 50,
         "Speed": 1.0,
         "Timelines": [],
         "ctype": "TimelineActionData"

@@ -30,6 +30,31 @@ ccssl.cache.materials = {
     });
   },
 
+  getActiveMaterials: function(collectActiveMaterials) {
+    var tracker = ccssl.progressHandler.createTracker([]);
+    var sequence = ccssl.progressHandler.createSequence();
+
+    sequence.add(function(empty, collectActiveMaterialIds) {
+      ccssl.cache.materialNodes.getActiveMaterialIds(collectActiveMaterialIds);
+    }).onEnd(function(activeMaterialIds) {
+
+      activeMaterialIds.forEach(function(activeMaterialId) {
+
+        tracker.add(function(activeMaterials, done) {
+          this.getMaterial(activeMaterialId, function(activeMaterial) {
+            activeMaterials.push(activeMaterial);
+            done(activeMaterials);
+          });
+        }.bind(this));
+
+      }.bind(this));
+
+      tracker.onEnd(collectActiveMaterials);
+      tracker.forceUpdate();
+
+    }.bind(this));
+  },
+
   update: function(material, done) {
     if (this._materials) {
       this._update(material, done);
