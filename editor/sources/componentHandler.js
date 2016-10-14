@@ -15,5 +15,9 @@ ccssl.ComponentHandler = ccssl.Class.define({
 
   getAllRegisteredComponents: function() {
     return ccssl.compositionHandler.getAllRegisteredElements();
+  },
+
+  getTimeline: function() {
+    return ccssl.compositionHandler.getRegisteredElementByType(ccssl.compositionHandler.ELEMENT_TYPES.TIMELINE);
   }
 });

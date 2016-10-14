@@ -7,6 +7,7 @@ ccssl.Timeline = ccssl.Class.define({
       this._loopCheckbox = this._initLoopCheckbox(timelineData);
       this._playButton = this._initPlayButton(timelineData);
       this._recordButton = this._initRecordButton(timelineData);
+      this._keyframeInfoPanel = this._initKeyframeInfoPanel();
     }.bind(this));
 
     return this;
@@ -48,6 +49,23 @@ ccssl.Timeline = ccssl.Class.define({
 
   getElement: function() {
     return this._element;
+  },
+
+  enableRecordMode: function() {
+    this._recordButton.enableRecordMode();
+  },
+
+  disableRecordMode: function() {
+    this._recordButton.disableRecordMode();
+  },
+
+  showKeyframeInfoPanel: function(keyframeData) {
+    this._keyframeInfoPanel.showKeyframeInfo(keyframeData);
+    this._keyframeInfoPanel.show();
+  },
+
+  hideKeyframeInfoPanel: function() {
+    this._keyframeInfoPanel.hide();
   },
 
   _refreshTimelineData: function(collectTimelineData) {
@@ -106,5 +124,9 @@ ccssl.Timeline = ccssl.Class.define({
 
   _initRecordButton: function(timelineData) {
     return new ccssl.TimelineRecordButton().init(timelineData);
+  },
+
+  _initKeyframeInfoPanel: function() {
+    return new ccssl.TimelineKeyframeInfoPanel().init();
   }
 });

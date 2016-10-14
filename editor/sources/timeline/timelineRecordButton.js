@@ -9,5 +9,13 @@ ccssl.TimelineRecordButton = ccssl.Class.define({
 
   reload: function() {
 
+  },
+
+  enableRecordMode: function() {
+    console.log("todo: implement record mode");
+  },
+
+  disableRecordMode: function() {
+    console.log("todo: implement record mode");
   }
 });
