@@ -1,0 +1,17 @@
+inactive:
+  enable touch event
+  open edit material window and enable record mode and move frame slider on click
+  enable hover event
+  change bg color on hover
+
+active:
+  enable touch event
+  open edit material window and enable record mode and move frame slider on click
+  enable hover event
+  change bg color and show panel with set keyframe values on hover
+
+
+
+required data:
+  related material data
+  reference to the record button
