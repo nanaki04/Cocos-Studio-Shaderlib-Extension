@@ -34,10 +34,7 @@ ccssl.TimelineGrid = ccssl.Class.define({
     if (table == null) {
       return;
     }
-    if (table.element.parentNode == null) {
-      return;
-    }
-    table.element.parentNode.removeChild(table.element);
+    table.destroy();
   },
 
   _getAnimation: function() {
@@ -86,6 +83,7 @@ ccssl.TimelineGrid = ccssl.Class.define({
     table.element.style.border = "1px solid black";
     table.element.style.tableLayout = "fixed";
     table.rows = this._createRows(activeMaterials, table);
+    table.destroy = this._destroyTable.bind(null, table);
 
     return table;
   },
@@ -100,6 +98,7 @@ ccssl.TimelineGrid = ccssl.Class.define({
         parent: table
       };
       row.cells = this._createCells(row, material);
+      row.destroy = this._destroyRow.bind(null, row);
       table.element.appendChild(row.element);
 
       keyframeDataTable[material.id] = row;
@@ -116,14 +115,16 @@ ccssl.TimelineGrid = ccssl.Class.define({
       element: this._createTrElement(),
       parent: table
     };
+    headerRow.destroy = this._destroyRow.bind(null, headerRow);
+
 
     table.element.appendChild(headerRow.element);
 
     var upperLeftCell = {
       index: 0,
-      element: document.createElement("th"),
-      parent: headerRow
+      element: document.createElement("th")
     };
+    upperLeftCell.destroy = this._destroyCell.bind(null, upperLeftCell);
     upperLeftCell.element.style.width = "150px";
 
     headerRow.element.appendChild(upperLeftCell.element);
@@ -134,6 +135,7 @@ ccssl.TimelineGrid = ccssl.Class.define({
         element: this._createThElement(),
         parent: headerRow
       };
+      cell.destroy = this._destroyCell.bind(null, cell);
       cell.element.innerHTML = columnName;
 
       headerRow.element.appendChild(cell.element);
@@ -145,7 +147,7 @@ ccssl.TimelineGrid = ccssl.Class.define({
     return headerRow;
   },
 
-  _createCells: function(row) {
+  _createCells: function(row, material) {
     var headerCell = this._createHeaderCell(row);
 
     var cells = this._getColumnNames().map(function(columnName, index) {
@@ -154,7 +156,8 @@ ccssl.TimelineGrid = ccssl.Class.define({
         element: this._createTdElement(),
         parent: row
       };
-      cell.keyframe = this._createKeyframe(cell);
+      cell.destroy = this._destroyCell.bind(null, cell);
+      cell.keyframe = this._createKeyframe(cell, material);
       row.element.appendChild(cell.element);
       return cell;
     }.bind(this));
@@ -170,6 +173,7 @@ ccssl.TimelineGrid = ccssl.Class.define({
       element: this._createTdElement(),
       parent: row
     };
+    headerCell.destroy = this._destroyCell.bind(null, headerCell);
 
     row.element.appendChild(headerCell.element);
 
@@ -180,20 +184,21 @@ ccssl.TimelineGrid = ccssl.Class.define({
     return headerCell;
   },
 
-  _createKeyframe: function(cell) {
-    var div = document.createElement("div");
-    div.style.width = "25px";
-    cell.element.appendChild(div);
+  _createKeyframe: function(cell, material) {
+    var keyframe = new ccssl.TimelineKeyframe().init(this._keyframes, material);
+    cell.element.appendChild(keyframe.getElement());
+
+    return keyframe;
   },
 
-  _createTdElement: function(width) {
+  _createTdElement: function() {
     var element = document.createElement("td");
     element.style.border = "1px solid black";
 
     return element;
   },
 
-  _createThElement: function(width) {
+  _createThElement: function() {
     var element = document.createElement("th");
     element.style.border = "1px solid black";
 
@@ -202,5 +207,32 @@ ccssl.TimelineGrid = ccssl.Class.define({
 
   _createTrElement: function() {
     return document.createElement("tr");
+  },
+
+  _destroyTable: function(table) {
+    var keys = Object.keys(table.rows);
+    keys.forEach(function(key) {
+      table.rows[key].destroy();
+    }.bind(this));
+  },
+
+  _destroyRow: function(row) {
+    row.cells.forEach(function(cell) {
+      cell.destroy();
+      row.element.parentNode.removeChild(row.element);
+      row.element = null;
+      row.parent = null;
+      row.material = null;
+    });
+  },
+
+  _destroyCell: function(cell) {
+    if (cell.keyframe) {
+      cell.keyframe.destroy();
+    }
+    cell.element.parentNode.removeChild(cell.element);
+    cell.element = null;
+    cell.parent = null;
+    cell.material = null;
   }
 });

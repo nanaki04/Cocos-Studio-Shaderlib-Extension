@@ -1,9 +1,11 @@
-ccssl.TimelineKeyframeDelegateBase = ccssl.class.define({
+ccssl.TimelineKeyframeDelegateBase = ccssl.Class.define({
   DEFAULT_COLOR: "",
   ON_HOVER_BACKGROUND_COLOR: "",
 
   init: function(parent) {
     this._parent = parent;
+
+    return this;
   },
 
   getParent: function() {
@@ -11,7 +13,8 @@ ccssl.TimelineKeyframeDelegateBase = ccssl.class.define({
   },
 
   onClick: function() {
-
+    //enable record mode
+    //open material edit window
   },
 
   onHover: function() {
@@ -45,6 +48,7 @@ ccssl.TimelineKeyframeDelegateBase = ccssl.class.define({
     if (!parent) {
       return;
     }
+    console.log("changing bg color to " + color);
     parent.changeBackgroundColor(color);
   }
 });

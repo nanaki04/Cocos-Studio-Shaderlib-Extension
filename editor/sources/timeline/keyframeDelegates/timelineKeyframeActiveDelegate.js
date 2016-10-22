@@ -1,6 +1,6 @@
-ccssl.TimelineKeyframeActiveDelegate = ccssl.Class.define({
-  DEFAULT_COLOR: "",
-  ON_HOVER_BACKGROUND_COLOR: "",
+ccssl.TimelineKeyframeActiveDelegate = ccssl.TimelineKeyframeDelegateBase.extend({
+  DEFAULT_COLOR: "rgb(150, 0, 0)",
+  ON_HOVER_BACKGROUND_COLOR: "rgb(250, 0, 0)",
 
   onClick: function() {
     this.base.onClick.call(this);

@@ -127,6 +127,7 @@ ccssl.Timeline = ccssl.Class.define({
   },
 
   _initKeyframeInfoPanel: function() {
-    return new ccssl.TimelineKeyframeInfoPanel().init();
+    //todo
+    //return new ccssl.TimelineKeyframeInfoPanel().init();
   }
 });
