@@ -25,7 +25,7 @@ ccssl.MaterialButtonsInterface.SelectButton = ccssl.ToggleButton.extend({
           });
           done(_selectionType);
         }.bind(this), _selectionType);
-      })
+      }.bind(this))
       .add(function(_selectionType, done) {
         ccssl.cache.materialNodes.update(this._material.id, selectionType, done);
       }.bind(this))

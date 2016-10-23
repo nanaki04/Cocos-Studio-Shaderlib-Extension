@@ -18,6 +18,10 @@
 
   var _getUniformDataFromFile = function(filePath, collectUniformData) {
     fs.readFile(filePath, "utf-8", function(err, shaderScript) {
+      if (err) {
+        collectUniformData("");
+        return;
+      }
       collectUniformData(_parseShaderScript(shaderScript));
     });
   };

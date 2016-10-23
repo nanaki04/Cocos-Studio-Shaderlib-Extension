@@ -60,12 +60,12 @@ ccssl.cache.materialNodes = {
           this._materialNodes[materialId] = (this._materialNodes[materialId] || []).concat(currentSelection);
           _done();
         }.bind(this), selectionType);
-      })
+      }.bind(this))
       .add(function(empty, _done) {
         ccssl.communicator.post(ccssl.paths.action, {
           action: "applyMaterial",
           actionParameters: {
-            materialId: this._material.id,
+            materialId: materialId,
             selection: selectionType
           }
         }, function(response) {

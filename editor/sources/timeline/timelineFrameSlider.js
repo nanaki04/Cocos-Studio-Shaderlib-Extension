@@ -1,4 +1,4 @@
-ccssl.TimelineFrameSlider = ccssl.class.define({
+ccssl.TimelineFrameSlider = ccssl.Class.define({
   init: function() {
     return this;
   },

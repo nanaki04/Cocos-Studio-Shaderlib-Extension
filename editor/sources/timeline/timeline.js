@@ -8,6 +8,7 @@ ccssl.Timeline = ccssl.Class.define({
       this._playButton = this._initPlayButton(timelineData);
       this._recordButton = this._initRecordButton(timelineData);
       this._keyframeInfoPanel = this._initKeyframeInfoPanel();
+      this._frameSlider = this._initFrameSlider();
     }.bind(this));
 
     return this;
@@ -66,6 +67,10 @@ ccssl.Timeline = ccssl.Class.define({
 
   hideKeyframeInfoPanel: function() {
     this._keyframeInfoPanel.hide();
+  },
+
+  changeCurrentFrame: function(frameIndex) {
+    this._frameSlider.changeCurrentFrame(frameIndex);
   },
 
   _refreshTimelineData: function(collectTimelineData) {
@@ -129,5 +134,9 @@ ccssl.Timeline = ccssl.Class.define({
   _initKeyframeInfoPanel: function() {
     //todo
     //return new ccssl.TimelineKeyframeInfoPanel().init();
+  },
+
+  _initFrameSlider: function(timelineData) {
+    return new ccssl.TimelineFrameSlider().init(timelineData);
   }
 });

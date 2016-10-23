@@ -18,6 +18,14 @@ ccssl.ComponentHandler = ccssl.Class.define({
   },
 
   getTimeline: function() {
-    return ccssl.compositionHandler.getRegisteredElementByType(ccssl.compositionHandler.ELEMENT_TYPES.TIMELINE);
+    return ccssl.compositionHandler.getRegisteredElementByType(
+      ccssl.compositionHandler.ELEMENT_TYPES.TIMELINE
+    );
+  },
+
+  getWindowCollection: function() {
+    return ccssl.compositionHandler.getRegisteredElementByType(
+      ccssl.compositionHandler.ELEMENT_TYPES.WINDOW_COLLECTION
+    );
   }
 });

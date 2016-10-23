@@ -13,8 +13,9 @@ ccssl.TimelineKeyframeDelegateBase = ccssl.Class.define({
   },
 
   onClick: function() {
-    //enable record mode
-    //open material edit window
+    var timeline = ccssl.componentHandler.getTimeline();
+    timeline.enableRecordMode();
+    this.getParent().openMaterialEditWindow();
   },
 
   onHover: function() {

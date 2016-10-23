@@ -48,6 +48,15 @@ ccssl.TimelineKeyframe = ccssl.Class.define({
     this._destroyElement();
   },
 
+  openMaterialEditWindow: function() {
+    var editWindow = new ccssl.MaterialEditWindow().init(this.getMaterialData());
+    var windowCollection = ccssl.componentHandler.getWindowCollection();
+    var windowIndex = windowCollection.addChild(editWindow);
+    windowCollection.showWindow(windowIndex);
+    editWindow.focusMaterialNameTextbox();
+    editWindow.selectMaterialNameTextBoxText();
+  },
+
   _initActivity: function() {
     var keyframeData = this._keyframeData;
     if (keyframeData == null || Object.keys(keyframeData).length === 0) {
