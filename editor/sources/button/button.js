@@ -34,6 +34,11 @@ ccssl.Button = ccssl.Class.define({
     element.style.left = rect.x + "px";
     element.style.width = rect.width + "px";
     element.style.height = rect.height + "px";
+    var item = this._element.item;
+    item.style.top = rect.y + "px";
+    item.style.left = rect.x + "px";
+    item.style.width = rect.width + "px";
+    item.style.height = rect.height + "px";
   },
 
   setTitle: function(title, maxCharacters) {

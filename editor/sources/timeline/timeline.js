@@ -2,11 +2,11 @@ ccssl.Timeline = ccssl.Class.define({
   init: function() {
     this._element = this._createElement();
     this._refreshTimelineData(function(timelineData) {
+      this._recordButton = this._initRecordButton(timelineData);
       this._animationPulldown = this._initAnimationPulldown(timelineData);
       this._grid = this._initGrid(timelineData);
       this._loopCheckbox = this._initLoopCheckbox(timelineData);
       this._playButton = this._initPlayButton(timelineData);
-      this._recordButton = this._initRecordButton(timelineData);
       this._keyframeInfoPanel = this._initKeyframeInfoPanel();
       this._frameSlider = this._initFrameSlider();
     }.bind(this));
@@ -128,7 +128,10 @@ ccssl.Timeline = ccssl.Class.define({
   },
 
   _initRecordButton: function(timelineData) {
-    return new ccssl.TimelineRecordButton().init(timelineData);
+    var recordButton = new ccssl.TimelineRecordButton().init(timelineData);
+    recordButton.setParent(this.getElement());
+
+    return recordButton;
   },
 
   _initKeyframeInfoPanel: function() {

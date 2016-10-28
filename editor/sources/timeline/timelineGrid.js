@@ -214,16 +214,20 @@ ccssl.TimelineGrid = ccssl.Class.define({
     keys.forEach(function(key) {
       table.rows[key].destroy();
     }.bind(this));
+    table.element.parentNode.removeChild(table.element);
+    table.element = null;
+    table.destroy = null;
   },
 
   _destroyRow: function(row) {
     row.cells.forEach(function(cell) {
       cell.destroy();
-      row.element.parentNode.removeChild(row.element);
-      row.element = null;
-      row.parent = null;
-      row.material = null;
     });
+    row.element.parentNode.removeChild(row.element);
+    row.element = null;
+    row.parent = null;
+    row.material = null;
+    row.destroy = null;
   },
 
   _destroyCell: function(cell) {
@@ -234,5 +238,6 @@ ccssl.TimelineGrid = ccssl.Class.define({
     cell.element = null;
     cell.parent = null;
     cell.material = null;
+    cell.destroy = null;
   }
 });
