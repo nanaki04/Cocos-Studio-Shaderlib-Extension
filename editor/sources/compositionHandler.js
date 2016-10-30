@@ -23,7 +23,7 @@ ccssl.compositionHandler = {
               {
                 type: "timeline",
                 width: { fixed: false, weight: 1 },
-                height: { fixed: true, px: 150 }
+                height: { fixed: true, px: 175 }
               }
             ]
           ]

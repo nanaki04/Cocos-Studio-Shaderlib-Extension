@@ -29,6 +29,14 @@ body {
     margin: 5px 5px 5px 5px;
 }
 
+.slim-border-inset {
+    border: 2px inset rgb(100, 100, 200);
+}
+
+.inline-block {
+    display: inline-block
+}
+
 #simulator {
 	position: absolute;
 	overflow: auto;

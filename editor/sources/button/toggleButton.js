@@ -55,6 +55,10 @@ ccssl.ToggleButton = ccssl.Button.extend({
     this._element.bg.style.visibility = "hidden";
   },
 
+  isSelected: function() {
+    return this._selected;
+  },
+
   _onClickCallback: function(event) {
     event.stopPropagation && event.stopPropagation();
     if (event.cancelBubble != null) event.cancelBubble = true;

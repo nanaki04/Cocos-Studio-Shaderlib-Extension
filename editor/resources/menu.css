@@ -155,6 +155,7 @@
 }
 
 .record-button-normal-bg {
+	position: absolute;
 	background: rgb(25, 25, 25);
 	border-radius: 50%;
 	padding: 2px 2px 2px 2px;
@@ -162,6 +163,7 @@
 }
 
 .record-button-normal-bg:hover {
+	position: absolute;
 	background: rgb(75, 75, 75);
 	border-radius: 50%;
 	padding: 2px 2px 2px 2px;
@@ -169,6 +171,7 @@
 }
 
 .record-button-selected-bg {
+	position: absolute;
 	background: rgb(150, 150, 150);
 	border-radius: 50%;
 	padding: 2px 2px 2px 2px;
@@ -176,6 +179,7 @@
 }
 
 .record-button-selected-bg:hover {
+	position: absolute;
 	background: rgb(250, 250, 250);
 	border-radius: 50%;
 	padding: 2px 2px 2px 2px;
