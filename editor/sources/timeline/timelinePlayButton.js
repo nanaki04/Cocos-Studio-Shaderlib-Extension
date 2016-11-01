@@ -10,6 +10,7 @@ ccssl.TimelinePlayButton = ccssl.ToggleButton.extend({
     this._initCss();
     this.redraw();
     this._initOnSelectEvents();
+    this.stop();
 
     return this;
   },
@@ -30,11 +31,11 @@ ccssl.TimelinePlayButton = ccssl.ToggleButton.extend({
   },
 
   play: function() {
-    this._element.label.innerHTML = "⊳";
+    this._element.label.innerHTML = "■";
   },
 
-  pause: function() {
-    this._element.label.innerHTML = "｜｜"
+  stop: function() {
+    this._element.label.innerHTML = "▶"
   },
 
   _createElement: function(name) {
@@ -45,6 +46,7 @@ ccssl.TimelinePlayButton = ccssl.ToggleButton.extend({
     }
     holder.appendChild(element.bg);
     element.holder = holder;
+    element.label.style.fontSize = "8px";
 
     return element;
   },
@@ -76,8 +78,8 @@ ccssl.TimelinePlayButton = ccssl.ToggleButton.extend({
     this.base.setRect.call(this, {
       x: rect.x,
       y: rect.y,
-      width: rect.width - 4,
-      height: rect.height - 4
+      width: rect.width,
+      height: rect.height
     });
     var holder = this._element.holder;
     holder.style.top = rect.y;
@@ -87,7 +89,7 @@ ccssl.TimelinePlayButton = ccssl.ToggleButton.extend({
   },
 
   _initOnSelectEvents: function() {
-    //this.addOnSelectEventListener(this.enableRecordMode, this);
-    //this.addOnDeselectEventListener(this.disableRecordMode, this);
+    this.addOnSelectEventListener(this.play, this);
+    this.addOnDeselectEventListener(this.stop, this);
   }
 });

@@ -98,6 +98,10 @@ ccssl.MenuItem = ccssl.Class.define({
     this._eventHandler.fireEvent("deselect", [this]);
   },
 
+  isSelected: function() {
+    return this._selected;
+  },
+
   setEnabled: function(enable) {
     this._enabled = enable;
   },

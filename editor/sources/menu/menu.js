@@ -2,6 +2,7 @@ ccssl.Menu = ccssl.Class.define({
   DEFAULT_CSS: "menu-bar-bg",
 
   init: function(pos, itemSize, name, vertical) {
+    this._visible = true;
     this._menuItems = [];
     this._name = name;
     this._vertical = !!vertical;
@@ -22,14 +23,24 @@ ccssl.Menu = ccssl.Class.define({
   },
 
   hide: function() {
+    this._visible = false;
     this._menuItems.forEach(function(menuItem) {
       menuItem.deselect();
     });
     this._element.style.display = "none";
   },
 
+  isHidden: function() {
+    return !this._visible;
+  },
+
   show: function() {
+    this._visible = true;
     this._element.style.display = "block";
+  },
+
+  isVisible: function() {
+    return this._element.style.display === "block";
   },
 
   setRect: function(rect) {
