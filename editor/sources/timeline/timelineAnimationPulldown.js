@@ -1,13 +1,18 @@
-ccssl.TimelineAnimationPulldown = ccssl.Class.define({
-  init: function(timelineData) {
+ccssl.TimelineAnimationPulldown = ccssl.SelectMenu.extend({
+  init: function(pos, size, currentAnimation, animationData) {
+    this._animationData = animationData;
+    this.base.init.call(this, pos, size, "timeline_animation_pulldown", currentAnimation);
+
     return this;
   },
 
-  redraw: function() {
-
+  _getMenuItems: function(collectMenuItems) {
+    collectMenuItems(this._animationData.map(function(animationData) {
+      return new ccssl.MenuItem().init(animationData.name, 50);
+    }));
   },
 
-  reload: function() {
-
+  addOnSelectAnimationEventListener: function(callback, context) {
+    return this.addOnSelectItemEventListener(callback, context);
   }
 });

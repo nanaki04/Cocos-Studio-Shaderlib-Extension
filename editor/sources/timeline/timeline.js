@@ -5,10 +5,10 @@ ccssl.Timeline = ccssl.Class.define({
       this._recordButton = this._initRecordButton(timelineData);
       this._recordModeLabel = this._initRecordModeLabel();
       this._currentFrameLabel = this._initCurrentFrameLabel();
-      this._animationPulldown = this._initAnimationPulldown(timelineData);
       this._grid = this._initGrid(timelineData);
       this._loopCheckbox = this._initLoopCheckbox(timelineData);
       this._playButton = this._initPlayButton(timelineData);
+      this._animationPulldown = this._initAnimationPulldown(timelineData);
       this._keyframeInfoPanel = this._initKeyframeInfoPanel();
       this._frameSlider = this._initFrameSlider();
     }.bind(this));
@@ -147,7 +147,16 @@ ccssl.Timeline = ccssl.Class.define({
   },
 
   _initAnimationPulldown: function(timelineData) {
-    return new ccssl.TimelineAnimationPulldown().init(timelineData);
+    var pulldownButton = new ccssl.TimelineAnimationPulldownButton().init(timelineData);
+    this.getHeaderElement().appendChild(pulldownButton.getElement());
+    pulldownButton.setRect({
+      x: 0,
+      y: 0,
+      width: 150,
+      height: 25
+    });
+
+    return pulldownButton;
   },
 
   _initGrid: function(timelineData) {

@@ -11,7 +11,7 @@ ccssl.SelectShaderButton = ccssl.SelectMenuButton.extend({
   },
 
   removeOnChangeShaderEventListener: function(eventListener) {
-    this.removeOnSelectEventListener(eventListener);
+    this.removeOnChangeItemEventListener(eventListener);
   },
 
   _initSelectMenu: function(rect) {
